@@ -5,21 +5,36 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    height: 100vh;
+    /* display: flex; */
     background-color: #f8f9fa;
+    min-height: 100vh;
+    min-width: min-content;
+}
+
+h1 {
+    max-height: fit-content;
+    min-width: fit-content;
+    font-size: 4rem;
+    margin: 0 auto;
+    padding: 5rem 0;
 }
 
 .sidebar {
     width: 15%;
+    min-width: 15rem;
+    min-height: 100vh;
     background-color: #343a40;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
     border-right: 2px solid #495057;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .sidebar a {
@@ -42,17 +57,24 @@ body {
     background-color: #495057;
 }
 
-.main-content {
-    width: 85%;
-    max-width: 1200px; /* Beperk de maximale breedte */
-    margin: 0 auto; /* Centreer de inhoud */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    overflow-y: auto; /* Zorgt ervoor dat inhoud kan scrollen indien nodig */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
 }
 
+.main-content {
+     margin: 0 2rem auto auto; /* Centreer de inhoud */
+     display: flex;
+     gap: 20px;
+     padding: 0 10rem;
+     overflow-y: auto; /* Zorgt ervoor dat inhoud kan scrollen indien nodig */
+     flex-wrap: wrap;
+     justify-content: start;
+     max-width: 104rem;
+     position: relative;
+     min-width: 85vw;
+}
 
 .card {
     background-color: #ffffff;
@@ -62,18 +84,42 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    max-height: 20rem;
+    min-height: 320px;
+    min-width: 320px;
+    max-width: 320px;
+    position: relative;
 }
 
 .card h2 {
     margin-bottom: 10px;
     font-size: 1.5rem;
     color: #343a40;
+}
+
+.remove-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.remove-button:hover {
+    background-color: #d9363e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .table {
@@ -123,63 +169,26 @@ body {
     color: #868e96;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .main-content {
-        width: 100%;
-        grid-template-columns: 1fr;
-    }
-}
-
-.klanten-table {
-    margin-top: 20px;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.klanten-table th, .klanten-table td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    text-align: left;
-    font-size: 0.9rem;
-}
-
-.klanten-table th {
-    background-color: #f8f9fa;
-    color: #343a40;
-    font-weight: bold;
-}
-
-.klanten-table a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.klanten-table a:hover {
-    text-decoration: underline;
-}
-
-.button-small {
-    padding: 5px 10px;
-    background-color: #343a40;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.button-small:hover {
-    background-color: #495057;
-}
-
 .sidebar a.active {
     background-color: #495057;
+    color: #fff;
+}
+
+.add-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 2px dashed #007bff;
+    color: #007bff;
+    font-weight: bold;
+    height: 150px;
+    width: 150px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.add-card:hover {
+    background-color: #007bff;
     color: #fff;
 }

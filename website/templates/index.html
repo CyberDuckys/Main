@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard Overview{% endblock %}
+
+{% block content%}
+
+<h1>Dashboard Overzicht</h1>
+
+<div class="main-content">
+
+    <!-- Bijna op -->
+    <div class="card">
+        <h2>Bijna op</h2>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Voorraad</th>
+            </tr>
+            <tr>
+                <td>00001</td>
+                <td>Banaan</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>00002</td>
+                <td>Appel</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>00003</td>
+                <td>Komkommer</td>
+                <td>3</td>
+            </tr>
+        </table>
+        <button class="button">Inkoop</button>
+    </div>
+
+    <!-- CO2 Tracker -->
+    <div class="card">
+        <h2>CO2 Tracker</h2>
+        <p>150 Km</p>
+        <p>1.2 Ton CO2</p>
+        <br><br>
+        <h2>Spoedbestellingen</h2>
+        <p>50 Km</p>
+        <p>0.5 Ton CO2</p>
+    </div>
+
+    <!-- Vernietigde producten -->
+    <div class="card">
+        <h2>Tot 01-01-2024</h2>
+        <p>15 producten vernietigd</p>
+        <button class="button">Meer</button>
+    </div>
+
+    <!-- Tijd en datum -->
+    <div class="card time-card">
+        <div class="clock">12:00</div>
+        <div class="date">Maandag<br>01-01-2024</div>
+    </div>
+
+    <div class="card add-card" onclick="addNewCard()">
+        <h2 style="font-size: 50px; text-align: center;">+</h2>
+    </div>
+</div>
+    {% endblock%}

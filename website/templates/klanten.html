@@ -4,5 +4,60 @@
 {% block title %} klanten {% endblock %}
 
 {% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/klanten.css') }}">
+
 <h1>klanten</h1>
+
+<div class="">
+    <div class="customerCard">
+        <h2>Klantenlijst</h2>
+        <table class="table klanten-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Naam</th>
+                    <th>Contact</th>
+                    <th>Website</th>
+                    <th>Telefoon</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>00001</td>
+                    <td>Aalbert Hain</td>
+                    <td>Dhr Amir Aalbert Hain</td>
+                    <td><a href="http://ah.nl" target="_blank">AH.nl</a></td>
+                    <td>+31 12345678</td>
+                    <td>
+                        <button class="button-small">Financiën</button>
+                        <button class="button-small">Wijzigen</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>00002</td>
+                    <td>Bumbo</td>
+                    <td>Mevr Bell Bumbo</td>
+                    <td><a href="http://bumbo.com" target="_blank">Bumbo.com</a></td>
+                    <td>+31 12345678</td>
+                    <td>
+                        <button class="button-small">Financiën</button>
+                        <button class="button-small">Wijzigen</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>00003</td>
+                    <td>Cidl</td>
+                    <td>Dhr Christoph Cidl</td>
+                    <td><a href="http://cidl.net" target="_blank">Cidl.net</a></td>
+                    <td>+31 12345678</td>
+                    <td>
+                        <button class="button-small">Financiën</button>
+                        <button class="button-small">Wijzigen</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock%}
