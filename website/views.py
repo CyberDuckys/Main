@@ -9,3 +9,7 @@ def index():
 @views.route('/klanten')
 def klanten():
     return render_template("klanten.html")
+
+@views.route('/koeriers')
+def koeriers():
+    return render_template("koeriers.html")
