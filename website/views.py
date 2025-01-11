@@ -13,3 +13,11 @@ def klanten():
 @views.route('/koeriers')
 def koeriers():
     return render_template("koeriers.html")
+
+@views.route('/inkoop')
+def inkoop():
+    return render_template("inkoop.html")
+
+@views.route('/voorraad')
+def voorraad():
+    return render_template("voorraad.html")
