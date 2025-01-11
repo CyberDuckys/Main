@@ -1,4 +1,3 @@
-
 .customerCard{
     min-width: fit-content;
     background-color: #ffffff;
@@ -12,19 +11,6 @@
     border-collapse: collapse;
 }
 
-.klanten-table th, .klanten-table td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    text-align: left;
-    font-size: 0.9rem;
-}
-
-.klanten-table th {
-    background-color: #f8f9fa;
-    color: #343a40;
-    font-weight: bold;
-}
-
 .klanten-table a {
     color: #007bff;
     text-decoration: none;
@@ -32,18 +18,4 @@
 
 .klanten-table a:hover {
     text-decoration: underline;
-}
-
-.button-small {
-    padding: 5px 10px;
-    background-color: #343a40;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.button-small:hover {
-    background-color: #495057;
 }

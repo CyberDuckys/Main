@@ -1,0 +1,23 @@
+caption {
+    font-size: 3vw;
+    font-weight: 700;
+    background-color: darkgray;
+}
+
+.table th {
+    color: black;
+}
+
+.tableCard{
+    padding: 4px;
+    border-radius: 10px;
+    width: 74vw;
+    background-color: white;
+}
+
+.button-small {
+    float: inline-end;
+    position: absolute;
+    top: 21%;
+    right: 10%;
+}
