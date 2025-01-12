@@ -21,3 +21,7 @@ def inkoop():
 @views.route('/voorraad')
 def voorraad():
     return render_template("voorraad.html")
+
+@views.route('/bestelgeschiedenis')
+def bestelgeschiedenis():
+    return render_template("bestelgeschiedenis.html")

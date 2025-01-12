@@ -10,7 +10,7 @@
 
     <div class="tableCard">
         <table class="table klanten-table">
-            <caption>Bijna op <a href="#" class="button-small">Bestelgeschiedenis</a></caption>
+            <caption>Bijna op <a href="{{ url_for('views.bestelgeschiedenis') }}" class="button-small">Bestelgeschiedenis</a></caption>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -30,7 +30,7 @@
                     <td>Alibaba</td>
                     <td>Alibaba.com</td>
                     <td>+31 123 456 78</td>
-                    <td>€29,99</td>
+                    <td>€23,99</td>
                 </tr>
                 <tr>
                     <td>00002</td>
@@ -90,5 +90,4 @@
             </tbody>
         </table>
     </div>
-
-{% endblock%}
+{% endblock %}

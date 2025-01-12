@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Bestelgeschiedenis {% endblock %}
+
+{% block content%}
+
+<h1 class="dashboardTitle">Dashboard Bestelgeschiedenis</h1>
+
+<div class="tableCard">
+    <table class="table klanten-table">
+        <caption>Bestelgeschiedenis</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Leverancier</th>
+                <th>Prijs</th>
+                <th>Datum</th>
+                <th><button class="saveAll button">Opslaan</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00001</td>
+                <td>Banaan</td>
+                <td>Alibaba</td>
+                <td>€23,99</td>
+                <td>01-01-2021</td>
+                <td><button class="nieuwePrijs button" onclick="voegRijToe(this)">Nieuwe Prijs toevoegen</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>€20,00</td>
+                <td>01-10-2020</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>€19,99</td>
+                <td>01-10-2019</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>00002</td>
+                <td>Appel</td>
+                <td>Bamazon</td>
+                <td>€10,00</td>
+                <td>02-02-2022</td>
+                <td><button class="nieuwePrijs button" onclick="voegRijToe(this)">Nieuwe Prijs toevoegen</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>€8,88</td>
+                <td>02-02-2021</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>00003</td>
+                <td>Komkommer</td>
+                <td>Cemu</td>
+                <td>€9,95</td>
+                <td>03-03-2023</td>
+                <td><button class="nieuwePrijs button" onclick="voegRijToe(this)">Nieuwe Prijs toevoegen</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
