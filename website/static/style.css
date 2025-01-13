@@ -198,7 +198,7 @@ caption {
     max-width: 2vw;
 }
 
-.smallTable td{
+.smallTable th, .smallTable td {
     font-size: 0.9vw;
 }
 

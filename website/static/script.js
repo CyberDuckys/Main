@@ -1,4 +1,11 @@
 function addNewCard() {
+    // Vraag de gebruiker om een titel voor de nieuwe kaart
+    const userTitle = prompt("Voer een titel in voor de nieuwe kaart:");
+    if (!userTitle) {
+        alert("Er is geen titel ingevoerd!");
+        return; // Stop als er geen titel is ingevoerd
+    }
+
     // Selecteer de container waar de kaarten worden geplaatst
     const mainContent = document.querySelector('.main-content');
 
@@ -9,7 +16,7 @@ function addNewCard() {
     // Voeg inhoud toe aan de kaart, inclusief de verwijderknop
     newCard.innerHTML = `
         <button class="remove-button" onclick="removeCard(this)">X</button>
-        <h2>Nieuwe kaart</h2>
+        <h2>${userTitle}</h2>
         <p>Dit is een dynamisch toegevoegde kaart.</p>
         <button class="button" onclick="alert('Actie op nieuwe kaart')">Actie</button>
     `;
