@@ -11,7 +11,7 @@
 
 .button-small {
     float: inline-end;
-    position: absolute;
-    top: 21%;
-    right: 10%;
+    position: relative;
+    top: 1rem;
+    right: 10rem;
 }
