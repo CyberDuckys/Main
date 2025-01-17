@@ -1,21 +1,30 @@
-
 from flask import Blueprint, redirect, render_template, request, url_for
-from . import mysql  # Import the globally initialized `mysql`
+
 views = Blueprint('views', __name__)
 
-def database(query):
-    cursor = mysql.connection.cursor()
-    cursor.execute(query)
-    result = cursor.fetchall()
-    cursor.close()
-    return result
+# Dummy data
+klanten = [
+    {'id': 1, 'naam': 'Aalbert Hain', 'contact': 'Dhr Amir Aalbert Hain', 'website': 'http://ah.nl', 'telefoon': '+31 12345678'},
+    {'id': 2, 'naam': 'Bumbo', 'contact': 'Mevr Bell Bumbo', 'website': 'http://bumbo.com', 'telefoon': '+31 12345678'},
+    {'id': 3, 'naam': 'Cidl', 'contact': 'Dhr Christoph Cidl', 'website': 'http://cidl.net', 'telefoon': '+31 12345678'},
+]
+
+financien_data = {
+    1: [
+        {'id': 1, 'beschrijving': 'Factuur 1', 'bedrag': '€100,00', 'status': 'Onbetaald', 'datum': '01-01-2023'},
+        {'id': 2, 'beschrijving': 'Factuur 2', 'bedrag': '€200,00', 'status': 'Betaald', 'datum': '15-01-2023'},
+    ],
+    2: [
+        {'id': 3, 'beschrijving': 'Factuur 3', 'bedrag': '€150,00', 'status': 'Onbetaald', 'datum': '20-02-2023'},
+    ],
+    3: [
+        {'id': 4, 'beschrijving': 'Factuur 4', 'bedrag': '€300,00', 'status': 'Betaald', 'datum': '05-03-2023'},
+    ],
+}
 
 @views.route('/')
 def index():
-    result = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
-    product1 = result[0]
-    print(product1, flush=True)
-    return render_template("index.html", products=result)
+    return render_template("index.html")
 
 @views.route('/klanten')
 def klantenlijst():
@@ -127,6 +136,7 @@ def voorraad():
 @views.route('/bestelgeschiedenis')
 def bestelgeschiedenis():
     return render_template("bestelgeschiedenis.html")
+
 
 @views.route('/koeriers/klant-info/<int:klant_id>')
 def koeriers_klant_info(klant_id):
