@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Klant Info{% endblock %}
+
+{% block content %}
+<h1>Klant Info voor Koeriers</h1>
+
+<div>
+    <h2>Klantgegevens</h2>
+    <table>
+        <tr><th>Naam:</th><td>{{ klant.contact }}</td></tr>
+        <tr><th>Bedrijf:</th><td>{{ klant.naam }}</td></tr>
+        <tr><th>Website:</th><td><a href="{{ klant.website }}">{{ klant.website }}</a></td></tr>
+        <tr><th>Telefoon:</th><td>{{ klant.telefoon }}</td></tr>
+    </table>
+</div>
+
+<div>
+    <h2>Leveringsinformatie</h2>
+    <table>
+        <tr><th>Track & Trace:</th><td>{{ koerier_info.track_trace }}</td></tr>
+        <tr><th>Levermoment:</th><td>{{ koerier_info.levermoment }}</td></tr>
+        <tr><th>Adres:</th><td>{{ koerier_info.adres }}</td></tr>
+    </table>
+</div>
+
+<div>
+    <a href="{{ url_for('views.koeriers') }}">Terug naar Koeriers</a>
+</div>
+{% endblock %}

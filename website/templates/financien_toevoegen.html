@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Financiën Toevoegen {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/financien.css') }}">
+
+<h1 class="dashboardTitle">Nieuwe Financiën Toevoegen</h1>
+
+<div class="formContainer">
+    <form action="{{ url_for('views.financien_toevoegen') }}" method="POST" class="finance-form">
+        <label for="klant">Klant:</label>
+        <input type="text" id="klant" name="klant" required>
+
+        <label for="bedrag">Bedrag (€):</label>
+        <input type="number" id="bedrag" name="bedrag" step="0.01" required>
+
+        <label for="datum">Datum:</label>
+        <input type="date" id="datum" name="datum" required>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="open">Open</option>
+            <option value="betaald">Betaald</option>
+        </select>
+
+        <button type="submit" class="button-large">Toevoegen</button>
+    </form>
+</div>
+{% endblock %}
