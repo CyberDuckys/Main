@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Financiën Wijzigen {% endblock %}
+
+{% block content %}
+<h1 class="dashboardTitle">Financiën Wijzigen</h1>
+
+<div class="formCard">
+    <form method="post">
+        {% for finance in financien %}
+        <div class="form-group">
+            <label for="beschrijving">Beschrijving:</label>
+            <input type="text" id="beschrijving" name="beschrijving" value="{{ finance.beschrijving }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="bedrag">Bedrag:</label>
+            <input type="number" id="bedrag" name="bedrag" value="{{ finance.bedrag }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status" class="form-control">
+                <option value="Onbetaald" {% if finance.status == 'Onbetaald' %}selected{% endif %}>Onbetaald</option>
+                <option value="Betaald" {% if finance.status == 'Betaald' %}selected{% endif %}>Betaald</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" name="datum" value="{{ finance.datum }}" class="form-control" required>
+        </div>
+        <input type="hidden" name="id" value="{{ finance.id }}">
+        <button type="submit" class="button">Opslaan</button>
+        {% endfor %}
+    </form>
+    
+    
+</div>
+{% endblock %}

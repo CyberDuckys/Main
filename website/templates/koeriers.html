@@ -24,7 +24,12 @@
                     <td>Trace AAAA1</td>
                     <td>9:00 - 12:00</td>
                     <td>Alibabawaeg 6, 1234 Aalst</td>
-                    <td>Adrian <button class="button">Klant info</button></td>
+                    <td>
+                        Adrian 
+                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=1) }}">
+                            <button class="button">Klant info</button>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -45,13 +50,23 @@
                     <td>Trace BBBB2</td>
                     <td>Middag</td>
                     <td>Bamazon 1, 4321 Breda</td>
-                    <td>Ben <button class="button">Klant info</button></td>
+                    <td>
+                        Ben 
+                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=2) }}">
+                            <button class="button">Klant info</button>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>Trace CCCC3</td>
                     <td>Middag</td>
                     <td>Cemu 56, 1122 Cuijk</td>
-                    <td>Chrisi <button class="button">Klant info</button></td>
+                    <td>
+                        Chrisi 
+                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=3) }}">
+                            <button class="button">Klant info</button>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

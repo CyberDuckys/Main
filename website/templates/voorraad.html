@@ -3,8 +3,95 @@
 
 {% block title %} Voorraad {% endblock %}
 
-{% block content%}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
 
 <h1 class="dashboardTitle">Dashboard Vooraad</h1>
 
-{% endblock%}
+    <div class="tableCard">
+        <table class="table klanten-table">
+            <caption>Voorraad<a href="#" class="button-small">Product toevoegen</a></caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Batchnummer</th>
+                    <th>Bewaardadvies</th>
+                    <th>Locatie</th>
+                    <th>Aantal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>00001</td>
+                    <td>Banaan</td>
+                    <td>00001</td>
+                    <td>Diepvries</td>
+                    <td>A12</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>00002</td>
+                    <td>Appel</td>
+                    <td>00002</td>
+                    <td>Koeling</td>
+                    <td>B01</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>00003</td>
+                    <td>Komkommer</td>
+                    <td>00003</td>
+                    <td>Donker</td>
+                    <td>C07</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>00004</td>
+                    <td>Avocado</td>
+                    <td>00004</td>
+                    <td>Kast</td>
+                    <td>D09</td>
+                    <td>11</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tableCard">
+        <table class="table klanten-table">
+            <thead>
+                <tr>
+                    <th>Leverancier</th>
+                    <th>Adres</th>
+                    <th>Contact</th>
+                    <th>Tel Nr</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alibaba</td>
+                    <td>Alibabaweg 6, 1234 DF Aalst</td>
+                    <td>Dhr Alex Alibaba</td>
+                    <td>+31 123 456 78</td>
+                    <td>Alibaba.com</td>
+                </tr>
+                <tr>
+                    <td>Bamazon</td>
+                    <td>Bamazonstraat 1, 4321 HF Breda</td>
+                    <td>Mevr Birgit Bamazon</td>
+                    <td>+31 876 543 21</td>
+                    <td>Bamazon.nl</td>
+                </tr>
+                <tr>
+                    <td>Cemu</td>
+                    <td>Cemuwijk 56, 1222 AD Cuijk</td>
+                    <td>Mevr Christina Cemu</td>
+                    <td>+31 192 837 46</td>
+                    <td>Cemu.net</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

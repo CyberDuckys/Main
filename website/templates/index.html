@@ -3,10 +3,11 @@
 <h1 class="dashboardTitle">Dashboard Overzicht</h1>
 
 <div class="main-content">
-  <!-- Bijna op -->
-  <div class="card">
-    <h2>Bijna op</h2>
-    <table class="table smallTable">
+
+    <!-- Bijna op -->
+    <div class="card">
+        <h2>Bijna op</h2>
+        <table class="table smallTable">
       <tr>
         <th>ID</th>
         <th>Product</th>
@@ -22,36 +23,34 @@
         <!-- Product -->
       </tr>
       {% endfor %}
-    </table>
-    <a href="{{ url_for('views.inkoop') }}" class="button">Inkoop</a>
-  </div>
+        </table>
+        <a href="{{ url_for('views.inkoop') }}" class="button">Inkoop</a>
+    </div>
 
-  <!-- CO2 Tracker -->
-  <div class="card">
-    <h2>CO2 Tracker</h2>
-    <p>150 Km</p>
-    <p>1.2 Ton CO2</p>
-    <br /><br />
-    <h2>Spoedbestellingen</h2>
-    <p>50 Km</p>
-    <p>0.5 Ton CO2</p>
-  </div>
+    <!-- CO2 Tracker -->
+    <div class="card">
+        <h2>CO2 Tracker</h2>
+        <p>150 Km</p>
+        <p>1.2 Ton CO2</p>
+        <br><br>
+        <h2>Spoedbestellingen</h2>
+        <p>50 Km</p>
+        <p>0.5 Ton CO2</p>
+    </div>
 
-  <!-- Vernietigde producten -->
-  <div class="card">
-    <h2>Tot 01-01-2024</h2>
-    <p>15 producten vernietigd</p>
-    <button class="button">Meer</button>
-  </div>
+    <!-- Vernietigde producten -->
+    <div class="card">
+        <h2>Tot 01-01-2024</h2>
+        <p>15 producten vernietigd</p>
+        <a href="{{ url_for('views.voorraad') }}" class="button">Meer</a>
+    </div>
 
-  <!-- Tijd en datum -->
-  <div class="card time-card">
-    <div class="clock">12:00</div>
-    <div class="date">Maandag<br />01-01-2024</div>
-  </div>
+    <!-- Tijd en datum -->
+    <div class="card time-card">
+        <div class="clock">12:00</div>
+        <div class="date">Maandag<br>01-01-2024</div>
+    </div>
 
-  <div class="card add-card" onclick="addNewCard()">
-    <h2 style="font-size: 50px; text-align: center">+</h2>
-  </div>
-</div>
-{% endblock %}
+    <div class="card add-card" onclick="addNewCard()">
+        <h2 style="font-size: 50px; text-align: center;">+</h2>
+    </div>

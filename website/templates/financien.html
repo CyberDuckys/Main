@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Financiën {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/financien.css') }}">
+
+<h1 class="dashboardTitle">Dashboard Financiën</h1>
+
+<div class="financeContainer">
+    <h2>Financiële Overzicht voor Klant {{ klant_id }}</h2> <!-- Klant ID wordt hier getoond -->
+    <table class="table financien-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Beschrijving</th>
+                <th>Bedrag</th>
+                <th>Datum</th>
+                <th>Status</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for finance in finance %}
+            <tr>
+                <td>{{ finance.id }}</td>
+                <td>{{ finance.beschrijving }}</td>
+                <td>€ {{ finance.bedrag }}</td>
+                <td>{{ finance.datum }}</td>
+                <td>{{ finance.status }}</td>
+                <td>
+                    <button class="button-small">Bekijken</button>
+                    <a href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant_id) }}" class="button-small">Wijzigen</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Toevoegen-knop -->
+    <div class="add-finance-btn">
+        <a href="{{ url_for('views.financien_toevoegen') }}" class="button-large">+ Toevoegen</a>
+    </div>
+</div>
+{% endblock %}
