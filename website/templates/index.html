@@ -1,8 +1,4 @@
-{% extends 'base.html' %}
-
-{% block title %}Dashboard Overview{% endblock %}
-
-{% block content%}
+{% extends 'base.html' %} {% block title %}Dashboard Overview{% endblock %} {% block content%}
 
 <h1 class="dashboardTitle">Dashboard Overzicht</h1>
 
@@ -12,26 +8,21 @@
     <div class="card">
         <h2>Bijna op</h2>
         <table class="table smallTable">
-            <tr>
-                <th>ID</th>
-                <th>Product</th>
-                <th>Voorraad</th>
-            </tr>
-            <tr>
-                <td>00001</td>
-                <td>Banaan</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>00002</td>
-                <td>Appel</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <td>00003</td>
-                <td>Komkommer</td>
-                <td>3</td>
-            </tr>
+      <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Voorraad</th>
+      </tr>
+      {% for product in products %}
+      <tr>
+        <td>{{ product[0] }}</td>
+        <!-- ID -->
+        <td>{{ product[1] }}</td>
+        <!-- Voorraad -->
+        <td>{{ product[2] }}</td>
+        <!-- Product -->
+      </tr>
+      {% endfor %}
         </table>
         <a href="{{ url_for('views.inkoop') }}" class="button">Inkoop</a>
     </div>
@@ -63,5 +54,3 @@
     <div class="card add-card" onclick="addNewCard()">
         <h2 style="font-size: 50px; text-align: center;">+</h2>
     </div>
-</div>
-    {% endblock %}
