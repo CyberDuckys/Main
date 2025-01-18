@@ -137,6 +137,28 @@ def voorraad():
 def bestelgeschiedenis():
     return render_template("bestelgeschiedenis.html")
 
+# Route voor de product toevoeg-pagina
+@views.route('/voorraadProductToevoegen', methods=['GET', 'POST'])
+def voorraadProductToevoegen():
+    voorraad = [
+    {"id": "00001", "product": "Banaan", "batchnummer": "00001", "bewaaradvies": "Diepvries", "locatie": "A12", "aantal": 2},
+    {"id": "00002", "product": "Appel", "batchnummer": "00002", "bewaaradvies": "Koeling", "locatie": "B01", "aantal": 5},
+    {"id": "00003", "product": "Komkommer", "batchnummer": "00003", "bewaaradvies": "Donker", "locatie": "C07", "aantal": 3},
+]
+    
+    if request.method == 'POST':
+        # Nieuwe data ophalen uit het formulier
+        new_product = {
+            "id": request.form['id'],
+            "product": request.form['product'],
+            "batchnummer": request.form['batchnummer'],
+            "bewaaradvies": request.form['bewaaradvies'],
+            "locatie": request.form['locatie'],
+            "aantal": int(request.form['aantal']),
+        }
+        voorraad.append(new_product)  # Voeg toe aan de mock data
+        return redirect(url_for('views.voorraad'))  # Terug naar de voorraad.html
+    return render_template('voorraadProductToevoegen.html')
 
 @views.route('/koeriers/klant-info/<int:klant_id>')
 def koeriers_klant_info(klant_id):

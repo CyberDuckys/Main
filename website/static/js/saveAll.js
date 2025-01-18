@@ -1,6 +1,6 @@
     document.querySelector('.saveAll').addEventListener('click', function () {
         const nieuweData = [];
-        const tableRows = document.querySelectorAll('.klanten-table tbody tr');
+        const tableRows = document.querySelectorAll('tbody tr');
 
         // Loop door alle rijen en verzamel de nieuwe rijen
         tableRows.forEach(row => {

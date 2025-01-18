@@ -3,21 +3,23 @@
 {% block title %} Klanten {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/klanten.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
 
-<h1 class="dashboardTitle">Dashboard Klanten</h1>
+<h1 class="text-center mb-4">Dashboard Klanten</h1>
 
-<div class="customerCard">
-    <h2>Klantenlijst</h2>
-    <table class="table klanten-table">
-        <thead>
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Klantenlijst</span>
+    </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Naam</th>
                 <th>Contact</th>
                 <th>Website</th>
                 <th>Telefoon</th>
-                <th>Acties</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

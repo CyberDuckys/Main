@@ -3,20 +3,23 @@
 {% block title %}Koeriers{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/koeriers.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
 
-<h1 class="dashboardTitle">Dashboard Koeriers</h1>
+<h1 class="text-center mb-4">Dashboard Koeriers</h1>
 
-<div class="main-content">
-    <div class="section">
-        <h2 class="title red">SPOED</h2>
-        <table class="table">
-            <thead>
+<div class="flexTables">
+    <div class="table-responsive mb-4">
+        <div class="caption">
+            <span>SPOED</span>
+        </div>
+        <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+            <thead class="table-dark">
                 <tr>
                     <th>Track&</th>
                     <th>Levermoment</th>
                     <th>Adres</th>
                     <th>Koerier</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,25 +27,29 @@
                     <td>Trace AAAA1</td>
                     <td>9:00 - 12:00</td>
                     <td>Alibabawaeg 6, 1234 Aalst</td>
+                    <td>Adrian</td>
                     <td>
-                        Adrian 
-                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=1) }}">
-                            <button class="button">Klant info</button>
+                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=1) }}" class="button-small">
+                            Klant info
                         </a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="section">
-        <h2 class="title">Leveringen</h2>
-        <table class="table">
-            <thead>
+
+    <div class="table-responsive mb-4">
+        <div class="caption">
+            <span>Leveringen</span>
+        </div>
+        <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+            <thead class="table-dark">
                 <tr>
                     <th>Track&</th>
                     <th>Levermoment</th>
                     <th>Adres</th>
                     <th>Koerier</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,10 +57,10 @@
                     <td>Trace BBBB2</td>
                     <td>Middag</td>
                     <td>Bamazon 1, 4321 Breda</td>
+                    <td>Ben</td>
                     <td>
-                        Ben 
-                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=2) }}">
-                            <button class="button">Klant info</button>
+                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=2) }}" class="button-small">
+                            Klant info
                         </a>
                     </td>
                 </tr>
@@ -61,10 +68,10 @@
                     <td>Trace CCCC3</td>
                     <td>Middag</td>
                     <td>Cemu 56, 1122 Cuijk</td>
+                    <td>Chrisi</td>
                     <td>
-                        Chrisi 
-                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=3) }}">
-                            <button class="button">Klant info</button>
+                        <a href="{{ url_for('views.koeriers_klant_info', klant_id=3) }}" class="button-small">
+                            Klant info
                         </a>
                     </td>
                 </tr>

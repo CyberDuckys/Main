@@ -4,20 +4,24 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/financien.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
 
-<h1 class="dashboardTitle">Dashboard Financiën</h1>
+<h1 class="text-center mb-4">Dashboard Financiën</h1>
 
-<div class="financeContainer">
-    <h2>Financiële Overzicht voor Klant {{ klant_id }}</h2> <!-- Klant ID wordt hier getoond -->
-    <table class="table financien-table">
-        <thead>
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Klantenoverzicht {{ klant_id }}</span>
+        <button class="saveAll btn btn-sm btn-dark">Opslaan</button>
+    </div> <!-- Klant ID wordt hier getoond -->
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Beschrijving</th>
                 <th>Bedrag</th>
                 <th>Datum</th>
                 <th>Status</th>
-                <th>Acties</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +34,8 @@
                 <td>{{ finance.status }}</td>
                 <td>
                     <button class="button-small">Bekijken</button>
-                    <a href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant_id) }}" class="button-small">Wijzigen</a>
+                    <a href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant_id) }}"
+                        class="button-small">Wijzigen</a>
                 </td>
             </tr>
             {% endfor %}
