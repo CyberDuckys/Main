@@ -3,25 +3,6 @@ from . import mysql  # Import the globally initialized `mysql`
 from datetime import datetime
 views = Blueprint('views', __name__)
 
-# Dummy data
-klanten = [
-    {'id': 1, 'naam': 'Aalbert Hain', 'contact': 'Dhr Amir Aalbert Hain', 'website': 'http://ah.nl', 'telefoon': '+31 12345678'},
-    {'id': 2, 'naam': 'Bumbo', 'contact': 'Mevr Bell Bumbo', 'website': 'http://bumbo.com', 'telefoon': '+31 12345678'},
-    {'id': 3, 'naam': 'Cidl', 'contact': 'Dhr Christoph Cidl', 'website': 'http://cidl.net', 'telefoon': '+31 12345678'},
-]
-
-financien_data = {
-    1: [
-        {'id': 1, 'beschrijving': 'Factuur 1', 'bedrag': '€100,00', 'status': 'Onbetaald', 'datum': '01-01-2023'},
-        {'id': 2, 'beschrijving': 'Factuur 2', 'bedrag': '€200,00', 'status': 'Betaald', 'datum': '15-01-2023'},
-    ],
-    2: [
-        {'id': 3, 'beschrijving': 'Factuur 3', 'bedrag': '€150,00', 'status': 'Onbetaald', 'datum': '20-02-2023'},
-    ],
-    3: [
-        {'id': 4, 'beschrijving': 'Factuur 4', 'bedrag': '€300,00', 'status': 'Betaald', 'datum': '05-03-2023'},
-    ],
-}
 
 def database(query):
     try:
@@ -32,7 +13,7 @@ def database(query):
         cursor.close()
         return result
     except Exception as e:
-        print(lazy_gettext("Error occurred: ", e))
+        print("Error occurred: ", e)
 
 
 @views.route('/')
