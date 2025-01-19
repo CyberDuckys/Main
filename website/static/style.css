@@ -37,10 +37,7 @@
       min-width: 320px;
       max-width: 320px;
     }
-  
-    .p-4 {
-      padding: 0 1rem 1rem 18.5rem !important;
-    }
+
   }
   
   .table {
@@ -85,35 +82,68 @@
     min-width: 200px;
   }
   
-  @media only screen and (max-width: 1820px) {
-      .bg-dark  {
-          min-width: -webkit-fill-available;
-          max-height: fit-content;
-      }
+  /* Hamburger Menu Specifiek */
+@media only screen and (max-width: 1820px) {
+    .bg-dark {
+      /* transform: translateX(-100%); */
+      transition: transform 0.3s ease-in-out;
+      position: fixed;
+      z-index: 1000;
+      min-width: 200px;
+      height: 100%;
+    }
   
-      #menu-items {
-          display: none;
-        }
-        
-        #toggle-menu {
-            color: #f8f9fa;
-            background-color: unset;
-            border: none;
-            font-size: 1.5rem;
-            margin: 0.5vh 5vw 0 0;
-            position: absolute;
-            right: 0;
-        }
-  
-      .p-3 {
-          padding: 0.2rem !important;
-      }
-
-      .nav-item {
-        max-width: fit-content;
-        margin: auto;
-      }
+ /* Verborgen checkbox voor toggle */
+#menu-toggle {
+    display: none;
   }
+  
+  /* Standaardstijl voor de toggle-knop */
+  #toggle-menu {
+    position: fixed;
+        top: 1rem;
+        z-index: 1100;
+        background-color: #212529;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  }
+  
+  /* Hamburger icon basisstijl */
+  #toggle-menu .hamburger,
+  #toggle-menu .hamburger::before,
+  #toggle-menu .hamburger::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  /* Kruisje styling */
+  #menu-toggle:checked + #toggle-menu .hamburger::before {
+    transform: rotate(45deg);
+    position: absolute;
+  }
+  
+  #menu-toggle:checked + #toggle-menu .hamburger::after {
+    transform: rotate(-45deg);
+    position: absolute;
+  }
+  
+  #menu-toggle:checked + #toggle-menu .hamburger {
+    background-color: transparent;
+  }
+  
+  
+  }  
   
   .sidebar .btn-dark:hover {
     background-color: #495057;
