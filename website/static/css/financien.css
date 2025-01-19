@@ -1,0 +1,54 @@
+.financeContainer {
+    margin: 20px;
+}
+
+.add-finance-btn {
+    margin-top: 20px;
+}
+
+.add-finance-btn .button-large {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9vw;
+}
+
+.add-finance-btn .button-large:hover {
+    background-color: #0056b3;
+}
+
+.formContainer {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.finance-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.finance-form input,
+.finance-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.finance-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.finance-form button:hover {
+    background-color: #218838;
+}

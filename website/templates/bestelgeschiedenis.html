@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Bestelgeschiedenis {% endblock %}
+
+{% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
+
+<h1 class="text-center mb-4">Dashboard Bestelgeschiedenis</h1>
+
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Bestelgeschiedenis</span>
+        <button class="saveAll btn btn-sm btn-dark">Opslaan</button>
+    </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Leverancier</th>
+                <th>Prijs</th>
+                <th>Datum</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00001</td>
+                <td>Banaan</td>
+                <td>Alibaba</td>
+                <td>€23,99</td>
+                <td>01-01-2021</td>
+                <td><button class="nieuwePrijs button-small" onclick="voegRijToe(this)">Nieuwe Prijs toevoegen</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>€20,00</td>
+                <td>01-10-2020</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>€19,99</td>
+                <td>01-10-2019</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>00002</td>
+                <td>Appel</td>
+                <td>Bamazon</td>
+                <td>€10,00</td>
+                <td>02-02-2022</td>
+                <td><button class="nieuwePrijs button-small" onclick="voegRijToe(this)">Nieuwe Prijs toevoegen</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>€8,88</td>
+                <td>02-02-2021</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>00003</td>
+                <td>Komkommer</td>
+                <td>Cemu</td>
+                <td>€9,95</td>
+                <td>03-03-2023</td>
+                <td><button class="nieuwePrijs button-small" onclick="voegRijToe(this)">Nieuwe Prijs toevoegen</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

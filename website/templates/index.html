@@ -1,8 +1,66 @@
 {% extends 'base.html' %}
+{% block title %}Dashboard Overview{% endblock %}
+{% block content %}
 
+<div class="container py-4">
+  <h1 class="text-center mb-4">Dashboard Overzicht</h1>
 
-{% block title %} Home {% endblock %}
+  <div class="row g-2">
+    <!-- Bijna op -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card shadow">
+        <h5 class="card-title text-center">Bijna op</h5>
+        <table class="table table-bordered table-sm text-center">
+          <thead>
+            <tr class="table-dark">
+              <th>ID</th>
+              <th>Product</th>
+              <th>Voorraad</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in bijnaOpProducten[:4] %}
+            <tr>
+              <td>{{ product[0] }}</td>
+              <td>{{ product[1] }}</td>
+              <td>{{ product[2] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{{ url_for('views.inkoop') }}" class="btn btn-dark w-100 mt-2">Meer</a>
+      </div>
+    </div>
 
-{% block content%}
-<h1>Home</h1>
-{% endblock%}
+    <!-- CO2 Tracker -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card shadow">
+        <h5 class="card-title text-center">CO2 Tracker</h5>
+        <p class="text-center mb-0">150 Km</p>
+        <p class="text-center mb-3">1.2 Ton CO2</p>
+        <h5 class="card-title text-center">Spoedbestellingen</h5>
+        <p class="text-center mb-0">50 Km</p>
+        <p class="text-center">0.5 Ton CO2</p>
+      </div>
+    </div>
+
+    <!-- Vernietigde producten -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card shadow">
+        <h5 class="card-title text-center">Tot 01-01-2024</h5>
+        <p class="text-center">15 producten vernietigd</p>
+        <a href="{{ url_for('views.voorraad') }}" class="btn btn-dark w-100 mt-2">Meer</a>
+      </div>
+    </div>
+
+    <!-- Tijd en datum -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow text-center large">
+        <div class="display-1 fw-bold" id="clock">{{time}}</div>
+        <p class="fs-4" id="date">{{day}}<br />{{date}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    {% endblock %}

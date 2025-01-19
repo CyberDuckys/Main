@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block title %} Voorraad {% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
+
+<h1 class="text-center mb-4">Dashboard Voorraad</h1>
+
+<div class="alignTables">
+
+    <!-- Voorraad Tabel -->
+    <div class="table-responsive mb-4">
+        <div class="caption">
+            <span>Voorraad</span>
+            <a href="{{ url_for('views.voorraadProductToevoegen') }}" class="btn btn-sm btn-dark">Product toevoegen</a>
+        </div>
+        <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Batchnummer</th>
+                    <th>Bewaardadvies</th>
+                    <th>Locatie</th>
+                    <th>Aantal</th>
+                    <th>Houdbaarheid</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in voorraad %}
+                <tr>
+                  <td>{{ product[0] }}</td>
+                  <!-- ID -->
+                  <td>{{ product[1] }}</td>
+                  <!-- product -->
+                  <td>{{ product[2] }}</td>
+                  <!-- batchnummer -->
+                  <td>{{ product[3] }}</td>
+                  <!-- bewaaradvies -->
+                  <td>{{ product[4] }}</td>
+                  <!-- locatie -->
+                  <td>{{ product[5] }}</td>
+                  <!-- aantal -->
+                  <td>{{ product[6] }}</td>
+                  <!-- houdbaarheid -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Kosten -->
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Inkoopkosten</span>
+    </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Locatie</th>
+                <th>Prijs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00002</td>
+                <td>Appel</td>
+                <td>B01</td>
+                <td>€3,-</td>
+            </tr>
+            <tr>
+                <td>00001</td>
+                <td>Banaan</td>
+                <td>A12</td>
+                <td>€2,-</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+{% endblock %}
