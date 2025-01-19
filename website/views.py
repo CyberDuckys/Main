@@ -1,4 +1,5 @@
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, redirect, render_template, request, url_for, flash
+from flask_babel import Babel
 from . import mysql  # Import the globally initialized `mysql`
 from datetime import datetime
 views = Blueprint('views', __name__)
@@ -24,11 +25,16 @@ financien_data = {
 }
 
 def database(query):
-    cursor = mysql.connection.cursor()
-    cursor.execute(query)
-    result = cursor.fetchall()
-    cursor.close()
-    return result
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute(str(query))
+        mysql.connection.commit()
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+    except Exception as e:
+        flash(lazy_gettext("Error occurred: ", e))
+
 
 @views.route('/')
 def index():
@@ -147,12 +153,7 @@ def inkoop():
 
 @views.route('/voorraad')
 def voorraad():
-    # bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
-    voorraad = [
-    {"00001", "Banaan", "00001", "Diepvries", "A12", 2},
-    # {"id": "00002", "product": "Appel", "batchnummer": "00002", "bewaaradvies": "Koeling", "locatie": "B01", "aantal": 5},
-    # {"id": "00003", "product": "Komkommer", "batchnummer": "00003", "bewaaradvies": "Donker", "locatie": "C07", "aantal": 3},
-    ]
+    voorraad = database("select * from products;")
     return render_template("voorraad.html", voorraad=voorraad)
 
 @views.route('/bestelgeschiedenis')
@@ -171,8 +172,9 @@ def voorraadProductToevoegen():
             request.form['storageadvice'],      #storageadvice
             request.form['location'],           #location
             int(request.form['amount']),        #amount
+            datetime.now().strftime("%Y-%m-%d") #date
         )
-        database(f"INSERT INTO products (id, product, batchnumber, storageadvice, location, amount) VALUES ('{new_product[0]}','{new_product[1]}','{new_product[2]}','{new_product[3]}','{new_product[4]}','{new_product[5]}')")
+        database(f"INSERT INTO products (product_id, product, batchnummer, bewaaradvies, locatie, aantal, houdbaarheid) VALUES ('{new_product[0]}','{new_product[1]}','{new_product[2]}','{new_product[3]}','{new_product[4]}','{new_product[5]}','{new_product[6]}')")
         return redirect(url_for('views.voorraad'))  # Terug naar de voorraad.html
     return render_template('voorraadProductToevoegen.html')
 
