@@ -61,6 +61,56 @@
     .dashboardTitle {
         margin-left: 17rem;
     }
+
+    /* Hamburger menu styling */
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        z-index: 2000;
+    }
+
+    .hamburger div {
+        width: 100%;
+        height: 4px;
+        background-color: #343a40;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #343a40;
+        box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1500;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar a {
+        display: block;
+        color: white;
+        padding: 15px 20px;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    .sidebar a:hover {
+        background-color: #495057;
+    }
 }
 
 .card {
@@ -71,11 +121,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 290px;
-    max-height: 320px;
-    min-width: 415px;
-    max-width: 415px;
-    position: relative;
+    min-height: auto; /* Automatische hoogte voor responsiviteit */
+    max-width: 100%; /* Zorgt dat de kaart niet buiten het scherm valt */
+    margin: 0 auto; /* Centreer de kaart op mobiel */
 }
 
 .card h2 {
@@ -108,25 +156,6 @@
     background-color: #d9363e;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-
-/* .table {
-    min-width: 100%;
-    width: 55vw;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.table th, .table td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.5vw;
-}
-
-.table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-} */
 
 .button {
     margin-top: 20px;
@@ -211,6 +240,7 @@ a {
     padding: 0 0 3%;
 }
 
+
 @media only screen and (max-width: 1440px) {
     .mb-4 {
         padding: 0 0 1%;
@@ -222,9 +252,11 @@ a {
     }
 
 .p-4 {
-    padding: 0 1rem 1rem 18.5rem !important;
+    padding: 0 1rem 1rem 1rem !important;
 }
 }
+
+
 
 .table {
     margin-bottom: 0.5rem;
@@ -237,6 +269,11 @@ a {
 /* --- */
 
 /* base.html CSS */
+.container-fluid {
+    position: absolute;
+    top: 0;
+}
+
 .bg-dark {
     box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -244,7 +281,53 @@ a {
     bottom: 0;
     z-index: 1000;
     text-align: center;
-    min-width: 200px;
+    width: 200px; /* Maak de menubalk minder breed */
+    max-width: 20%; /* Zorg dat deze schaalbaar blijft */
+    overflow-y: auto; /* Voeg scrollen toe als inhoud groter is dan het scherm */
+}
+
+/* Responsief gedrag voor kleinere schermen */
+@media only screen and (max-width: 768px) {
+    .bg-dark {
+        width: 150px; /* Maak de menubalk smaller op mobiele apparaten */
+        max-width: 25%;
+    }
+
+    .nav-item .btn-dark {
+        font-size: 0.8rem; /* Verklein de tekst van de menubalk links */
+        padding: 0.5rem 1rem; /* Maak knoppen compacter */
+    }
+}
+
+/* Algemene styling voor navigatieknoppen in de sidebar */
+.nav-item .btn-dark {
+    text-align: left; /* Zorg dat iconen en tekst links uitlijnen */
+    padding: 0.75rem 1.5rem; /* Geef de knoppen meer ruimte binnenin */
+    white-space: nowrap; /* Zorg dat tekst niet afgebroken wordt */
+}
+
+/* Styling voor actieve knoppen in de sidebar */
+.sidebar a.active {
+    background-color: #495057;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Styling voor kleinere schermen - inhoud rechts van de menubalk */
+.flex-grow-1 {
+    margin-left: 200px; /* Houd rekening met de breedte van de menubalk */
+}
+
+@media only screen and (max-width: 768px) {
+    .flex-grow-1 {
+        margin-left: 150px; /* Pas de marge aan voor kleinere menubalk op mobiel */
+    }
+}
+
+/* Algemene stijl voor horizontale sliders (verwijder sliders) */
+html,
+body {
+    overflow-x: hidden; /* Voorkom dat horizontale scrollbalken verschijnen */
 }
 
 .sidebar .btn-dark:hover {

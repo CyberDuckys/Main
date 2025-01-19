@@ -26,25 +26,82 @@
   </head>
 
   <body>
+    <!-- Navbar for Mobile -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-lg-none">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('views.index') }}">
+                <i class="fas fa-home"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('views.voorraad') }}">
+                <i class="fas fa-box"></i> Voorraad
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('views.inkoop') }}">
+                <i class="fas fa-shopping-cart"></i> Inkoop
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('views.klantenlijst') }}">
+                <i class="fas fa-user"></i> Klanten
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('views.koeriers') }}">
+                <i class="fas fa-truck"></i> Koeriers
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Desktop Sidebar -->
     <div class="d-flex">
-      <!-- Sidebar -->
-      <div class="bg-dark text-white vh-200 p-3">
+      <div class="bg-dark text-white vh-200 p-3 d-none d-lg-block">
         <h3 class="text-center">Dashboard Menu</h3>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.index') }}"> <i class="fas fa-home"></i> Dashboard </a>
+            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.index') }}">
+              <i class="fas fa-home"></i> Dashboard
+            </a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.voorraad') }}"> <i class="fas fa-box"></i> Voorraad </a>
+            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.voorraad') }}">
+              <i class="fas fa-box"></i> Voorraad
+            </a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.inkoop') }}"> <i class="fas fa-shopping-cart"></i> Inkoop </a>
+            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.inkoop') }}">
+              <i class="fas fa-shopping-cart"></i> Inkoop
+            </a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.klantenlijst') }}"> <i class="fas fa-user"></i> Klanten </a>
+            <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.klantenlijst') }}">
+              <i class="fas fa-user"></i> Klanten
+            </a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-dark w-100 text-start" href="{{ url_for('views.koeriers') }}"> <i class="fas fa-truck"></i> Koeriers </a>
+            <a class="btn btn-dark w-100 text-start" href="{{ url_for('views.koeriers') }}">
+              <i class="fas fa-truck"></i> Koeriers
+            </a>
           </li>
         </ul>
       </div>
