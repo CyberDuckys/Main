@@ -34,7 +34,7 @@ def database(query):
 def index():
     # Volgorde: ID, Product, Voorraad
     # bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
-    bijnaOpProducten = (1,2,"banaan")
+    bijnaOpProducten = ((1,2,"banaan"),(1,2,"banaan"),(1,2,"banaan"))
     time = datetime.now().strftime("%H:%M")
     date = datetime.now().strftime("%d-%m-%Y")
     day = datetime.now().strftime("%A")
@@ -148,8 +148,12 @@ def inkoop():
 @views.route('/voorraad')
 def voorraad():
     # bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
-    bijnaOpProducten = {}
-    return render_template("voorraad.html", bijnaOpProducten=bijnaOpProducten)
+    voorraad = [
+    {"00001", "Banaan", "00001", "Diepvries", "A12", 2},
+    # {"id": "00002", "product": "Appel", "batchnummer": "00002", "bewaaradvies": "Koeling", "locatie": "B01", "aantal": 5},
+    # {"id": "00003", "product": "Komkommer", "batchnummer": "00003", "bewaaradvies": "Donker", "locatie": "C07", "aantal": 3},
+    ]
+    return render_template("voorraad.html", voorraad=voorraad)
 
 @views.route('/bestelgeschiedenis')
 def bestelgeschiedenis():
@@ -157,24 +161,18 @@ def bestelgeschiedenis():
 
 # Route voor de product toevoeg-pagina
 @views.route('/voorraadProductToevoegen', methods=['GET', 'POST'])
-def voorraadProductToevoegen():
-    voorraad = [
-    {"id": "00001", "product": "Banaan", "batchnummer": "00001", "bewaaradvies": "Diepvries", "locatie": "A12", "aantal": 2},
-    {"id": "00002", "product": "Appel", "batchnummer": "00002", "bewaaradvies": "Koeling", "locatie": "B01", "aantal": 5},
-    {"id": "00003", "product": "Komkommer", "batchnummer": "00003", "bewaaradvies": "Donker", "locatie": "C07", "aantal": 3},
-]
-    
+def voorraadProductToevoegen():    
     if request.method == 'POST':
         # Nieuwe data ophalen uit het formulier
-        new_product = {
-            "id": request.form['id'],
-            "product": request.form['product'],
-            "batchnummer": request.form['batchnummer'],
-            "bewaaradvies": request.form['bewaaradvies'],
-            "locatie": request.form['locatie'],
-            "aantal": int(request.form['aantal']),
-        }
-        voorraad.append(new_product)  # Voeg toe aan de mock data
+        new_product = (
+            int(request.form['id']),            #id
+            request.form['product'],            #product
+            int(request.form['batchnumber']),   #batchnummer
+            request.form['storageadvice'],      #storageadvice
+            request.form['location'],           #location
+            int(request.form['amount']),        #amount
+        )
+        database(f"INSERT INTO products (id, product, batchnumber, storageadvice, location, amount) VALUES ('{new_product[0]}','{new_product[1]}','{new_product[2]}','{new_product[3]}','{new_product[4]}','{new_product[5]}')")
         return redirect(url_for('views.voorraad'))  # Terug naar de voorraad.html
     return render_template('voorraadProductToevoegen.html')
 
