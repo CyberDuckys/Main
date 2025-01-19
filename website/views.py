@@ -24,9 +24,9 @@ def klantenlijst():
     # Volgorde: ID, Naam, Contact, Website, Telefoon
     # klanten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;"))
     klanten = [
-        {id: 1, 'Aalbert Hain', 'Dhr Amir Aalbert Hain', 'http://ah.nl', '+31 12345678'},
-        {id: 2, 'Bumbo', 'Mevr Bell Bumbo', 'http://bumbo.com', '+31 12345678'},
-        {id: 3, 'Cidl', 'Dhr Christoph Cidl', 'http://cidl.net', '+31 12345678'},
+        {1, 'Aalbert Hain', 'Dhr Amir Aalbert Hain', 'http://ah.nl', '+31 12345678'},
+        {2, 'Bumbo', 'Mevr Bell Bumbo', 'http://bumbo.com', '+31 12345678'},
+        {3, 'Cidl', 'Dhr Christoph Cidl', 'http://cidl.net', '+31 12345678'},
     ]
     return render_template("klanten.html", klanten=klanten)
 
