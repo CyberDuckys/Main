@@ -3,6 +3,24 @@ from . import mysql  # Import the globally initialized `mysql`
 from datetime import datetime
 views = Blueprint('views', __name__)
 
+# Dummy data
+# klanten = [
+#     {'id': 1, 'naam': 'Aalbert Hain', 'contact': 'Dhr Amir Aalbert Hain', 'website': 'http://ah.nl', 'telefoon': '+31 12345678'},
+#     {'id': 2, 'naam': 'Bumbo', 'contact': 'Mevr Bell Bumbo', 'website': 'http://bumbo.com', 'telefoon': '+31 12345678'},
+#     {'id': 3, 'naam': 'Cidl', 'contact': 'Dhr Christoph Cidl', 'website': 'http://cidl.net', 'telefoon': '+31 12345678'},
+# ]
+
+klanten = (
+    (1, 'Aalbert Hain', 'dhr amir aalbert hain', 'http://ah.nl', '+31 12345678'),
+    (2, 'JANTJE Hain', 'dhr JANTJE aalbert hain', 'http://jumbo.nl', '+31 12345678'),
+)
+
+financien_data = (
+        (1, 'Factuur 1', 100.00, 'Betaald', '2023-03-02'),
+        (2, 'Factuur 2', 200.00, 'Betaald', '2023-03-02'),
+        (3, 'Factuur 3', 300.00, 'Betaald', '2023-03-02'),
+        (4, 'Factuur 4', 400.00, 'Betaald', '2023-03-02')
+)
 
 def database(query):
     try:
@@ -30,21 +48,25 @@ def index():
 def klantenlijst():
     # Volgorde: ID, Naam, Contact, Website, Telefoon
     # klanten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;"))
-    klanten = [
-        {'id': 1, 'naam': 'Aalbert Hain', 'contact': 'Dhr Amir Aalbert Hain', 'website': 'http://ah.nl', 'telefoon': '+31 12345678'},
-        {'id': 2, 'naam': 'Bumbo', 'contact': 'Mevr Bell Bumbo', 'website': 'http://bumbo.com', 'telefoon': '+31 12345678'},
-        {'id': 3, 'naam': 'Cidl', 'contact': 'Dhr Christoph Cidl', 'website': 'http://cidl.net', 'telefoon': '+31 12345678'},
-    ]
+    # klanten = [
+    #     {'id': 1, 'naam': 'Aalbert Hain', 'contact': 'Dhr Amir Aalbert Hain', 'website': 'http://ah.nl', 'telefoon': '+31 12345678'},
+    #     {'id': 2, 'naam': 'Bumbo', 'contact': 'Mevr Bell Bumbo', 'website': 'http://bumbo.com', 'telefoon': '+31 12345678'},
+    #     {'id': 3, 'naam': 'Cidl', 'contact': 'Dhr Christoph Cidl', 'website': 'http://cidl.net', 'telefoon': '+31 12345678'},
+    # ]
+    klanten = (
+        (1, 'Aalbert Hain', 'dhr amir aalbert hain', 'http://ah.nl', '+31 12345678'),
+        (2, 'JANTJE Hain', 'dhr JANTJE aalbert hain', 'http://jumbo.nl', '+31 12345678'),
+    )
     return render_template("klanten.html", klanten=klanten)
 
 
 @views.route('/financien/<int:klant_id>')
 def financien(klant_id):
     # Haal klantfinanciën op
-    klant_financien = financien_data.get(klant_id, [])
-    
+    klant_financien = financien_data[klant_id - 1]
+    print(klant_financien)
     # Zoek de klantnaam
-    klant = next((k for k in klanten if k['id'] == klant_id), None)
+    klant = next((k for k in klanten if k[0] == klant_id), None)
     
     if klant is None:
         return "Klant niet gevonden", 404
@@ -107,19 +129,17 @@ def financien_wijzigen_finance(finance_id):
 
 @views.route('/financien/wijzigen/klant/<int:klant_id>', methods=['GET', 'POST'])
 def financien_wijzigen_klant(klant_id):
-    klant_financien = financien_data.get(klant_id, [])
-
+    klant_financien = financien_data[klant_id]
     if request.method == 'POST':
-        for finance in klant_financien:
-            if str(finance['id']) == request.form.get('id'):
-                finance['beschrijving'] = request.form.get('beschrijving')
-                finance['bedrag'] = request.form.get('bedrag')
-                finance['datum'] = request.form.get('datum')
-                finance['status'] = request.form.get('status')
-                break
-
+        financien = (
+                    klant_id,            #id
+                    request.form['beschrijving'],            #product
+                    request.form['bedrag'],   #batchnummer
+                    request.form['status'],      #storageadvice
+                    datetime.now().strftime("%Y-%m-%d") #date
+                )
+        database(f"UPDATE klanten set description = '{financien[1]}', amount = '{financien[2]}', status = '{financien[3]}'")
         return redirect(url_for('views.klanten'))
-
     return render_template("financien_wijzigen.html", klant_id=klant_id, financien=klant_financien)
 
 

@@ -33,9 +33,9 @@
         <!-- Telefoon -->
         <td>
           <!-- Dynamische koppeling naar de Financiën-pagina -->
-          <a class="button-small" href="{{ url_for('views.financien', klant_id=klant.id) }}"> Financiën </a>
+          <a class="button-small" href="{{ url_for('views.financien', klant_id=klant[0]) }}"> Financiën </a>
           <!-- Verander de naam van de route naar 'financien_wijzigen_klant' -->
-          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant.id) }}"> Wijzigen </a>
+          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant[0]) }}"> Wijzigen </a>
         </td>
       </tr>
       {% endfor %}
