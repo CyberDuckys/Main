@@ -20,6 +20,7 @@
                     <th>Bewaardadvies</th>
                     <th>Locatie</th>
                     <th>Aantal</th>
+                    <th>Houdbaarheid</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                     <td>Diepvries</td>
                     <td>A12</td>
                     <td>2</td>
+                    <td>02-05-2026</td>
                 </tr>
                 <tr>
                     <td>00002</td>
@@ -38,6 +40,7 @@
                     <td>Koeling</td>
                     <td>B01</td>
                     <td>5</td>
+                    <td>02-05-2026</td>
                 </tr>
                 <tr>
                     <td>00003</td>
@@ -46,6 +49,7 @@
                     <td>Donker</td>
                     <td>C07</td>
                     <td>3</td>
+                    <td>02-05-2026</td>
                 </tr>
                 <tr>
                     <td>00004</td>
@@ -54,72 +58,43 @@
                     <td>Kast</td>
                     <td>D09</td>
                     <td>11</td>
+                    <td>02-05-2026</td>
                 </tr>
             </tbody>
         </table>
     </div>
-  </div>
+</div>
 
-    <div class="flexTables">
-        <div class="table-responsive mb-4">
-            <!-- Te vernietigen -->
-            <div class="caption">
-                <span>Te vernietigen tot {datum}</span>
-            </div>
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Product</th>
-                        <th>Locatie</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>00002</td>
-                        <td>Appel</td>
-                        <td>B01</td>
-                    </tr>
-                    <tr>
-                        <td>00001</td>
-                        <td>Banaan</td>
-                        <td>A12</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Kosten -->
-        <div class="table-responsive mb-4">
-            <div class="caption">
-                <span>Inkoopkosten</span>
-            </div>
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Product</th>
-                        <th>Locatie</th>
-                        <th>Prijs</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>00002</td>
-                        <td>Appel</td>
-                        <td>B01</td>
-                        <td>€3,-</td>
-                    </tr>
-                    <tr>
-                        <td>00001</td>
-                        <td>Banaan</td>
-                        <td>A12</td>
-                        <td>€2,-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<!-- Kosten -->
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Inkoopkosten</span>
     </div>
-  </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Locatie</th>
+                <th>Prijs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00002</td>
+                <td>Appel</td>
+                <td>B01</td>
+                <td>€3,-</td>
+            </tr>
+            <tr>
+                <td>00001</td>
+                <td>Banaan</td>
+                <td>A12</td>
+                <td>€2,-</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
 </div>
 {% endblock %}
