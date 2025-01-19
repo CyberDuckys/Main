@@ -146,8 +146,8 @@ def inkoop():
 
 @views.route('/voorraad')
 def voorraad():
-
-    return render_template("voorraad.html")
+    bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
+    return render_template("voorraad.html", bijnaOpProducten=bijnaOpProducten)
 
 @views.route('/bestelgeschiedenis')
 def bestelgeschiedenis():
