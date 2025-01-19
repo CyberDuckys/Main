@@ -20,6 +20,7 @@
 .table {
     font-size: 0.8rem !important;
     /* Verklein de lettergrootte */
+    min-width: -webkit-fill-available;
 }
 
 .table th,
