@@ -23,11 +23,11 @@
       <tr>
         <td>{{ klant[0] }}</td>
         <!-- ID -->
-        <td>{{ klant[1] }}</td>
+        <td>{{ klant[1]}}</td>
         <!-- Naam -->
-        <td><a href="{{klant[2]}}">{{ klant[2] }}</a></td>
+        <td>{{ klant[2] }}</td>
         <!-- Contact -->
-        <td>{{ klant[3] }}</td>
+        <td><a href="{{klant.website}}">{{ klant[3] }}</a></td>
         <!-- Website -->
         <td>{{ klant[4] }}</td>
         <!-- Telefoon -->
@@ -35,7 +35,7 @@
           <!-- Dynamische koppeling naar de Financiën-pagina -->
           <a class="button-small" href="{{ url_for('views.financien', klant_id=klant.id) }}"> Financiën </a>
           <!-- Verander de naam van de route naar 'financien_wijzigen_klant' -->
-          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant[1]) }}"> Wijzigen </a>
+          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant.id) }}"> Wijzigen </a>
         </td>
       </tr>
       {% endfor %}
