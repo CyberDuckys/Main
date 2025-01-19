@@ -23,6 +23,13 @@ financien_data = {
     ],
 }
 
+def database(query):
+    cursor = mysql.connection.cursor()
+    cursor.execute(query)
+    result = cursor.fetchall()
+    cursor.close()
+    return result
+
 @views.route('/')
 def index():
     # Volgorde: ID, Product, Voorraad
