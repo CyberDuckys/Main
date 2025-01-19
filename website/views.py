@@ -1,5 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, url_for, flash
-from flask_babel import Babel
+from flask import Blueprint, redirect, render_template, request, url_for
 from . import mysql  # Import the globally initialized `mysql`
 from datetime import datetime
 views = Blueprint('views', __name__)
@@ -33,7 +32,7 @@ def database(query):
         cursor.close()
         return result
     except Exception as e:
-        flash(lazy_gettext("Error occurred: ", e))
+        print(lazy_gettext("Error occurred: ", e))
 
 
 @views.route('/')
