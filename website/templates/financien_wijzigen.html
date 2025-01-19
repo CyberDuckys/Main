@@ -3,35 +3,55 @@
 {% block title %} Financiën Wijzigen {% endblock %}
 
 {% block content %}
-<h1 class="dashboardTitle">Financiën Wijzigen</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/voorraadProductToevoegen.css') }}">
 
-<div class="formCard">
-    <form method="post">
-        {% for finance in financien %}
-        <div class="form-group">
-            <label for="beschrijving">Beschrijving:</label>
-            <input type="text" id="beschrijving" name="beschrijving" value="{{ finance.beschrijving }}" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="bedrag">Bedrag:</label>
-            <input type="number" id="bedrag" name="bedrag" value="{{ finance.bedrag }}" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select id="status" name="status" class="form-control">
-                <option value="Onbetaald" {% if finance.status == 'Onbetaald' %}selected{% endif %}>Onbetaald</option>
-                <option value="Betaald" {% if finance.status == 'Betaald' %}selected{% endif %}>Betaald</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="datum">Datum:</label>
-            <input type="date" id="datum" name="datum" value="{{ finance.datum }}" class="form-control" required>
-        </div>
-        <input type="hidden" name="id" value="{{ finance.id }}">
-        <button type="submit" class="button">Opslaan</button>
-        {% endfor %}
-    </form>
-    
-    
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Financiën Wijzigen</h1>
+        <form method="post">
+            {% for finance in financien %}
+            <br>
+<div class="mb-3">
+    <label for="beschrijving" class="form-label">Beschrijving</label>
+    <input type="text" class="form-control" id="beschrijving" name="beschrijving" placeholder="Bijv. {{ finance.beschrijving }}" required>
+    <div class="invalid-feedback">
+        Vul een beschrijving in.
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="bedrag" class="form-label">Bedrag</label>
+    <input type="number" class="form-control" id="bedrag" name="bedrag" placeholder="Bijv. {{ finance.bedrag }}" required>
+    <div class="invalid-feedback">
+        Vul een geldig bedrag in.
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <select id="status" name="status" class="form-select">
+        <option placeholder="Bijv. Onbetaald" {% if finance.status=='Onbetaald' %}selected{% endif %}>Onbetaald</option>
+        <option placeholder="Bijv. Betaald" {% if finance.status=='Betaald' %}selected{% endif %}>Betaald</option>
+    </select>
+    <div class="invalid-feedback">
+        Kies een status.
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="datum" class="form-label">Datum</label>
+    <input type="date" class="form-control" id="datum" name="datum" placeholder="Bijv. {{ finance.datum }}" required>
+    <div class="invalid-feedback">
+        Vul een geldige datum in.
+    </div>
+</div>
+
+<input type="hidden" name="id" placeholder="Bijv. {{ finance.id }}">
+
+<button type="submit" class="btn btn-dark">Opslaan</button>
+<br>
+
+            {% endfor %}
+        </form>
 </div>
 {% endblock %}
