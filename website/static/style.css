@@ -1,54 +1,54 @@
 /* All pages */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 html,
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-    min-width: min-content;
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  min-width: min-content;
 }
 
 a {
-    max-height: fit-content;
-    text-decoration: none;
+  max-height: fit-content;
+  text-decoration: none;
 }
 
 .mb-4 {
-    max-height: fit-content;
-    min-width: 25vw;
-    max-width: 55vw;
-    font-size: 4vw;
-    margin: 0 auto;
-    padding: 0 0 3%;
+  max-height: fit-content;
+  min-width: 25vw;
+  max-width: 55vw;
+  font-size: 4vw;
+  margin: 0 auto;
+  padding: 0 0 3%;
 }
 
 @media only screen and (max-width: 1440px) {
-    .mb-4 {
-        padding: 0 0 1%;
-    }
+  .mb-4 {
+    padding: 0 0 1%;
+  }
 
-    .card {
-        min-width: 320px;
-        max-width: 320px;
-    }
+  .card {
+    min-width: 320px;
+    max-width: 320px;
+  }
 
-.p-4 {
+  .p-4 {
     padding: 0 1rem 1rem 18.5rem !important;
-}
+  }
 }
 
 .table {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mt-2 {
-    margin-top: unset !important;
+  margin-top: unset !important;
 }
 
 .flex-grow-1 {
@@ -76,13 +76,13 @@ a {
 
 /* base.html CSS */
 .bg-dark {
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    z-index: 1000;
-    text-align: center;
-    min-width: 200px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  text-align: center;
+  min-width: 200px;
 }
 
 @media only screen and (max-width: 1820px) {
@@ -95,13 +95,13 @@ a {
 }
 
 .sidebar .btn-dark:hover {
-    background-color: #495057;
-    color: white;
+  background-color: #495057;
+  color: white;
 }
 
 .sidebar .btn-dark.active {
-    background-color: #6c757d;
-    font-weight: bold;
+  background-color: #6c757d;
+  font-weight: bold;
 }
 
 .sidebar a.active {
@@ -168,35 +168,35 @@ a {
 }
 
 .border-dashed {
-    border: 2px dashed #007bff;
+  border: 2px dashed #007bff;
 }
 
 .border-dashed:hover {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .smallTable {
-    max-width: 2vw;
+  max-width: 2vw;
 }
 
 .smallTable th,
 .smallTable td {
-    font-size: 0.9vw;
-    padding: 8px;
+  font-size: 0.9vw;
+  padding: 8px;
 }
 
 .w-100 {
-    max-width: fit-content !important;
+  max-width: fit-content !important;
 }
 
 .text-primary {
-    font-size: 5rem !important;
-    margin: auto !important;
+  font-size: 5rem !important;
+  margin: auto !important;
 }
 
-.card shadow text-center bg-light border-dashed+.text-primary:hover {
-    color: rgb(13 110 253 / 37%) !important;
+.card shadow text-center bg-light border-dashed + .text-primary:hover {
+  color: rgb(13 110 253 / 37%) !important;
 }
 
 .clock {
