@@ -73,8 +73,8 @@
     align-items: center;
     min-height: 290px;
     max-height: 320px;
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 415px;
+    max-width: 415px;
     position: relative;
 }
 
@@ -214,10 +214,15 @@ a {
     .mb-4 {
         padding: 0 0 1%;
     }
-}
+
+    .card {
+        min-width: 320px;
+        max-width: 320px;
+    }
 
 .p-4 {
     padding: 0 1rem 1rem 18.5rem !important;
+}
 }
 
 /* --- */
@@ -274,7 +279,8 @@ a {
     margin: auto !important;
 }
 
-.card shadow text-center bg-light border-dashed + .text-primary:hover {
+.card shadow text-center bg-light border-dashed+.text-primary:hover {
     color: rgb(13 110 253 / 37%) !important;
 }
+
 /* --- */
