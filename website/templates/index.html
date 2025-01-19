@@ -1,14 +1,16 @@
-{% extends 'base.html' %} {% block title %} Dashboard Overview {% endblock %} {% block content%}
+{% extends 'base.html' %}
+{% block title %}Dashboard Overview{% endblock %}
+{% block content %}
 
 <div class="container py-4">
   <h1 class="text-center mb-4">Dashboard Overzicht</h1>
 
   <div class="row g-2">
     <!-- Bijna op -->
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card shadow">
         <h5 class="card-title text-center">Bijna op</h5>
-        <table class="table Table table-bordered table-sm text-center">
+        <table class="table table-bordered table-sm text-center">
           <thead>
             <tr class="table-dark">
               <th>ID</th>
@@ -20,11 +22,8 @@
             {% for product in bijnaOpProducten[:4] %}
             <tr>
               <td>{{ product[0] }}</td>
-              <!-- ID -->
               <td>{{ product[1] }}</td>
-              <!-- Voorraad -->
               <td>{{ product[2] }}</td>
-              <!-- Product -->
             </tr>
             {% endfor %}
           </tbody>
@@ -34,7 +33,7 @@
     </div>
 
     <!-- CO2 Tracker -->
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card shadow">
         <h5 class="card-title text-center">CO2 Tracker</h5>
         <p class="text-center mb-0">150 Km</p>
@@ -46,7 +45,7 @@
     </div>
 
     <!-- Vernietigde producten -->
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card shadow">
         <h5 class="card-title text-center">Tot 01-01-2024</h5>
         <p class="text-center">15 producten vernietigd</p>
@@ -61,6 +60,8 @@
         <p class="fs-4" id="date">{{day}}<br />{{date}}</p>
       </div>
     </div>
+  </div>
+</div>
 
     {% endblock %}
 >
