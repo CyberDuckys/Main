@@ -20,106 +20,61 @@
                     <th>Bewaardadvies</th>
                     <th>Locatie</th>
                     <th>Aantal</th>
+                    <th>Houdbaarheid</th>
                 </tr>
             </thead>
             <tbody>
+                {% for product in voorraad %}
                 <tr>
-                    <td>00001</td>
-                    <td>Banaan</td>
-                    <td>00001</td>
-                    <td>Diepvries</td>
-                    <td>A12</td>
-                    <td>2</td>
+                  <td>{{ product[0] }}</td>
+                  <!-- ID -->
+                  <td>{{ product[1] }}</td>
+                  <!-- product -->
+                  <td>{{ product[2] }}</td>
+                  <!-- batchnummer -->
+                  <td>{{ product[3] }}</td>
+                  <!-- bewaaradvies -->
+                  <td>{{ product[4] }}</td>
+                  <!-- locatie -->
+                  <td>{{ product[5] }}</td>
+                  <!-- aantal -->
                 </tr>
-                <tr>
-                    <td>00002</td>
-                    <td>Appel</td>
-                    <td>00002</td>
-                    <td>Koeling</td>
-                    <td>B01</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>00003</td>
-                    <td>Komkommer</td>
-                    <td>00003</td>
-                    <td>Donker</td>
-                    <td>C07</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>00004</td>
-                    <td>Avocado</td>
-                    <td>00004</td>
-                    <td>Kast</td>
-                    <td>D09</td>
-                    <td>11</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
-  </div>
+</div>
 
-    <div class="flexTables">
-        <div class="table-responsive mb-4">
-            <!-- Te vernietigen -->
-            <div class="caption">
-                <span>Te vernietigen tot {datum}</span>
-            </div>
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Product</th>
-                        <th>Locatie</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>00002</td>
-                        <td>Appel</td>
-                        <td>B01</td>
-                    </tr>
-                    <tr>
-                        <td>00001</td>
-                        <td>Banaan</td>
-                        <td>A12</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Kosten -->
-        <div class="table-responsive mb-4">
-            <div class="caption">
-                <span>Inkoopkosten</span>
-            </div>
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Product</th>
-                        <th>Locatie</th>
-                        <th>Prijs</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>00002</td>
-                        <td>Appel</td>
-                        <td>B01</td>
-                        <td>€3,-</td>
-                    </tr>
-                    <tr>
-                        <td>00001</td>
-                        <td>Banaan</td>
-                        <td>A12</td>
-                        <td>€2,-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<!-- Kosten -->
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Inkoopkosten</span>
     </div>
-  </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Locatie</th>
+                <th>Prijs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00002</td>
+                <td>Appel</td>
+                <td>B01</td>
+                <td>€3,-</td>
+            </tr>
+            <tr>
+                <td>00001</td>
+                <td>Banaan</td>
+                <td>A12</td>
+                <td>€2,-</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
 </div>
 {% endblock %}
