@@ -8,12 +8,11 @@
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Financiën Wijzigen</h1>
-        <form method="post">
-            {% for finance in financien %}
+        <form method="post" action="{{ url_for('views.klanten') }}">
             <br>
 <div class="mb-3">
     <label for="beschrijving" class="form-label">Beschrijving</label>
-    <input type="text" class="form-control" id="beschrijving" name="beschrijving" placeholder="Bijv. {{ finance.beschrijving }}" required>
+    <input type="text" class="form-control" id="beschrijving" name="beschrijving" placeholder="Bijv. {{ financien.beschrijving }}" required>
     <div class="invalid-feedback">
         Vul een beschrijving in.
     </div>
@@ -21,7 +20,7 @@
 
 <div class="mb-3">
     <label for="bedrag" class="form-label">Bedrag</label>
-    <input type="number" class="form-control" id="bedrag" name="bedrag" placeholder="Bijv. {{ finance.bedrag }}" required>
+    <input type="number" class="form-control" id="bedrag" name="bedrag" placeholder="Bijv. {{ financien.bedrag }}" required>
     <div class="invalid-feedback">
         Vul een geldig bedrag in.
     </div>
@@ -30,8 +29,8 @@
 <div class="mb-3">
     <label for="status" class="form-label">Status</label>
     <select id="status" name="status" class="form-select">
-        <option placeholder="Bijv. Onbetaald" {% if finance.status=='Onbetaald' %}selected{% endif %}>Onbetaald</option>
-        <option placeholder="Bijv. Betaald" {% if finance.status=='Betaald' %}selected{% endif %}>Betaald</option>
+        <option placeholder="Bijv. Onbetaald" {% if financien.status=='Onbetaald' %}selected{% endif %}>Onbetaald</option>
+        <option placeholder="Bijv. Betaald" {% if financien.status=='Betaald' %}selected{% endif %}>Betaald</option>
     </select>
     <div class="invalid-feedback">
         Kies een status.
@@ -40,18 +39,16 @@
 
 <div class="mb-3">
     <label for="datum" class="form-label">Datum</label>
-    <input type="date" class="form-control" id="datum" name="datum" placeholder="Bijv. {{ finance.datum }}" required>
+    <input type="date" class="form-control" id="datum" name="datum" placeholder="Bijv. {{ financien.datum }}" required>
     <div class="invalid-feedback">
         Vul een geldige datum in.
     </div>
 </div>
 
-<input type="hidden" name="id" placeholder="Bijv. {{ finance.id }}">
+<input type="hidden" name="id" placeholder="Bijv. {{ financien.id }}">
 
 <button type="submit" class="btn btn-dark">Opslaan</button>
 <br>
-
-            {% endfor %}
         </form>
 </div>
 {% endblock %}
