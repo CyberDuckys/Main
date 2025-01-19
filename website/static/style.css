@@ -225,6 +225,14 @@ a {
 }
 }
 
+.table {
+    margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: unset !important;
+}
+
 /* --- */
 
 /* base.html CSS */
