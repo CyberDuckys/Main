@@ -1,5 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
-
+from . import mysql  # Import the globally initialized `mysql`
+from datetime import datetime
 views = Blueprint('views', __name__)
 
 # Dummy data
@@ -24,14 +25,21 @@ financien_data = {
 
 @views.route('/')
 def index():
-    return render_template("index.html")
+    # Volgorde: ID, Product, Voorraad
+    bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
+    time = datetime.now().strftime("%H:%M")
+    date = datetime.now().strftime("%d-%m-%Y")
+    day = datetime.now().strftime("%A")
+    return render_template("index.html", bijnaOpProducten=bijnaOpProducten, time=time, date=date, day=day)
 
 @views.route('/klanten')
 def klantenlijst():
+    # Volgorde: ID, Naam, Contact, Website, Telefoon
+    # klanten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;"))
     klanten = [
-        {'id': 1, 'naam': 'Aalbert Hain', 'contact': 'Dhr Amir Aalbert Hain', 'website': 'http://ah.nl', 'telefoon': '+31 12345678'},
-        {'id': 2, 'naam': 'Bumbo', 'contact': 'Mevr Bell Bumbo', 'website': 'http://bumbo.com', 'telefoon': '+31 12345678'},
-        {'id': 3, 'naam': 'Cidl', 'contact': 'Dhr Christoph Cidl', 'website': 'http://cidl.net', 'telefoon': '+31 12345678'},
+        {id: 1, 'Aalbert Hain', 'Dhr Amir Aalbert Hain', 'http://ah.nl', '+31 12345678'},
+        {id: 2, 'Bumbo', 'Mevr Bell Bumbo', 'http://bumbo.com', '+31 12345678'},
+        {id: 3, 'Cidl', 'Dhr Christoph Cidl', 'http://cidl.net', '+31 12345678'},
     ]
     return render_template("klanten.html", klanten=klanten)
 
@@ -131,6 +139,7 @@ def inkoop():
 
 @views.route('/voorraad')
 def voorraad():
+
     return render_template("voorraad.html")
 
 @views.route('/bestelgeschiedenis')
