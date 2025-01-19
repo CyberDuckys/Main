@@ -34,7 +34,7 @@ def database(query):
 def index():
     # Volgorde: ID, Product, Voorraad
     # bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
-    bijnaOpProducten = {1,2,"banaan"}
+    bijnaOpProducten = (1,2,"banaan")
     time = datetime.now().strftime("%H:%M")
     date = datetime.now().strftime("%d-%m-%Y")
     day = datetime.now().strftime("%A")
