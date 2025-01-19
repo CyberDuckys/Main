@@ -1,47 +1,43 @@
-{% extends 'base.html' %}
-
-{% block title %} Klanten {% endblock %}
-
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/klanten.css') }}">
+{% extends 'base.html' %} {% block title %} Klanten {% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/klanten.css') }}" />
 
 <h1 class="dashboardTitle">Dashboard Klanten</h1>
 
 <div class="customerCard">
-    <h2>Klantenlijst</h2>
-    <table class="table klanten-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Naam</th>
-                <th>Contact</th>
-                <th>Website</th>
-                <th>Telefoon</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for klant in klanten %}
-            <tr>
-                <td>{{ klant.id }}</td>
-                <td>{{ klant.naam }}</td>
-                <td>{{ klant.contact }}</td>
-                <td><a href="{{ klant.website }}" target="_blank">{{ klant.website }}</a></td>
-                <td>{{ klant.telefoon }}</td>
-                <td>
-                    <!-- Dynamische koppeling naar de Financiën-pagina -->
-                    <a class="button-small" href="{{ url_for('views.financien', klant_id=klant.id) }}">
-                        Financiën
-                    </a>
-                    <!-- Verander de naam van de route naar 'financien_wijzigen_klant' -->
-                    <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant.id) }}">
-                        Wijzigen
-                    </a>
-                    
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <h2>Klantenlijst</h2>
+  <table class="table klanten-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Contact</th>
+        <th>Website</th>
+        <th>Telefoon</th>
+        <th>Acties</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for klant in klanten %}
+      <tr>
+        <td>{{ klant[0] }}</td>
+        <!-- ID -->
+        <td>{{ klant[1] }}</td>
+        <!-- Naam -->
+        <td><a href="{{klant[2]}}">{{ klant[2] }}</a></td>
+        <!-- Contact -->
+        <td>{{ klant[3] }}</td>
+        <!-- Website -->
+        <td>{{ klant[4] }}</td>
+        <!-- Telefoon -->
+        <td>
+          <!-- Dynamische koppeling naar de Financiën-pagina -->
+          <a class="button-small" href="{{ url_for('views.financien', klant_id=klant.id) }}"> Financiën </a>
+          <!-- Verander de naam van de route naar 'financien_wijzigen_klant' -->
+          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant.id) }}"> Wijzigen </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
