@@ -17,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for product in bijnaOpProducten %}
+            {% for product in bijnaOpProducten[:4] %}
             <tr>
               <td>{{ product[0] }}</td>
               <!-- ID -->
@@ -29,7 +29,7 @@
             {% endfor %}
           </tbody>
         </table>
-        <a href="{{ url_for('views.inkoop') }}" class="btn btn-dark w-100 mt-2">Inkoop</a>
+        <a href="{{ url_for('views.inkoop') }}" class="btn btn-dark w-100 mt-2">Meer</a>
       </div>
     </div>
 
