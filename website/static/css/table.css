@@ -15,30 +15,7 @@
     top: 1rem;
     right: 10rem;
 }
-
-.flexTables {
-    display: flex;
-    gap: 3rem;
-}
-
-.flexTables .tableCard {
-    width: 40rem;
-}
-
-.flexTables .tableCard  caption {
-    font-size: 3rem;
-    padding: 10px;
-}
-
-.flexTables .tableCard  th,
-.flexTables .tableCard  td {
-    font-size: 1rem;
-    color: black;
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.5vw;
-} */
+*/
 
 .table {
     font-size: 0.8rem !important;
@@ -88,6 +65,9 @@
 
 .flexTables {
     display: flex;
+    max-width: fit-content;
+    gap: 20px;
+    margin: auto;
 }
 
 .flexTables .table-responsive .caption span {
@@ -126,4 +106,10 @@
 
 .saveAll {
     font-size: 0.9vw;
+}
+
+.alignTables {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
