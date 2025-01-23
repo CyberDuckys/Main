@@ -30,59 +30,86 @@
 </head>
 
 <body>
-  <!-- Verborgen checkbox voor het toggle-menu -->
-<input type="checkbox" id="menu-toggle" hidden>
-
-<!-- Toggle-knop -->
-<label id="toggle-menu" for="menu-toggle">
-  <div class="hamburger"></div>
-</label>
-
-<!-- Sidebar Menu -->
-<div class="bg-dark text-white vh-200 p-3">
-  <div class="d-flex justify-content-between align-items-center">
-    <h3 class="text-center">Menu</h3>
-  </div>
-  <ul id="menu-items" class="nav flex-column">
-    <li class="nav-item">
-      <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.index') }}">
-        <i class="fas fa-home"></i> Dashboard
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.voorraad') }}">
-        <i class="fas fa-box"></i> Voorraad
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.inkoop') }}">
-        <i class="fas fa-shopping-cart"></i> Inkoop
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.klantenlijst') }}">
-        <i class="fas fa-user"></i> Klanten
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="btn btn-dark w-100 text-start" href="{{ url_for('views.koeriers') }}">
-        <i class="fas fa-truck"></i> Koeriers
-      </a>
-    </li>
-  </ul>
-</div>
-
-    <!-- Dashboard Content -->
-    <div class="flex-grow-1 p-4"> {% block content %} {% endblock %} </div>
+  <div class="hamburgerPosition">
+    <!-- Verborgen checkbox voor het toggle-menu -->
+    <input type="checkbox" id="menu-toggle" hidden />
+    <!-- Toggle-knop -->
+    <label id="toggle-menu" for="menu-toggle">
+      <div class="hamburger"></div>
+    </label>
   </div>
 
-  <!-- JS voor toggling -->
+  <!-- Sidebar Menu -->
+  <div class="bg-dark text-white vh-200 p-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="text-center">Menu</h3>
+    </div>
+
+    <ul id="menu-items" class="nav flex-column">
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.index') }}">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.voorraad') }}">
+          <i class="fas fa-box"></i> Voorraad
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.inkoop') }}">
+          <i class="fas fa-shopping-cart"></i> Inkoop
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.klantenlijst') }}">
+          <i class="fas fa-user"></i> Klanten
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start" href="{{ url_for('views.koeriers') }}">
+          <i class="fas fa-truck"></i> Koeriers
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div class="flex-grow-1">
+    {% block content %} {% endblock %}
+  </div>
   <script>
-    const toggleButton = document.getElementById('toggle-menu');
-    const body = document.body;
+    document.addEventListener("DOMContentLoaded", () => {
+      // Get elements
+      const menuToggle = document.getElementById("menu-toggle");
+      const sidebar = document.querySelector(".bg-dark");
+      const toggleMenuLabel = document.getElementById("toggle-menu");
 
-    toggleButton.addEventListener('click', () => {
-      body.classList.toggle('menu-open');
+      // Event listener for toggle
+      toggleMenuLabel.addEventListener("click", () => {
+        const isChecked = menuToggle.checked;
+        if (isChecked) {
+          // Menu is currently open, so close it
+          sidebar.style.transform = "translateX(-100%)";
+          menuToggle.checked = false;
+        } else {
+          // Menu is currently closed, so open it
+          sidebar.style.transform = "translateX(0)";
+          menuToggle.checked = true;
+        }
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Get elements
+      const menuToggle = document.getElementById("menu-toggle");
+      const toggleMenuLabel = document.getElementById("toggle-menu");
+
+      // Event listener for toggle
+      toggleMenuLabel.addEventListener("click", () => {
+        // Toggle the checked state of the checkbox
+        menuToggle.checked = !menuToggle.checked;
+      });
     });
   </script>
 </body>

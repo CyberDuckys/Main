@@ -1,22 +1,3 @@
-/* .table th {
-    color: black;
-}
-
-.tableCard {
-    padding: 4px;
-    border-radius: 10px;
-    width: 74vw;
-    background-color: white;
-}
-
-.button-small {
-    float: inline-end;
-    position: relative;
-    top: 1rem;
-    right: 10rem;
-}
-*/
-
 .table {
     font-size: 0.8rem !important;
     /* Verklein de lettergrootte */

@@ -1,272 +1,297 @@
 /* All pages */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-  }
-  
-  html,
-  body {
-    font-family: "Roboto", sans-serif;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-    min-width: min-content;
-  }
-  
-  a {
-    max-height: fit-content;
-    text-decoration: none;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f9fa;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+}
+
+th,
+tr,
+td {
+  min-width: 75px !important;
+}
+
+a {
+  max-height: fit-content;
+  text-decoration: none;
+}
+
+.mb-4 {
+  max-height: fit-content;
+  min-width: 25vw;
+  max-width: 55vw;
+  font-size: 4vw;
+  margin: 0 auto;
+  padding: 0 0 3%;
+}
+
+.table {
+  margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: unset !important;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+  font-size: 1vw;
+}
+
+.button:hover {
+  background-color: #495057;
+}
+
+/* --- */
+
+/* base.html CSS */
+.bg-dark {
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  text-align: center;
+  min-width: 200px;
+}
+
+.flex-grow-1 {
+  width: 90vw;
+  float: inline-end;
+}
+
+/* Hamburger Menu Specifiek */
+@media only screen and (max-width: 1250px) {
+/* Hamburger icon basisstijl */
+#toggle-menu .hamburger,
+#toggle-menu .hamburger::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 2000;
+}
+
+#toggle-menu .hamburger {
+  transform: rotate(0deg);
+  background-color: rgb(33 37 41);
+  position: absolute;
+}
+
+#toggle-menu .hamburger::before {
+  transform: rotate(0deg);
+  top: -8px;
+  content: "";
+  background-color: rgb(33 37 41);
+  position: relative;
+  display: block;
+  width: 25px;
+  height: 3px;
+}
+
+#toggle-menu .hamburger::after {
+  transform: rotate(0deg);
+  top: 8px;
+  background-color: rgb(33 37 41);
+}
+
+/* Sidebar transition for smooth movement */
+.bg-dark {
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+  transform: translateX(-100%); /* Default state: hidden */
+}
+
+/* When menu is open, transform the sidebar */
+#menu-toggle:checked ~ .bg-dark {
+  transform: translateX(0); /* Show the sidebar */
+}
+
+/* Kruisje styling wanneer checkbox is aangevinkt */
+
+#menu-toggle:checked + #toggle-menu .hamburger {
+  transform: rotate(-45deg);
+  background-color: red;
+  display: block;
+  position: absolute;
+}
+
+#menu-toggle:checked + #toggle-menu .hamburger::before {
+  display: none;
+}
+}
+
+#menu-toggle:checked + #toggle-menu .hamburger::after {
+  transform: rotate(90deg);
+  background-color: red;
+  display: block;
+  top: 0;
+}
+
+.text-center {
+  margin: auto;
+  max-width: fit-content;
+}
+
+.hamburgerPosition {
+  margin: 1rem 0 0 10rem;;
+  position: relative;
+}
+
+/* Sidebar buttons */
+.sidebar .btn-dark:hover {
+  background-color: #495057;
+  color: white;
+}
+
+.sidebar .btn-dark.active {
+  background-color: #6c757d;
+  font-weight: bold;
+}
+
+.sidebar a.active {
+  background-color: #495057;
+  color: #fff;
+}
+
+/* --- */
+
+/* index.html CSS */
+
+.card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 290px;
+  max-height: 320px;
+  min-width: 320px;
+  max-width: 415px;
+  position: relative;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #343a40;
+}
+
+.w-100 {
+  max-width: fit-content !important;
+}
+
+.text-primary {
+  font-size: 5rem !important;
+  margin: auto !important;
+}
+
+.card shadow text-center bg-light border-dashed+.text-primary:hover {
+  color: rgb(13 110 253 / 37%) !important;
+}
+
+.clock {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #868e96;
+}
+
+.large {
+  min-width: -webkit-fill-available !important;
+  margin-top: 1%;
+}
+
+.g-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row {
+  margin-left: unset !important;
+  margin-right: unset !important;
+}
+
+@media only screen and (max-width: 1600px) {
   .mb-4 {
-    max-height: fit-content;
-    min-width: 25vw;
-    max-width: 55vw;
-    font-size: 4vw;
-    margin: 0 auto;
-    padding: 0 0 3%;
+    padding: 0 0 1%;
   }
-  
-  @media only screen and (max-width: 1440px) {
-    .mb-4 {
-      padding: 0 0 1%;
-    }
-  
-    .card {
-      min-width: 320px;
-      max-width: 320px;
-    }
 
-  }
-  
-  .table {
-    margin-bottom: 0.5rem;
-  }
-  
-  .mt-2 {
-    margin-top: unset !important;
-  }
-  
-  .flex-grow-1 {
-      min-height: 100vh;
-      min-width: 100vw;
-  }
-  
-  .button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #343a40;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-align: center;
-      transition: background-color 0.3s;
-      font-size: 1vw;
-  }
-  
-  .button:hover {
-      background-color: #495057;
-  }
-  /* --- */
-  
-  /* base.html CSS */
-  .bg-dark {
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    z-index: 1000;
-    text-align: center;
-    min-width: 200px;
-  }
-  
-  /* Hamburger Menu Specifiek */
-@media only screen and (max-width: 1820px) {
-    .bg-dark {
-      /* transform: translateX(-100%); */
-      transition: transform 0.3s ease-in-out;
-      position: fixed;
-      z-index: 1000;
-      min-width: 200px;
-      height: 100%;
-    }
-  
- /* Verborgen checkbox voor toggle */
-#menu-toggle {
-    display: none;
-  }
-  
-  /* Standaardstijl voor de toggle-knop */
-  #toggle-menu {
-    position: fixed;
-        top: 1rem;
-        z-index: 1100;
-        background-color: #212529;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  }
-  
-  /* Hamburger icon basisstijl */
-  #toggle-menu .hamburger,
-  #toggle-menu .hamburger::before,
-  #toggle-menu .hamburger::after {
-    content: "";
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
-    transition: transform 0.3s, opacity 0.3s;
-  }
-  
-  /* Kruisje styling */
-  #menu-toggle:checked + #toggle-menu .hamburger::before {
-    transform: rotate(45deg);
-    position: absolute;
-  }
-  
-  #menu-toggle:checked + #toggle-menu .hamburger::after {
-    transform: rotate(-45deg);
-    position: absolute;
-  }
-  
-  #menu-toggle:checked + #toggle-menu .hamburger {
-    background-color: transparent;
-  }
-  
-  
-  }  
-  
-  .sidebar .btn-dark:hover {
-    background-color: #495057;
-    color: white;
-  }
-  
-  .sidebar .btn-dark.active {
-    background-color: #6c757d;
-    font-weight: bold;
-  }
-  
-  .sidebar a.active {
-      background-color: #495057;
-      color: #fff;
-  }
-  
-  .text-center {
-      margin: auto;
-      max-width: fit-content;
-  }
-  /* --- */
-  
-  /* index.html CSS */
-  
-  @media only screen and (min-width: 975px) and (max-width: 1765px) {
-  
-      .card {
-          min-width: 320px;
-          max-width: 320px;
-      }
-  }
-  
   .card {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 290px;
-      max-height: 320px;
-      min-width: 415px;
-      max-width: 415px;
-      position: relative;
-  }
-  
-  .card h2 {
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-      color: #343a40;
-  }
-  
-  .remove-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #ff4d4f;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .remove-button:hover {
-      background-color: #d9363e;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .border-dashed {
-    border: 2px dashed #007bff;
-  }
-  
-  .border-dashed:hover {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .smallTable {
-    max-width: 2vw;
-  }
-  
-  .smallTable th,
-  .smallTable td {
-    font-size: 0.9vw;
-    padding: 8px;
-  }
-  
-  .w-100 {
-    max-width: fit-content !important;
-  }
-  
-  .text-primary {
-    font-size: 5rem !important;
-    margin: auto !important;
-  }
-  
-  .card shadow text-center bg-light border-dashed + .text-primary:hover {
-    color: rgb(13 110 253 / 37%) !important;
-  }
-  
-  .clock {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #495057;
-      margin-bottom: 10px;
-  }
-  
-  .date {
-      font-size: 1.2rem;
-      color: #868e96;
+    max-width: 340px !important;
   }
 
-  .large {
-    min-width: 50vw !important;
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1100px !important;
   }
-  /* --- */  
+
+}
+
+@media only screen and (max-width: 1400px) {
+  .card {
+    max-width: 270px !important;
+    min-width: unset;
+  }
+
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 860px !important;
+  }
+
+}
+
+@media only screen and (max-width: 1250px) {
+
+  .card,
+  .large {
+    max-width: 320px !important;
+    min-width: 320px !important;
+  }
+
+  .row {
+    display: grid;
+    justify-content: center;
+  }
+
+  .flex-grow-1 {
+    min-width: -webkit-fill-available !important;
+  }
+
+}
+
+/* --- */

@@ -1,5 +1,4 @@
 // Validate Bootstrap
-// Voeg dit script toe om validatie te activeren
     (function () {
         'use strict'
 
