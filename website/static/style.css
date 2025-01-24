@@ -79,68 +79,72 @@ a {
 
 /* Hamburger Menu Specifiek */
 @media only screen and (max-width: 1250px) {
-/* Hamburger icon basisstijl */
-#toggle-menu .hamburger,
-#toggle-menu .hamburger::after {
-  content: "";
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  position: absolute;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 2000;
+
+  /* Hamburger icon basisstijl */
+  #toggle-menu .hamburger,
+  #toggle-menu .hamburger::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 2000;
+  }
+
+  #toggle-menu .hamburger {
+    transform: rotate(0deg);
+    background-color: rgb(33 37 41);
+    position: absolute;
+  }
+
+  #toggle-menu .hamburger::before {
+    transform: rotate(0deg);
+    top: -8px;
+    content: "";
+    background-color: rgb(33 37 41);
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 3px;
+  }
+
+  #toggle-menu .hamburger::after {
+    transform: rotate(0deg);
+    top: 8px;
+    background-color: rgb(33 37 41);
+  }
+
+  /* Sidebar transition for smooth movement */
+  .bg-dark {
+    transition: transform 0.3s ease-in-out;
+    /* Smooth transition */
+    transform: translateX(-100%);
+    /* Default state: hidden */
+  }
+
+  /* When menu is open, transform the sidebar */
+  #menu-toggle:checked~.bg-dark {
+    transform: translateX(0);
+    /* Show the sidebar */
+  }
+
+  /* Kruisje styling wanneer checkbox is aangevinkt */
+
+  #menu-toggle:checked+#toggle-menu .hamburger {
+    transform: rotate(-45deg);
+    background-color: red;
+    display: block;
+    position: absolute;
+  }
+
+  #menu-toggle:checked+#toggle-menu .hamburger::before {
+    display: none;
+  }
 }
 
-#toggle-menu .hamburger {
-  transform: rotate(0deg);
-  background-color: rgb(33 37 41);
-  position: absolute;
-}
-
-#toggle-menu .hamburger::before {
-  transform: rotate(0deg);
-  top: -8px;
-  content: "";
-  background-color: rgb(33 37 41);
-  position: relative;
-  display: block;
-  width: 25px;
-  height: 3px;
-}
-
-#toggle-menu .hamburger::after {
-  transform: rotate(0deg);
-  top: 8px;
-  background-color: rgb(33 37 41);
-}
-
-/* Sidebar transition for smooth movement */
-.bg-dark {
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
-  transform: translateX(-100%); /* Default state: hidden */
-}
-
-/* When menu is open, transform the sidebar */
-#menu-toggle:checked ~ .bg-dark {
-  transform: translateX(0); /* Show the sidebar */
-}
-
-/* Kruisje styling wanneer checkbox is aangevinkt */
-
-#menu-toggle:checked + #toggle-menu .hamburger {
-  transform: rotate(-45deg);
-  background-color: red;
-  display: block;
-  position: absolute;
-}
-
-#menu-toggle:checked + #toggle-menu .hamburger::before {
-  display: none;
-}
-}
-
-#menu-toggle:checked + #toggle-menu .hamburger::after {
+#menu-toggle:checked+#toggle-menu .hamburger::after {
   transform: rotate(90deg);
   background-color: red;
   display: block;
@@ -155,6 +159,15 @@ a {
 .hamburgerPosition {
   margin: 1rem 0 0 10rem;;
   position: relative;
+  max-width: fit-content;
+}
+
+@media only screen and (max-width: 730px) {
+
+.mb-4 {
+margin-top: 1rem;
+}
+
 }
 
 /* Sidebar buttons */
@@ -239,6 +252,11 @@ a {
 }
 
 @media only screen and (max-width: 1600px) {
+
+  html {
+    height: unset !important;
+  }
+
   .mb-4 {
     padding: 0 0 1%;
   }
@@ -254,6 +272,10 @@ a {
   .container-xl,
   .container-xxl {
     max-width: 1100px !important;
+  }
+
+  .py-4 {
+    padding-top: unset !important;
   }
 
 }
