@@ -1,3 +1,6 @@
+
+from ... import mysql
+
 def database(query):
     try:
         cursor = mysql.connection.cursor()

@@ -28,7 +28,10 @@ financien_data = (
 def index():
     # Volgorde: ID, Product, Voorraad
     # bijnaOpProducten = database("select magazijn.product_id, magazijn.voorraad_aantal, products.naam from magazijn INNER JOIN products ON magazijn.product_id=products.product_id;")
-    bijnaOpProducten = ((1,2,"banaan"),(1,2,"banaan"),(1,2,"banaan"))
+    bijnaOpProducten = database("select * from s2233725.products")
+    if bijnaOpProducten == None:
+        bijnaOpProducten = ((1, "banaan", 10),(2, "appel", 5),(3, "peer", 8))
+    print(bijnaOpProducten)
     time = datetime.now().strftime("%H:%M")
     date = datetime.now().strftime("%d-%m-%Y")
     day = datetime.now().strftime("%A")
@@ -144,6 +147,8 @@ def inkoop():
 @views.route('/voorraad')
 def voorraad():
     voorraad = database("select * from products;")
+    if voorraad == None:
+        voorraad = ((1, "banaan", 1, "koeling", "A12", "5", "2025-02-09"),(2, "appel", 1, "koeling", "A13", "10", "2025-02-10"),(3, "peer", 1, "koeling", "A14", "8", "2025-02-11"))
     return render_template("voorraad.html", voorraad=voorraad)
 
 @views.route('/bestelgeschiedenis')
@@ -171,7 +176,7 @@ def voorraadProductToevoegen():
 @views.route('/koeriers/klant-info/<int:klant_id>')
 def koeriers_klant_info(klant_id):
     # Retrieve klant and koerier info
-    klant = next((k for k in klanten if k['id'] == klant_id), None)
+    klant = klanten[klant_id]
     koerier_info = {
         "track": f"Trace {klant_id}123",
         "levermoment": "9:00 - 12:00",
