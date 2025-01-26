@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
+import config
 
 # Initialize MySQL object globally
 mysql = MySQL()
@@ -10,10 +11,10 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     
     # MySQL configuration
-    app.config['MYSQL_HOST'] = 'mysql.atd.avans.nl'
-    app.config['MYSQL_USER'] = 's2233725'
-    app.config['MYSQL_PASSWORD'] = 'ab12345'
-    app.config['MYSQL_DB'] = 's2233725'
+    app.config['MYSQL_HOST'] = config.db_host
+    app.config['MYSQL_USER'] = config.db_user
+    app.config['MYSQL_PASSWORD'] = config.db_password
+    app.config['MYSQL_DB'] = config.db_db
 
 
     # Initialize MySQL with app

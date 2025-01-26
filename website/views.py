@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from . import mysql  # Import the globally initialized `mysql`
 from datetime import datetime
+from .static.backend.general_backend import database
 views = Blueprint('views', __name__)
 
 # Dummy data
@@ -21,17 +22,6 @@ financien_data = (
         (3, 'Factuur 3', 300.00, 'Betaald', '2023-03-02'),
         (4, 'Factuur 4', 400.00, 'Betaald', '2023-03-02')
 )
-
-def database(query):
-    try:
-        cursor = mysql.connection.cursor()
-        cursor.execute(str(query))
-        mysql.connection.commit()
-        result = cursor.fetchall()
-        cursor.close()
-        return result
-    except Exception as e:
-        print("Error occurred: ", e)
 
 
 @views.route('/')
