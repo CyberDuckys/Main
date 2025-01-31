@@ -1,19 +1,21 @@
 {% extends 'base.html' %} {% block title %} Klanten {% endblock %} {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/klanten.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
 
-<h1 class="dashboardTitle">Dashboard Klanten</h1>
+<h1 class="text-center mb-4">Dashboard Klanten</h1>
 
-<div class="customerCard">
-  <h2>Klantenlijst</h2>
-  <table class="table klanten-table">
-    <thead>
+<div class="table-responsive mb-4">
+  <div class="caption">
+    <span>Klantenlijst</span>
+  </div>
+  <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+    <thead class="table-dark">
       <tr>
         <th>ID</th>
         <th>Naam</th>
         <th>Contact</th>
         <th>Website</th>
         <th>Telefoon</th>
-        <th>Acties</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -21,19 +23,19 @@
       <tr>
         <td>{{ klant[0] }}</td>
         <!-- ID -->
-        <td>{{ klant[1] }}</td>
+        <td>{{ klant[1]}}</td>
         <!-- Naam -->
-        <td><a href="{{klant[2]}}">{{ klant[2] }}</a></td>
+        <td>{{ klant[2] }}</td>
         <!-- Contact -->
-        <td>{{ klant[3] }}</td>
+        <td><a href="{{klant.website}}">{{ klant[3] }}</a></td>
         <!-- Website -->
         <td>{{ klant[4] }}</td>
         <!-- Telefoon -->
         <td>
           <!-- Dynamische koppeling naar de Financiën-pagina -->
-          <a class="button-small" href="{{ url_for('views.financien', klant_id=klant[1]) }}"> Financiën </a>
+          <a class="button-small" href="{{ url_for('views.financien', klant_id=klant[0]) }}"> Financiën </a>
           <!-- Verander de naam van de route naar 'financien_wijzigen_klant' -->
-          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant[1]) }}"> Wijzigen </a>
+          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant[0]) }}"> Wijzigen </a>
         </td>
       </tr>
       {% endfor %}

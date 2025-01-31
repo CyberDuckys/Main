@@ -1,45 +1,46 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block title %} Financiën {% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/financien.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
 
-{% block title %} Financiën {% endblock %}
+<h1 class="text-center mb-4">Dashboard Financiën</h1>
 
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/financien.css') }}">
+<div class="table-responsive mb-4">
+  <div class="caption">
+    <span>Klantenoverzicht {{ klant_id }}</span>
+    <button class="saveAll btn btn-sm btn-dark">Opslaan</button>
+  </div>
+  <!-- Klant ID wordt hier getoond -->
+  <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Beschrijving</th>
+        <th>Bedrag</th>
+        <th>Datum</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for finance in finance %}
+      <tr>
+        <td>{{ finance[0] }}</td>
+        <td>{{ finance[2] }}</td>
+        <td>€ {{ finance[3] }}</td>
+        <td>{{ finance[4] }}</td>
+        <td>{{ finance[5] }}</td>
+        <td>
+          <button class="button-small">Bekijken</button>
+          <a href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant_id) }}" class="button-small">Wijzigen</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-<h1 class="dashboardTitle">Dashboard Financiën</h1>
-
-<div class="financeContainer">
-    <h2>Financiële Overzicht voor Klant {{ klant_id }}</h2> <!-- Klant ID wordt hier getoond -->
-    <table class="table financien-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Beschrijving</th>
-                <th>Bedrag</th>
-                <th>Datum</th>
-                <th>Status</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for finance in finance %}
-            <tr>
-                <td>{{ finance.id }}</td>
-                <td>{{ finance.beschrijving }}</td>
-                <td>€ {{ finance.bedrag }}</td>
-                <td>{{ finance.datum }}</td>
-                <td>{{ finance.status }}</td>
-                <td>
-                    <button class="button-small">Bekijken</button>
-                    <a href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant_id) }}" class="button-small">Wijzigen</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Toevoegen-knop -->
-    <div class="add-finance-btn">
-        <a href="{{ url_for('views.financien_toevoegen') }}" class="button-large">+ Toevoegen</a>
-    </div>
+  <!-- Toevoegen-knop -->
+  <div class="add-finance-btn">
+    <a href="{{ url_for('views.financien_toevoegen') }}" class="button-large">+ Toevoegen</a>
+  </div>
 </div>
 {% endblock %}

@@ -6,88 +6,95 @@
 {% block content%}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
 
-<h1 class="dashboardTitle">Dashboard Inkoop</h1>
+<h1 class="text-center mb-4">Dashboard Inkoop</h1>
 
-    <div class="tableCard">
-        <table class="table klanten-table">
-            <caption>Bijna op <a href="{{ url_for('views.bestelgeschiedenis') }}" class="button-small">Bestelgeschiedenis</a></caption>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Product</th>
-                    <th>Voorraad</th>
-                    <th>Leverancier</th>
-                    <th>Website</th>
-                    <th>Tel Nr</th>
-                    <th>Prijs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>00001</td>
-                    <td>Banaan</td>
-                    <td>2</td>
-                    <td>Alibaba</td>
-                    <td>Alibaba.com</td>
-                    <td>+31 123 456 78</td>
-                    <td>€23,99</td>
-                </tr>
-                <tr>
-                    <td>00002</td>
-                    <td>Appel</td>
-                    <td>5</td>
-                    <td>Bamazon</td>
-                    <td>Bamazon.nl</td>
-                    <td>+31 876 543 21</td>
-                    <td>€10,00</td>
-                </tr>
-                <tr>
-                    <td>00003</td>
-                    <td>Komkommer</td>
-                    <td>3</td>
-                    <td>Cemu</td>
-                    <td>Cemu.net</td>
-                    <td>+31 192 837 46</td>
-                    <td>€9,95</td>
-                </tr>
-            </tbody>
-        </table>
+<!-- Inkooptabel -->
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Bijna op</span>
+        <a href="{{ url_for('views.bestelgeschiedenis') }}" class="btn btn-sm btn-dark">Product toevoegen</a>
     </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Voorraad</th>
+                <th>Leverancier</th>
+                <th>Website</th>
+                <th>Tel Nr</th>
+                <th>Prijs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Banaan</td>
+                <td>2</td>
+                <td>Alibaba</td>
+                <td>Alibaba.com</td>
+                <td>+31 123 456 78</td>
+                <td>€23,99</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Appel</td>
+                <td>5</td>
+                <td>Bamazon</td>
+                <td>Bamazon.nl</td>
+                <td>+31 876 543 21</td>
+                <td>€10,00</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Komkommer</td>
+                <td>3</td>
+                <td>Cemu</td>
+                <td>Cemu.net</td>
+                <td>+31 192 837 46</td>
+                <td>€9,95</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    <div class="tableCard">
-        <table class="table klanten-table">
-            <thead>
-                <tr>
-                    <th>Leverancier</th>
-                    <th>Adres</th>
-                    <th>Contact</th>
-                    <th>Tel Nr</th>
-                    <th>Website</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Alibaba</td>
-                    <td>Alibabaweg 6, 1234 DF Aalst</td>
-                    <td>Dhr Alex Alibaba</td>
-                    <td>+31 123 456 78</td>
-                    <td>Alibaba.com</td>
-                </tr>
-                <tr>
-                    <td>Bamazon</td>
-                    <td>Bamazonstraat 1, 4321 HF Breda</td>
-                    <td>Mevr Birgit Bamazon</td>
-                    <td>+31 876 543 21</td>
-                    <td>Bamazon.nl</td>
-                </tr>
-                <tr>
-                    <td>Cemu</td>
-                    <td>Cemuwijk 56, 1222 AD Cuijk</td>
-                    <td>Mevr Christina Cemu</td>
-                    <td>+31 192 837 46</td>
-                    <td>Cemu.net</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="table-responsive mb-4">
+    <div class="caption">
+        <span>Crediteuren</span>
     </div>
+    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+            <tr>
+                <th>Leverancier</th>
+                <th>Adres</th>
+                <th>Contact</th>
+                <th>Tel Nr</th>
+                <th>Website</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alibaba</td>
+                <td>Alibabaweg 6, 1234 DF Aalst</td>
+                <td>Dhr Alex Alibaba</td>
+                <td>+31 123 456 78</td>
+                <td>Alibaba.com</td>
+            </tr>
+            <tr>
+                <td>Bamazon</td>
+                <td>Bamazonstraat 1, 4321 HF Breda</td>
+                <td>Mevr Birgit Bamazon</td>
+                <td>+31 876 543 21</td>
+                <td>Bamazon.nl</td>
+            </tr>
+            <tr>
+                <td>Cemu</td>
+                <td>Cemuwijk 56, 1222 AD Cuijk</td>
+                <td>Mevr Christina Cemu</td>
+                <td>+31 192 837 46</td>
+                <td>Cemu.net</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}
