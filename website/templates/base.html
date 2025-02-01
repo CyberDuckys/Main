@@ -78,40 +78,9 @@
   <div class="flex-grow-1">
     {% block content %} {% endblock %}
   </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Get elements
-      const menuToggle = document.getElementById("menu-toggle");
-      const sidebar = document.querySelector(".bg-dark");
-      const toggleMenuLabel = document.getElementById("toggle-menu");
 
-      // Event listener for toggle
-      toggleMenuLabel.addEventListener("click", () => {
-        const isChecked = menuToggle.checked;
-        if (isChecked) {
-          // Menu is currently open, so close it
-          sidebar.style.transform = "translateX(-100%)";
-          menuToggle.checked = false;
-        } else {
-          // Menu is currently closed, so open it
-          sidebar.style.transform = "translateX(0)";
-          menuToggle.checked = true;
-        }
-      });
-    });
+  <script src="{{ url_for('static', filename='js/toggleMenu.js') }}" defer></script>
 
-    document.addEventListener("DOMContentLoaded", () => {
-      // Get elements
-      const menuToggle = document.getElementById("menu-toggle");
-      const toggleMenuLabel = document.getElementById("toggle-menu");
-
-      // Event listener for toggle
-      toggleMenuLabel.addEventListener("click", () => {
-        // Toggle the checked state of the checkbox
-        menuToggle.checked = !menuToggle.checked;
-      });
-    });
-  </script>
 </body>
 
 </html>

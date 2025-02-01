@@ -32,10 +32,7 @@ def index():
     if bijnaOpProducten == None:
         bijnaOpProducten = ((1, "banaan", 10),(2, "appel", 5),(3, "peer", 8))
     print(bijnaOpProducten)
-    time = datetime.now().strftime("%H:%M")
-    date = datetime.now().strftime("%d-%m-%Y")
-    day = datetime.now().strftime("%A")
-    return render_template("index.html", bijnaOpProducten=bijnaOpProducten, time=time, date=date, day=day)
+    return render_template("index.html", bijnaOpProducten=bijnaOpProducten)
 
 @views.route('/klanten')
 def klantenlijst():

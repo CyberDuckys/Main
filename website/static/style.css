@@ -10,8 +10,10 @@ html,
 body {
   font-family: "Roboto", sans-serif;
   background-color: #f8f9fa;
+  -webkit-text-size-adjust: 100%;
   height: -webkit-fill-available;
   width: -webkit-fill-available;
+  min-width: 337px;
 }
 
 th,
@@ -123,6 +125,7 @@ a {
 
 /* When menu is open, transform the sidebar */
 #menu-toggle:checked ~ .bg-dark {
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
   transform: translateX(0); /* Show the sidebar */
 }
 
@@ -133,10 +136,6 @@ a {
   background-color: red;
   display: block;
   position: absolute;
-}
-
-#menu-toggle:checked + #toggle-menu .hamburger::before {
-  display: none;
 }
 }
 
@@ -153,7 +152,7 @@ a {
 }
 
 .hamburgerPosition {
-  margin: 1rem 0 0 10rem;;
+  margin: 0.5rem 0 0 1.5rem;
   position: relative;
 }
 
@@ -241,6 +240,7 @@ a {
 @media only screen and (max-width: 1600px) {
   .mb-4 {
     padding: 0 0 1%;
+    font-size: 2rem;
   }
 
   .card {
@@ -273,6 +273,13 @@ a {
     max-width: 860px !important;
   }
 
+}
+
+@media only screen and (max-width: 560px) {
+.card,
+.large {
+  padding: 20%;
+}
 }
 
 @media only screen and (max-width: 1250px) {

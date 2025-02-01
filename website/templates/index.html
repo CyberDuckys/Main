@@ -7,7 +7,7 @@
 
   <div class="row g-2">
     <!-- Bijna op -->
-      <div class="card shadow">
+      <div class="card shadow" style="padding: 20px;">
         <h5 class="card-title text-center">Bijna op</h5>
         <table class="table table-bordered table-sm text-center">
           <thead>
@@ -49,10 +49,11 @@
     </div>
 
   <!-- Tijd en datum -->
-    <div class="card shadow text-center large">
-      <div class="display-1 fw-bold" id="clock">{{time}}</div>
-      <p class="fs-4" id="date">{{day}}<br />{{date}}</p>
-    </div>
-  </div>
+  <div class="card shadow text-center large">
+    <div class="display-1 fw-bold" id="clock">{{time}}</div>
+    <p class="fs-4" id="date">{{day}}<br/>{{date}}</p>
+</div>
+
+<script src="{{ url_for('static', filename='js/timeScript.js') }}" defer></script>
 
 {% endblock %}
