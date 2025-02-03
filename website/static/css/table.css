@@ -9,8 +9,6 @@
     padding: 0.5rem;
     /* Verklein de celruimte */
     vertical-align: middle;
-    /* Zorg dat tekst mooi uitgelijnd blijft */
-    max-width: 0;
 }
 
 .card .card-title {
@@ -26,23 +24,49 @@
 .caption {
     font-size: 3vw;
     font-weight: 700;
-    background-color: darkgray;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    position: static;
+    background-color: darkgray;
+    min-width: 25vw;
+    max-width: 45vw;
 }
 
 .caption span {
-    position: absolute;
-    padding: 6%;
     font-size: 2rem;
+    position: absolute;
 }
 
 .btn-group-sm>.btn,
 .btn-sm {
     margin-left: 42rem;
+}
+
+@media only screen and (max-width: 1750px) {
+    .btn-group-sm>.btn,
+.btn-sm {
+    margin-left: unset;
+}
+
+.caption {
+    flex-direction: column;
+}
+
+
+.caption span {
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.fixItems {
+    background-color: darkgray;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 }
 
 .flexTables {

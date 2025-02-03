@@ -28,6 +28,17 @@ a {
 }
 
 .mb-4 {
+  background-color: darkgray;
+  max-height: fit-content;
+  width: 53rem;
+  min-width: 25vw;
+  max-width: 45vw;
+  font-size: 4vw;
+  margin: 0 auto;
+  padding: 0 0 3%;
+}
+
+.alignH1 {
   max-height: fit-content;
   min-width: 25vw;
   max-width: 55vw;
