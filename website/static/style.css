@@ -11,7 +11,6 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #f8f9fa;
   -webkit-text-size-adjust: 100%;
-  height: -webkit-fill-available;
   width: -webkit-fill-available;
   min-width: 337px;
 }
@@ -29,8 +28,8 @@ a {
 
 .mb-4 {
   background-color: darkgray;
-  max-height: fit-content;
-  width: 53rem;
+  height: 11rem;
+  width: 54rem;
   min-width: 25vw;
   max-width: 45vw;
   font-size: 4vw;
@@ -42,9 +41,13 @@ a {
   max-height: fit-content;
   min-width: 25vw;
   max-width: 55vw;
-  font-size: 4vw;
+  font-size: 4.5vw;
   margin: 0 auto;
   padding: 0 0 3%;
+}
+
+.card-title {
+  font-weight: 600;
 }
 
 .table {

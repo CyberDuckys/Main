@@ -1,5 +1,7 @@
-{% extends 'base.html' %} {% block title %} Klanten {% endblock %} {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
+{% extends 'base.html' %} 
+
+{% block title %} Klanten {% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}" />
 
 <h1 class="text-center alignH1">Dashboard Klanten</h1>
 
@@ -35,7 +37,7 @@
           <!-- Dynamische koppeling naar de Financiën-pagina -->
           <a class="button-small" href="{{ url_for('views.financien', klant_id=klant[0]) }}"> Financiën </a>
           <!-- Verander de naam van de route naar 'financien_wijzigen_klant' -->
-          <a class="button-small" href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant[0]) }}"> Wijzigen </a>
+          <a class="button-small" href="{{ url_for('views.financien_toevoegen', klant_id=klant[0]) }}"> Wijzigen </a>
         </td>
       </tr>
       {% endfor %}

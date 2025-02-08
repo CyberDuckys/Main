@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block title %} Financiën {% endblock %} {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/financien.css') }}" />
-<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}" />
 
 <h1 class="text-center alignH1">Dashboard Financiën</h1>
 
@@ -31,7 +31,7 @@
         <td>{{ finance[5] }}</td>
         <td>
           <button class="button-small">Bekijken</button>
-          <a href="{{ url_for('views.financien_wijzigen_klant', klant_id=klant_id) }}" class="button-small">Wijzigen</a>
+          <a href="{{ url_for('views.financien_toevoegen', klant_id=klant_id) }}" class="button-small">Wijzigen</a>
         </td>
       </tr>
       {% endfor %}

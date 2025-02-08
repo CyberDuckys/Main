@@ -53,6 +53,7 @@
 
 .caption {
     flex-direction: column;
+    padding: unset;
 }
 
 
@@ -67,18 +68,6 @@
     top: 0;
     z-index: 10;
 }
-}
-
-.flexTables {
-    display: flex;
-    max-width: fit-content;
-    gap: 20px;
-    margin: auto;
-}
-
-.flexTables .table-responsive .caption span {
-    font-size: 2rem;
-    padding: unset;
 }
 
 .button-small {
@@ -118,4 +107,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.table-responsive {
+    overflow: auto !important;
 }

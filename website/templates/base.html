@@ -51,26 +51,37 @@
           <i class="fas fa-home"></i> Dashboard
         </a>
       </li>
+
       <li class="nav-item">
         <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.voorraad') }}">
           <i class="fas fa-box"></i> Voorraad
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.verkoop') }}">
+          <i class="fa-solid fa-euro-sign"></i> Verkoop
+        </a>
+      </li>
+
       <li class="nav-item">
         <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.inkoop') }}">
           <i class="fas fa-shopping-cart"></i> Inkoop
         </a>
       </li>
-      <li class="nav-item">
-        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.klantenlijst') }}">
-          <i class="fas fa-user"></i> Klanten
-        </a>
-      </li>
+
       <li class="nav-item">
         <a class="btn btn-dark w-100 text-start" href="{{ url_for('views.koeriers') }}">
           <i class="fas fa-truck"></i> Koeriers
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="btn btn-dark w-100 text-start mb-2" href="{{ url_for('views.klantenlijst') }}">
+          <i class="fas fa-user"></i> Klanten
+        </a>
+      </li>
+
     </ul>
   </div>
 
@@ -80,6 +91,7 @@
   </div>
 
   <script src="{{ url_for('static', filename='js/toggleMenu.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/tables.js') }}" defer></script>
 
 </body>
 
