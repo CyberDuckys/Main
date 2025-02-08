@@ -4,48 +4,66 @@
 
 {% block content %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/voorraadProductToevoegen.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
 
 <div class="container mt-5">
     <h1 class="text-center alignH1">Nieuwe Financiën Toevoegen</h1>
-    <form action="{{ url_for('views.financien_toevoegen') }}" method="POST" class="finance-form">
 
+    <form action="{{ url_for('views.financien_toevoegen') }}" method="POST" class="finance-form needs-validation" novalidate>
+
+        <!-- Klant selecteren -->
         <div class="mb-3">
             <label for="klant" class="form-label">Klant</label>
-            <input type="text" class="form-control" id="klant" name="klant" placeholder="Bijv. Jan Jansen" required>
-            <div class="invalid-feedback">
-                Vul een klantnaam in.
-            </div>
+            <select id="klant" name="klant" class="form-select" required>
+                <option value="" disabled selected>Kies een klant...</option>
+                {% for klant in klanten %}
+                <option value="{{ klant[0] }}">{{ klant[1] }}</option>
+                {% endfor %}
+            </select>
+            <div class="invalid-feedback">Selecteer een klant.</div>
         </div>
         
+        <!-- Bedrag invoeren -->
         <div class="mb-3">
             <label for="bedrag" class="form-label">Bedrag (€)</label>
             <input type="number" class="form-control" id="bedrag" name="bedrag" step="0.01" placeholder="Bijv. 100.50" required>
-            <div class="invalid-feedback">
-                Vul een geldig bedrag in.
-            </div>
+            <div class="invalid-feedback">Vul een geldig bedrag in.</div>
         </div>
         
+        <!-- Datum selecteren -->
         <div class="mb-3">
             <label for="datum" class="form-label">Datum</label>
             <input type="date" class="form-control" id="datum" name="datum" required>
-            <div class="invalid-feedback">
-                Vul een geldige datum in.
-            </div>
+            <div class="invalid-feedback">Vul een geldige datum in.</div>
         </div>
         
+        <!-- Status kiezen -->
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select id="status" name="status" class="form-select" required>
                 <option value="open">Open</option>
                 <option value="betaald">Betaald</option>
             </select>
-            <div class="invalid-feedback">
-                Kies een status.
-            </div>
+            <div class="invalid-feedback">Kies een status.</div>
         </div>
         
-        <button type="submit" class="button-large">Toevoegen</button>
+        <button type="submit" class="btn btn-dark w-100">Toevoegen</button>
     </form>
 </div>
+
+<script>
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
 {% endblock %}

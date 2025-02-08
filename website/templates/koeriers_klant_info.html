@@ -7,29 +7,44 @@
 
 <h1 class="text-center alignH1">Klant Info voor Koeriers</h1>
 
-<div class="table-responsive mb-4">
-    <div class="caption">
-        <span>Klantgegevens</span>
+<div class="container">
+    <!-- Klantgegevens -->
+    <div class="table-responsive mb-4">
+        <div class="caption">
+            <span>Klantgegevens</span>
+        </div>
+        <table class="table table-bordered table-striped table-hover text-center fs-6">
+            <tbody>
+                <tr><th>Naam:</th><td>{{ klant[1] }}</td></tr>
+                <tr><th>Adres:</th><td>{{ klant[2] }}</td></tr>
+                <tr><th>Telefoon:</th><td>{{ klant[3] }}</td></tr>
+                <tr>
+                    <th>Website:</th>
+                    <td><a href="{{ klant[4] }}" target="_blank">{{ klant[4] }}</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-        <tr><th>Naam:</th><td>{{ klant[2] }}</td></tr>
-        <tr><th>Bedrijf:</th><td>{{ klant[1] }}</td></tr>
-        <tr><th>Website:</th><td><a href="{{ klant[3] }}">{{ klant[3] }}</a></td></tr>
-        <tr><th>Telefoon:</th><td>{{ klant[4] }}</td></tr>
-    </table>
+
+    <!-- Leveringsinformatie -->
+    <div class="table-responsive mb-4">
+        <div class="caption">
+            <span>Leveringsinformatie</span>
+            <button class="btn btn-sm btn-dark">Opslaan</button>
+        </div>
+        <table class="table table-bordered table-striped table-hover text-center fs-6">
+            <tbody>
+                <tr><th>Track & Trace:</th><td>{{ koerier_info.track }}</td></tr>
+                <tr><th>Levermoment:</th><td>{{ koerier_info.levermoment }}</td></tr>
+                <tr><th>Adres:</th><td>{{ koerier_info.adres }}</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Navigatie -->
+    <div class="text-center">
+        <a href="{{ url_for('views.koeriers') }}" class="btn btn-dark">Terug naar Koeriers</a>
+    </div>
 </div>
 
-<div class="table-responsive mb-4">
-    <div class="caption">
-        <span>Leveringsinformatie</span>
-        <button class="saveAll btn btn-sm btn-dark">Opslaan</button>
-    </div>
-    <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-        <tr><th>Track & Trace:</th><td>{{ koerier_info.track_trace }}</td></tr>
-        <tr><th>Levermoment:</th><td>{{ koerier_info.levermoment }}</td></tr>
-        <tr><th>Adres:</th><td>{{ koerier_info.adres }}</td></tr>
-    </table>
-</div>
-
-    <a href="{{ url_for('views.koeriers') }}" class="btn btn-sm btn-dark">Terug naar Koeriers</a>
 {% endblock %}

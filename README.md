@@ -1,2 +1,0 @@
-# DebugDucks
-Avans project

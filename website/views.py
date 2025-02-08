@@ -1,139 +1,155 @@
-from flask import Blueprint, redirect, render_template, request, url_for
-from . import mysql  # Import the globally initialized mysql
+from flask import Blueprint, render_template, request, redirect, url_for
 from datetime import datetime
-from .static.backend.general_backend import database
 
-views = Blueprint('views', __name__)
+def create_views(mysql):
+    views = Blueprint('views', __name__)
 
-klanten = (
-    (1, 'Aalbert Hain', 'dhr amir aalbert hain', 'http://ah.nl', '+31 12345678'),
-    (2, 'JANTJE Hain', 'dhr JANTJE aalbert hain', 'http://jumbo.nl', '+31 12345678'),
-)
+    def execute_query(query, params=None):
+        """ Voert een databasequery uit en retourneert het resultaat. """
+        conn = mysql.connection
+        cursor = conn.cursor()
+        cursor.execute(query, params or ())
 
-financien_data = (
-    (1, 'Factuur 1', 100.00, 'Betaald', '2023-03-02'),
-    (2, 'Factuur 2', 200.00, 'Betaald', '2023-03-02'),
-    (3, 'Factuur 3', 300.00, 'Betaald', '2023-03-02'),
-    (4, 'Factuur 4', 400.00, 'Betaald', '2023-03-02')
-)
-
-# Dashboard Route
-@views.route('/')
-def index():
-    bijnaOpProducten = database("select * from s2233725.products")
-    if bijnaOpProducten is None:
-        bijnaOpProducten = (
-            (1, "banaan", 10),
-            (2, "appel", 5),
-            (3, "peer", 8)
-        )
-    print(bijnaOpProducten)
-    return render_template("index.html", bijnaOpProducten=bijnaOpProducten)
-
-# Klanten Route
-@views.route('/klanten')
-def klantenlijst():
-    return render_template("klanten.html", klanten=klanten)
-
-# Financiële Routes
-@views.route('/financien/<int:klant_id>')
-def financien(klant_id):
-    klant_financien = financien_data[klant_id - 1]
-    klant = next((k for k in klanten if k[0] == klant_id), None)
-    
-    if klant is None:
-        return "Klant niet gevonden", 404
-
-    return render_template("financien.html", klant_id=klant_id, finance=klant_financien)
-
-@views.route('/financien/toevoegen', methods=['GET', 'POST'])
-def financien_toevoegen():
-    if request.method == 'POST':
-        klant = request.form.get('klant')
-        bedrag = request.form.get('bedrag')
-        datum = request.form.get('datum')
-        status = request.form.get('status')
-
-        if not klant.isdigit():
-            return "Ongeldig klant ID. Zorg ervoor dat je een geldig nummer invoert.", 400
-
-        klant_id = int(klant)
-        nieuwe_finance = {
-            "id": len(financien_data.get(klant_id, [])) + 1,
-            "beschrijving": f"Nieuwe factuur voor klant {klant_id}",
-            "bedrag": bedrag,
-            "datum": datum,
-            "status": status
-        }
-
-        if klant_id in financien_data:
-            financien_data[klant_id].append(nieuwe_finance)
+        if query.strip().lower().startswith("select"):
+            result = cursor.fetchall()
         else:
-            financien_data[klant_id] = [nieuwe_finance]
+            conn.commit()
+            result = None
 
-        return redirect(url_for('views.financien', klant_id=klant_id))
-    
-    return render_template("financien_toevoegen.html")
+        cursor.close()
+        return result
 
-# Voorraad Route
-@views.route('/voorraad')
-def voorraad():
-    voorraad = database("select * from products;")
-    if voorraad is None:
-        voorraad = (
-            (1, "banaan", 1, "koeling", "A12", "5", "2025-02-09"),
-            (2, "appel", 1, "koeling", "A13", "10", "2025-02-10"),
-            (3, "peer", 1, "koeling", "A14", "8", "2025-02-11")
-        )
-    return render_template("voorraad.html", voorraad=voorraad)
+    # 📌 DASHBOARD
+    @views.route('/')
+    def index():
+        bijna_op_producten = execute_query("""
+            SELECT v.product_id, p.naam, v.aantal
+            FROM voorraad v
+            JOIN products p ON v.product_id = p.product_id
+            WHERE v.aantal < v.minimale_voorraad;
 
-@views.route('/voorraadProductToevoegen', methods=['GET', 'POST'])
-def voorraadProductToevoegen():
-    if request.method == 'POST':
-        new_product = (
-            int(request.form['id']),
-            request.form['product'],
-            int(request.form['batchnumber']),
-            request.form['storageadvice'],
-            request.form['location'],
-            int(request.form['amount']),
-            datetime.now().strftime("%Y-%m-%d")
-        )
-        database(
-            f"INSERT INTO products (product_id, product, batchnummer, bewaaradvies, locatie, aantal, houdbaarheid) "
-            f"VALUES ('{new_product[0]}','{new_product[1]}','{new_product[2]}','{new_product[3]}','{new_product[4]}','{new_product[5]}','{new_product[6]}')"
-        )
-        return redirect(url_for('views.voorraad'))
-    
-    return render_template('voorraadProductToevoegen.html')
+        """) or []
+        return render_template("index.html", bijnaOpProducten=bijna_op_producten)
 
-# Overige Routes
-@views.route('/koeriers')
-def koeriers():
-    return render_template("koeriers.html")
+    # 📌 KLANTEN
+    @views.route('/klanten')
+    def klantenlijst():
+        klanten = execute_query("SELECT klant_id, naam, adres, telefoonnummer, jaaromzet FROM klant")
+        return render_template("klanten.html", klanten=klanten)
 
-@views.route('/verkoop')
-def verkoop():
-    return render_template("verkoop.html")
+    # 📌 FINANCIËN
+    @views.route('/financien/<int:klant_id>')
+    def financien(klant_id):
+        klant = execute_query("SELECT * FROM klant WHERE klant_id = %s", (klant_id,))
+        klant_financien = execute_query("SELECT * FROM administratie WHERE klant_id = %s", (klant_id,))
 
-@views.route('/inkoop')
-def inkoop():
-    return render_template("inkoop.html")
+        if not klant:
+            return "Klant niet gevonden", 404
 
-@views.route('/bestelgeschiedenis')
-def bestelgeschiedenis():
-    return render_template("bestelgeschiedenis.html")
+        return render_template("financien.html", klant=klant, finance=klant_financien)
 
-@views.route('/koeriers/klant-info/<int:klant_id>')
-def koeriers_klant_info(klant_id):
-    klant = klanten[klant_id]
-    koerier_info = {
-        "track": f"Trace {klant_id}123",
-        "levermoment": "9:00 - 12:00",
-        "adres": "Example Street, 1234 AB Example"
-    }
-    
-    if klant is None:
-        return "Klant niet gevonden", 404
-    
-    return render_template("koeriers_klant_info.html", klant=klant, koerier_info=koerier_info)
+    @views.route('/financien/toevoegen', methods=['GET', 'POST'])
+    def financien_toevoegen():
+        if request.method == 'POST':
+            klant_id = request.form.get('klant')
+            bedrag = request.form.get('bedrag')
+            datum = request.form.get('datum')
+            status = request.form.get('status')
+
+            if not klant_id.isdigit():
+                return "Ongeldig klant ID.", 400
+
+            execute_query("""
+                INSERT INTO administratie (klant_id, factuur_id, betaalstatus, datum) 
+                VALUES (%s, %s, %s, %s)
+            """, (klant_id, bedrag, status, datum))
+
+            return redirect(url_for('views.financien', klant_id=klant_id))
+
+        klanten = execute_query("SELECT klant_id, naam FROM klant")
+        return render_template("financien_toevoegen.html", klanten=klanten)
+
+    # 📌 VOORRAAD
+    @views.route('/voorraad')
+    def voorraad():
+        voorraad_data = execute_query("""
+            SELECT v.voorraad_id, p.naam, v.batchnummer, v.expiratiedatum, v.aantal, v.minimale_voorraad, m.locatie 
+            FROM voorraad v
+            JOIN products p ON v.product_id = p.product_id
+            JOIN magazijn m ON v.magazijn_id = m.magazijn_id
+        """)
+        return render_template("voorraad.html", voorraad=voorraad_data)
+
+    @views.route('/voorraadProductToevoegen', methods=['GET', 'POST'])
+    def voorraadProductToevoegen():
+        if request.method == 'POST':
+            product_id = request.form['product']
+            batchnummer = request.form['batchnumber']
+            locatie = request.form['location']
+            aantal = request.form['amount']
+            houdbaarheid = datetime.now().strftime("%Y-%m-%d")
+
+            execute_query("""
+                INSERT INTO voorraad (product_id, batchnummer, locatie, aantal, expiratiedatum) 
+                VALUES (%s, %s, %s, %s, %s)
+            """, (product_id, batchnummer, locatie, aantal, houdbaarheid))
+
+            return redirect(url_for('views.voorraad'))
+
+        producten = execute_query("SELECT product_id, naam FROM products")
+        return render_template('voorraadProductToevoegen.html', producten=producten)
+
+    # 📌 VERKOOP
+    @views.route('/verkoop')
+    def verkoop():
+        verkoop_data = execute_query("""
+            SELECT v.verkoop_id, k.naam, b.bestelling_id, v.datum, v.totaal_bedrag, v.betaalstatus 
+            FROM verkoop v
+            JOIN bestellingen b ON v.bestelling_id = b.bestelling_id
+            JOIN klant k ON v.klant_id = k.klant_id
+        """)
+        return render_template("verkoop.html", verkoop=verkoop_data)
+
+    # 📌 INKOOP
+    @views.route('/inkoop')
+    def inkoop():
+        inkoop_data = execute_query("""
+            SELECT i.inkoop_id, p.naam, i.aantal, i.bestel_datum, i.prijs_per_eenheid, i.leverancier 
+            FROM inkoop i
+            JOIN products p ON i.product_id = p.product_id
+        """)
+        return render_template("inkoop.html", inkoop=inkoop_data)
+
+    # 📌 BESTELGESCHIEDENIS
+    @views.route('/bestelgeschiedenis')
+    def bestelgeschiedenis():
+        bestellingen = execute_query("""
+            SELECT i.inkoop_id, p.naam, i.leverancier, i.prijs_per_eenheid, i.bestel_datum
+            FROM inkoop i
+            JOIN products p ON i.product_id = p.product_id
+        """)
+        return render_template("bestelgeschiedenis.html", bestellingen=bestellingen)
+
+    # 📌 KOERIERS
+    @views.route('/koeriers')
+    def koeriers():
+        koeriers_data = execute_query("SELECT koerier_id, naam, telefoonnummer, regio FROM koeriers")
+        leveringen = execute_query("""
+            SELECT b.bestelling_id, b.datum, k.naam, k.adres, c.naam 
+            FROM bestellingen b
+            JOIN klant k ON b.klant_id = k.klant_id
+            JOIN koeriers c ON b.koerier_id = c.koerier_id
+        """)
+        return render_template("koeriers.html", koeriers=koeriers_data, leveringen=leveringen)
+
+    @views.route('/koeriers/klant-info/<int:klant_id>')
+    def koeriers_klant_info(klant_id):
+        klant = execute_query("SELECT * FROM klant WHERE klant_id = %s", (klant_id,))
+        koerier_info = execute_query("SELECT * FROM koeriers WHERE koerier_id = %s", (klant_id,))
+
+        if not klant:
+            return "Klant niet gevonden", 404
+
+        return render_template("koeriers_klant_info.html", klant=klant, koerier_info=koerier_info)
+
+    return views  # ✅ Blueprint teruggeven
