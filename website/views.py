@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from datetime import datetime
 
 def create_views(mysql):
@@ -32,6 +32,30 @@ def create_views(mysql):
 
         print(bijna_op_producten)  # Debug output in de terminal
         return render_template("index.html", bijnaOpProducten=bijna_op_producten)
+    
+      # 📌 CO₂ TRACKER API
+    @views.route('/api/co2-data')
+    def co2_data():
+        try:
+            totaal_km = execute_query("SELECT SUM(km) FROM bestellingen")[0][0] or 0
+            urgent_km = execute_query("SELECT SUM(km) FROM bestellingen WHERE spoed = 1")[0][0] or 0
+
+            # Zet Decimal om naar float
+            totaal_km = float(totaal_km)
+            urgent_km = float(urgent_km)
+
+            totaal_co2 = round(totaal_km * 0.008, 2)
+            urgent_co2 = round(urgent_km * 0.008, 2)
+
+            return jsonify({
+                "totaal_km": totaal_km,
+                "totaal_co2": totaal_co2,
+                "urgent_km": urgent_km,
+                "urgent_co2": urgent_co2
+            })
+
+        except Exception as e:
+            return jsonify({"error": "Interne serverfout", "details": str(e)}), 500
 
     # 📌 KLANTEN
     @views.route('/klanten')

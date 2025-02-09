@@ -17,51 +17,62 @@
 
     <div class="row g-3">
 
-        <!-- CO2 Tracker -->
-        <div class="card shadow p-3">
-            <h5 class="card-title text-center">CO2 Tracker</h5>
-            <p class="text-center mb-0">150 Km</p>
-            <p class="text-center mb-3">1.2 Ton CO2</p>
-            <h5 class="card-title text-center">Spoedbestellingen</h5>
-            <p class="text-center mb-0">50 Km</p>
-            <p class="text-center">0.5 Ton CO2</p>
+        <!-- CO₂ Tracker -->
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5 class="card-title text-center">CO₂ Tracker</h5>
+                <p class="text-center mb-0"><strong>Totale afstand:</strong> <span id="total-km">Laden...</span></p>
+                <p class="text-center mb-3"><strong>Totale uitstoot:</strong> <span id="total-co2">Laden...</span></p>
+
+                <h5 class="card-title text-center">Spoedbestellingen</h5>
+                <p class="text-center mb-0"><strong>Totale afstand:</strong> <span id="urgent-km">Laden...</span></p>
+                <p class="text-center"><strong>Totale uitstoot:</strong> <span id="urgent-co2">Laden...</span></p>
+            </div>
         </div>
 
         <!-- Bijna op -->
-        <div class="card shadow p-3">
-            <h5 class="card-title text-center">Bijna op</h5>
-            <table class="table table-bordered table-sm text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Product</th>
-                        <th>Houdbaar tot</th>
-                        <th>Aantal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for product in bijnaOpProducten %}
-                    <tr>
-                        <td>{{ product[0] }}</td> <!-- Productnaam -->
-                        <td>{{ product[1] }}</td> <!-- Expiratiedatum -->
-                        <td>{{ product[2] }}</td> <!-- Aantal -->
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <a href="{{ url_for('views.inkoop') }}" class="btn btn-dark w-100 mt-2">Meer</a>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5 class="card-title text-center">Bijna op</h5>
+                <table class="table table-bordered table-sm text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Product</th>
+                            <th>Houdbaar tot</th>
+                            <th>Aantal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in bijnaOpProducten %}
+                        <tr>
+                            <td>{{ product[0] }}</td> <!-- Productnaam -->
+                            <td>{{ product[1] }}</td> <!-- Expiratiedatum -->
+                            <td>{{ product[2] }}</td> <!-- Aantal -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ url_for('views.inkoop') }}" class="btn btn-dark w-100 mt-2">Meer</a>
+            </div>
         </div>
 
         <!-- Vernietigde producten -->
-        <div class="card shadow p-3">
-            <h5 class="card-title text-center">Tot 01-01-2024</h5>
-            <p class="text-center">15 producten vernietigd</p>
-            <a href="{{ url_for('views.voorraad') }}" class="btn btn-dark w-100 mt-2">Meer</a>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5 class="card-title text-center">Tot 01-01-2024</h5>
+                <p class="text-center">15 producten vernietigd</p>
+                <a href="{{ url_for('views.voorraad') }}" class="btn btn-dark w-100 mt-2">Meer</a>
+            </div>
         </div>
+
     </div>
 
 </div>
 
+<!-- Script voor het updaten van de CO₂ Tracker -->
+<script src="{{ url_for('static', filename='js/co2Tracker.js') }}" defer></script>
 
+<!-- Script voor de klok en datum -->
 <script src="{{ url_for('static', filename='js/timeScript.js') }}" defer></script>
 
 {% endblock %}
