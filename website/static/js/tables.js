@@ -1,28 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-    function adjustCaption() {
-        const caption = document.querySelector(".caption");
+    function adjustCaptions() {
+        const captions = document.querySelectorAll(".caption"); // Selecteer alle captions
 
-        if (window.innerWidth < 1750) {
-            if (!caption.parentElement.classList.contains("fixItems")) {
-                const fixItems = document.createElement("div");
-                fixItems.classList.add("fixItems");
+        captions.forEach((caption) => {
+            if (window.innerWidth < 1750) {
+                if (!caption.parentElement.classList.contains("fixItems")) {
+                    const fixItems = document.createElement("div");
+                    fixItems.classList.add("fixItems");
 
-                caption.parentNode.insertBefore(fixItems, caption);
-                fixItems.appendChild(caption);
-            }
-
-        } else {
-            const fixItems = document.querySelector(".fixItems");
-            if (fixItems) {
-                const parent = fixItems.parentNode;
-                while (fixItems.firstChild) {
-                    parent.insertBefore(fixItems.firstChild, fixItems);
+                    caption.parentNode.insertBefore(fixItems, caption);
+                    fixItems.appendChild(caption);
                 }
-                parent.removeChild(fixItems);
+            } else {
+                const fixItems = caption.closest(".fixItems");
+                if (fixItems) {
+                    const parent = fixItems.parentNode;
+                    while (fixItems.firstChild) {
+                        parent.insertBefore(fixItems.firstChild, fixItems);
+                    }
+                    parent.removeChild(fixItems);
+                }
             }
-        }
+        });
     }
 
-    adjustCaption();
-    window.addEventListener("resize", adjustCaption);
+    adjustCaptions();
+    window.addEventListener("resize", adjustCaptions);
 });

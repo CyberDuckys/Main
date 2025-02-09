@@ -29,7 +29,6 @@ a {
 .mb-4 {
   background-color: darkgray;
   height: 11rem;
-  width: 54rem;
   min-width: 25vw;
   max-width: 45vw;
   font-size: 4vw;
@@ -91,69 +90,87 @@ a {
 .flex-grow-1 {
   width: 90vw;
   float: inline-end;
+  margin: auto;
 }
 
 /* Hamburger Menu Specifiek */
 @media only screen and (max-width: 1250px) {
-/* Hamburger icon basisstijl */
-#toggle-menu .hamburger,
-#toggle-menu .hamburger::after {
-  content: "";
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  position: absolute;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 2000;
+
+  /* Hamburger icon basisstijl */
+  #toggle-menu .hamburger,
+  #toggle-menu .hamburger::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 2000;
+  }
+
+  #toggle-menu .hamburger {
+    transform: rotate(0deg);
+    background-color: rgb(33 37 41);
+    position: absolute;
+  }
+
+  #toggle-menu .hamburger::before {
+    transform: rotate(0deg);
+    top: -8px;
+    content: "";
+    background-color: rgb(33 37 41);
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 3px;
+  }
+
+  #toggle-menu .hamburger::after {
+    transform: rotate(0deg);
+    top: 8px;
+    background-color: rgb(33 37 41);
+  }
+
+  /* Sidebar transition for smooth movement */
+  .bg-dark {
+    transition: transform 0.3s ease-in-out;
+    /* Smooth transition */
+    transform: translateX(-100%);
+    /* Default state: hidden */
+  }
+
+  /* When menu is open, transform the sidebar */
+  #menu-toggle:checked~.bg-dark {
+    transition: transform 0.3s ease-in-out;
+    /* Smooth transition */
+    transform: translateX(0);
+    /* Show the sidebar */
+  }
+
+  /* Kruisje styling wanneer checkbox is aangevinkt */
+
+  #menu-toggle:checked+#toggle-menu .hamburger {
+    transform: rotate(-45deg);
+    background-color: red;
+    display: block;
+    position: absolute;
+  }
+
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 }
 
-#toggle-menu .hamburger {
-  transform: rotate(0deg);
-  background-color: rgb(33 37 41);
-  position: absolute;
-}
-
-#toggle-menu .hamburger::before {
-  transform: rotate(0deg);
-  top: -8px;
-  content: "";
-  background-color: rgb(33 37 41);
-  position: relative;
-  display: block;
-  width: 25px;
-  height: 3px;
-}
-
-#toggle-menu .hamburger::after {
-  transform: rotate(0deg);
-  top: 8px;
-  background-color: rgb(33 37 41);
-}
-
-/* Sidebar transition for smooth movement */
-.bg-dark {
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
-  transform: translateX(-100%); /* Default state: hidden */
-}
-
-/* When menu is open, transform the sidebar */
-#menu-toggle:checked ~ .bg-dark {
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
-  transform: translateX(0); /* Show the sidebar */
-}
-
-/* Kruisje styling wanneer checkbox is aangevinkt */
-
-#menu-toggle:checked + #toggle-menu .hamburger {
-  transform: rotate(-45deg);
-  background-color: red;
-  display: block;
-  position: absolute;
-}
-}
-
-#menu-toggle:checked + #toggle-menu .hamburger::after {
+#menu-toggle:checked+#toggle-menu .hamburger::after {
   transform: rotate(90deg);
   background-color: red;
   display: block;
@@ -249,9 +266,10 @@ a {
 .row {
   margin-left: unset !important;
   margin-right: unset !important;
+  justify-content: space-between;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1850px) {
   .mb-4 {
     padding: 0 0 1%;
     font-size: 2rem;
@@ -272,7 +290,7 @@ a {
 
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1600px) {
   .card {
     max-width: 270px !important;
     min-width: unset;
@@ -289,11 +307,18 @@ a {
 
 }
 
-@media only screen and (max-width: 560px) {
-.card,
-.large {
-  padding: 20%;
+@media only screen and (max-width: 900px) {
+  .alignH1 {
+    font-size: 2rem;
+  }
 }
+
+@media only screen and (max-width: 560px) {
+
+  .card,
+  .large {
+    padding: 20%;
+  }
 }
 
 @media only screen and (max-width: 1250px) {
@@ -311,8 +336,17 @@ a {
 
   .flex-grow-1 {
     min-width: -webkit-fill-available !important;
+    width: auto;
   }
 
+}
+
+.minWidth {
+  min-width: -webkit-fill-available;
+}
+
+.mt-4 {
+  margin-bottom: 1.5rem !important;
 }
 
 /* --- */

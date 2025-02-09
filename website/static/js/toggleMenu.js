@@ -1,27 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Verkrijg elementen
     const menuToggle = document.getElementById("menu-toggle");
     const sidebar = document.querySelector(".bg-dark");
     const toggleMenuLabel = document.getElementById("toggle-menu");
 
-    // Event listener voor toggle
-    toggleMenuLabel.addEventListener("click", () => {
-        const isChecked = menuToggle.checked;
-        if (isChecked) {
-            // Menu is open, dus sluit het
-            sidebar.style.transform = "translateX(-100%)";
-            menuToggle.checked = false;
+    // Zorg ervoor dat de sidebar standaard gesloten is bij kleinere schermen
+    function checkScreenSize() {
+        if (window.innerWidth < 1245) {
+            sidebar.style.transform = "translateX(-100%)"; // Verberg sidebar
+            menuToggle.checked = false; // Zorg ervoor dat de checkbox uit staat
         } else {
-            // Menu is gesloten, dus open het
-            sidebar.style.transform = "translateX(0)";
+            sidebar.style.transform = "translateX(0)"; // Toon sidebar bij grotere schermen
             menuToggle.checked = true;
         }
-    });
+    }
 
-    // Herstel het menu wanneer het scherm groter wordt
-    window.addEventListener("resize", () => {
-        if (window.innerWidth > 768) { // Aanpassen op basis van jouw breakpoint
-            sidebar.style.transform = "translateX(0)"; // Zet het menu terug op zichtbaar
+    // Roep de functie aan bij paginalading en wanneer het venster wordt aangepast
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    // Toggle menu met klik
+    toggleMenuLabel.addEventListener("click", () => {
+        if (menuToggle.checked) {
+            sidebar.style.transform = "translateX(-100%)"; // Sluiten
+            menuToggle.checked = false;
+        } else {
+            sidebar.style.transform = "translateX(0)"; // Openen
             menuToggle.checked = true;
         }
     });

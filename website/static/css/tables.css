@@ -49,11 +49,13 @@
     .btn-group-sm>.btn,
 .btn-sm {
     margin-left: unset;
+    margin-bottom: 2%;
 }
 
 .caption {
     flex-direction: column;
     padding: unset;
+    margin: auto;
 }
 
 
@@ -111,4 +113,12 @@
 
 .table-responsive {
     overflow: auto !important;
+}
+
+.mb-4 {
+    min-width: 41.8rem;
+}
+
+.fullTable {
+    margin: auto;
 }

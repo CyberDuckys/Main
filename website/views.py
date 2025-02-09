@@ -23,12 +23,14 @@ def create_views(mysql):
     @views.route('/')
     def index():
         bijna_op_producten = execute_query("""
-            SELECT v.product_id, p.naam, v.aantal
+            SELECT p.naam, v.expiratiedatum, v.aantal
             FROM voorraad v
             JOIN products p ON v.product_id = p.product_id
-            WHERE v.aantal < v.minimale_voorraad;
-
+            JOIN magazijn m ON v.magazijn_id = m.magazijn_id
+            WHERE v.aantal <= 200
         """) or []
+
+        print(bijna_op_producten)  # Debug output in de terminal
         return render_template("index.html", bijnaOpProducten=bijna_op_producten)
 
     # 📌 KLANTEN
