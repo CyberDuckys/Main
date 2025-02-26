@@ -29,7 +29,6 @@ a {
   .mb-4 {
     background-color: darkgray;
     height: 11rem;
-    min-width: 25vw;
     max-width: 45vw;
     font-size: 4vw;
     margin: 0 auto;
