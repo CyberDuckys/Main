@@ -2,7 +2,6 @@ from flask import Flask
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 from views import create_views
-import config
 import os
 
 # Laad de omgevingsvariabelen
