@@ -133,7 +133,6 @@ table tr:hover {
 .table-responsive {
     overflow-y: auto; /* Verticale scrollbar indien nodig */
     overflow-x: auto; /* Horizontale scrollbar indien nodig */
-    max-height: 60vh; /* Voorkom dat de tabel te groot wordt */
     position: relative;
 }
 
