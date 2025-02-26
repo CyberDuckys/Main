@@ -100,7 +100,7 @@ def create_views(mysql):
     @views.route('/voorraad')
     def voorraad():
         voorraad_data = execute_query("""
-            SELECT v.voorraad_id, p.naam, v.batchnummer, v.expiratiedatum, v.aantal, v.minimale_voorraad, m.locatie 
+            SELECT v.voorraad_id, p.naam, v.batchnummer, v.expiratiedatum, v.aantal, m.locatie 
             FROM voorraad v
             JOIN products p ON v.product_id = p.product_id
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
