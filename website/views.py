@@ -126,6 +126,25 @@ def create_views(mysql):
 
         producten = execute_query("SELECT product_id, naam FROM products")
         return render_template('voorraadProductToevoegen.html', producten=producten)
+    
+    @views.route('/voorraadToevoegen', methods=['GET', 'POST'])
+    def voorraadToevoegen():
+        if request.method == 'POST':
+            product_id = request.form['product']
+            batchnummer = request.form['batchnumber']
+            locatie = request.form['location']
+            aantal = request.form['amount']
+            houdbaarheid = datetime.now().strftime("%Y-%m-%d")
+
+            execute_query("""
+                INSERT INTO voorraad (product_id, batchnummer, locatie, aantal, expiratiedatum) 
+                VALUES (%s, %s, %s, %s, %s)
+            """, (product_id, batchnummer, locatie, aantal, houdbaarheid))
+
+            return redirect(url_for('views.voorraad'))
+
+        producten = execute_query("SELECT product_id, naam FROM products")
+        return render_template('voorraadToevoegen.html', producten=producten)
 
     # 📌 VERKOOP
     @views.route('/verkoop')
