@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
-from views import create_views
+from views import Views  # Import the Views class instead of create_views
 import os
 
 # Laad de omgevingsvariabelen
@@ -21,11 +21,9 @@ def create_app():
 
     mysql.init_app(app)
 
-    # Importeer en registreer Blueprints
-    views = create_views(mysql)  # Geeft MySQL-verbinding door aan views.py
-    app.register_blueprint(views, url_prefix='/')
-
-
+    # Gebruik de Views klasse om de blueprint te maken en te registreren
+    views = Views(mysql)  # Geeft de MySQL-verbinding door aan de Views klasse
+    app.register_blueprint(views.views, url_prefix='/')  # Registreer de blueprint
 
     return app
 
