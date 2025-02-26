@@ -104,7 +104,7 @@ def create_views(mysql):
             FROM voorraad v
             JOIN products p ON v.product_id = p.product_id
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
-            ORDER BY voorraad_id
+            ORDER BY v.voorraad_id ASC, m.locatie DESC
         """)
         return render_template("voorraad.html", voorraad=voorraad_data)
 
