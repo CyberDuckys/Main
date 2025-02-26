@@ -1,43 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.getElementById("menu-toggle");
     const sidebar = document.querySelector(".bg-dark");
-    const toggleMenuLabel = document.getElementById("toggle-menu");
+    const hamburgerContainer = document.querySelector(".hamburgerPosition");
 
-    // Zorg ervoor dat de sidebar standaard gesloten is bij kleinere schermen
+    // Check schermgrootte bij laden en bij resize
     function checkScreenSize() {
         if (window.innerWidth < 1245) {
             sidebar.style.transform = "translateX(-100%)"; // Verberg sidebar
-            menuToggle.checked = false; // Zorg ervoor dat de checkbox uit staat
+            menuToggle.checked = false;
         } else {
-            sidebar.style.transform = "translateX(0)"; // Toon sidebar bij grotere schermen
+            sidebar.style.transform = "translateX(0)"; // Toon sidebar
             menuToggle.checked = true;
         }
     }
 
-    // Roep de functie aan bij paginalading en wanneer het venster wordt aangepast
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
 
-    // Toggle menu met klik
-    toggleMenuLabel.addEventListener("click", () => {
-        if (menuToggle.checked) {
-            sidebar.style.transform = "translateX(-100%)"; // Sluiten
-            menuToggle.checked = false;
-        } else {
-            sidebar.style.transform = "translateX(0)"; // Openen
-            menuToggle.checked = true;
-        }
+    // Toggle menu bij klikken op het hele hamburgerPosition gebied
+    hamburgerContainer.addEventListener("click", () => {
+        menuToggle.checked = !menuToggle.checked;
+        sidebar.style.transform = menuToggle.checked ? "translateX(0)" : "translateX(-100%)";
     });
 });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // Get elements
-    const menuToggle = document.getElementById("menu-toggle");
-    const toggleMenuLabel = document.getElementById("toggle-menu");
-
-    // Event listener for toggle
-    toggleMenuLabel.addEventListener("click", () => {
-      // Toggle the checked state of the checkbox
-      menuToggle.checked = !menuToggle.checked;
-    });
-  });

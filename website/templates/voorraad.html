@@ -11,9 +11,11 @@
 
     <!-- Voorraad Tabel -->
     <div class="fullTable">
+
         <div class="caption">
             <span>Voorraad</span>
-            <a href="{{ url_for('views.voorraadProductToevoegen') }}" class="btn btn-sm btn-dark">Product toevoegen</a>
+            <a href="{{ url_for('views.voorraadProductToevoegen') }}" class="btn btn-sm btn-dark">Product
+                toevoegen</a>
         </div>
         <div class="table-responsive mb-4">
             <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
@@ -31,20 +33,20 @@
                 <tbody>
                     {% for product in voorraad %}
                     <tr>
-                        <td>{{ product[0] }}</td>  <!-- Voorraad ID -->
-                        <td>{{ product[1] }}</td>  <!-- Productnaam -->
-                        <td>{{ product[2] }}</td>  <!-- Batchnummer -->
-                        <td>{{ product[3] }}</td>  <!-- Expiratiedatum -->
-                        <td>{{ product[4] }}</td>  <!-- Aantal -->
-                        <td>{{ product[5] }}</td>  <!-- Minimale voorraad -->
-                        <td>{{ product[6] }}</td>  <!-- Locatie -->
+                        <td>{{ product[0] }}</td> <!-- Voorraad ID -->
+                        <td>{{ product[1] }}</td> <!-- Productnaam -->
+                        <td>{{ product[2] }}</td> <!-- Batchnummer -->
+                        <td>{{ product[3] }}</td> <!-- Expiratiedatum -->
+                        <td>{{ product[4] }}</td> <!-- Aantal -->
+                        <td>{{ product[5] }}</td> <!-- Minimale voorraad -->
+                        <td>{{ product[6] }}</td> <!-- Locatie -->
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-    </div>
 
+    </div>
 </div>
 
 <script src="{{ url_for('static', filename='js/tables.js') }}" defer></script>

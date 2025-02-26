@@ -11,8 +11,7 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #f8f9fa;
   -webkit-text-size-adjust: 100%;
-  width: -webkit-fill-available;
-  min-width: 337px;
+  width: 100%;
 }
 
 th,
@@ -26,24 +25,34 @@ a {
   text-decoration: none;
 }
 
-.mb-4 {
-  background-color: darkgray;
-  height: 11rem;
-  min-width: 25vw;
-  max-width: 45vw;
-  font-size: 4vw;
-  margin: 0 auto;
-  padding: 0 0 3%;
+@media only screen and (min-width: 730px) {
+  .mb-4 {
+    background-color: darkgray;
+    height: 11rem;
+    min-width: 25vw;
+    max-width: 45vw;
+    font-size: 4vw;
+    margin: 0 auto;
+    padding: 0 0 3%;
+  }
+
+  .alignH1 {
+    max-height: fit-content;
+    min-width: 25vw;
+    max-width: 55vw;
+    font-size: 4.5vw;
+    margin: 0 auto;
+    padding: 0 0 3%;
+  }
 }
 
-.alignH1 {
-  max-height: fit-content;
-  min-width: 25vw;
-  max-width: 55vw;
-  font-size: 4.5vw;
-  margin: 0 auto;
-  padding: 0 0 3%;
+@media only screen and (max-width: 768px) {
+  .mb-4, .alignH1 {
+    min-width: auto;
+    max-width: 100%;
+  }
 }
+
 
 .card-title {
   font-weight: 600;
@@ -185,6 +194,9 @@ a {
 .hamburgerPosition {
   margin: 0.5rem 0 0 1.5rem;
   position: relative;
+  max-width: fit-content;
+  min-width: 1.6rem;
+  min-height: 1.8rem;
 }
 
 /* Sidebar buttons */
@@ -275,6 +287,12 @@ a {
     font-size: 2rem;
   }
 
+@media only screen and (max-width: 1750px) {
+  .mb-4 {
+    padding: 15vh 0 1%;
+  }
+}
+
   .card {
     max-width: 340px !important;
   }
@@ -293,7 +311,7 @@ a {
 @media only screen and (max-width: 1600px) {
   .card {
     max-width: 270px !important;
-    min-width: unset;
+    min-width: 278px;
   }
 
   .container,
@@ -349,4 +367,8 @@ a {
   margin-bottom: 1.5rem !important;
 }
 
+.row>* {
+  padding-left: unset !important;
+  padding-right: unset !important;
+}
 /* --- */

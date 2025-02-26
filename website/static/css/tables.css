@@ -4,11 +4,24 @@
     min-width: -webkit-fill-available;
 }
 
+/* Maak de thead sticky */
+.table thead {
+    position: sticky;
+    top: 0; /* Zorgt ervoor dat de thead aan de bovenkant blijft */
+    z-index: 2000; /* Zorgt ervoor dat de thead boven de inhoud blijft */
+    background-color: #343a40; /* Achtergrondkleur behouden */
+}
+
 .table th,
 .table td {
     padding: 0.5rem;
     /* Verklein de celruimte */
     vertical-align: middle;
+}
+
+.table th {
+    background-color: #343a40;
+    border: 2px solid #343a40;
 }
 
 .card .card-title {
@@ -31,8 +44,9 @@
     padding: 2rem;
     position: static;
     background-color: darkgray;
-    min-width: 25vw;
+    min-width: 45vw;
     max-width: 45vw;
+    z-index: 1000;
 }
 
 .caption span {
@@ -56,6 +70,7 @@
     flex-direction: column;
     padding: unset;
     margin: auto;
+    position: fixed;
 }
 
 
@@ -69,6 +84,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
+    overflow: auto;
 }
 }
 
@@ -97,8 +113,10 @@
     --bs-table-color: inherit; /* Zorgt dat de tekstkleur niet verandert */
 }
 
-.table>:not(caption)>*>* {
-    box-shadow: none !important; /* Verwijder de box-shadow die de kleuren veroorzaakt */
+table tr:hover {
+    --bs-table-bg: #f8f9fa83 !important; /* Wit voor even rijen */
+    --bs-table-color: inherit; /* Zorgt dat de tekstkleur niet verandert */
+    cursor: pointer;
 }
 
 .saveAll {
@@ -109,10 +127,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 }
 
 .table-responsive {
-    overflow: auto !important;
+    overflow-y: auto; /* Verticale scrollbar indien nodig */
+    overflow-x: auto; /* Horizontale scrollbar indien nodig */
+    max-height: 60vh; /* Voorkom dat de tabel te groot wordt */
+    position: relative;
 }
 
 .mb-4 {
@@ -121,4 +143,10 @@
 
 .fullTable {
     margin: auto;
+    width: 45vw;
+    overflow: auto;
+}
+
+.table-bordered>:not(caption)>*>* {
+    border-width: unset !important;
 }

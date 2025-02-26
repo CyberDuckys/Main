@@ -28,6 +28,7 @@ def create_views(mysql):
             JOIN products p ON v.product_id = p.product_id
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
             WHERE v.aantal <= 200
+            ORDER BY v.aantal
         """) or []
 
         print(bijna_op_producten)  # Debug output in de terminal
@@ -103,6 +104,7 @@ def create_views(mysql):
             FROM voorraad v
             JOIN products p ON v.product_id = p.product_id
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
+            ORDER BY voorraad_id
         """)
         return render_template("voorraad.html", voorraad=voorraad_data)
 
@@ -133,6 +135,7 @@ def create_views(mysql):
             FROM verkoop v
             JOIN bestellingen b ON v.bestelling_id = b.bestelling_id
             JOIN klant k ON v.klant_id = k.klant_id
+            ORDER BY v.verkoop_id
         """)
         return render_template("verkoop.html", verkoop=verkoop_data)
 
@@ -143,6 +146,7 @@ def create_views(mysql):
             SELECT i.inkoop_id, p.naam, i.aantal, i.bestel_datum, i.prijs_per_eenheid, i.leverancier 
             FROM inkoop i
             JOIN products p ON i.product_id = p.product_id
+            ORDER BY i.inkoop_id
         """)
         return render_template("inkoop.html", inkoop=inkoop_data)
 
@@ -165,6 +169,7 @@ def create_views(mysql):
             FROM bestellingen b
             JOIN klant k ON b.klant_id = k.klant_id
             JOIN koeriers c ON b.koerier_id = c.koerier_id
+            ORDER BY b.bestelling_id
         """)
         return render_template("koeriers.html", koeriers=koeriers_data, leveringen=leveringen)
 
