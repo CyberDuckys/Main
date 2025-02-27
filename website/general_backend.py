@@ -1,5 +1,5 @@
 
-from ... import mysql
+from . import mysql
 
 def database(query):
     try:
