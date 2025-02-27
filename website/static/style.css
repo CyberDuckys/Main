@@ -9,7 +9,7 @@
 html,
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !important;
   -webkit-text-size-adjust: 100%;
   width: 100%;
 }
@@ -28,7 +28,6 @@ a {
 @media only screen and (min-width: 730px) {
   .mb-4 {
     background-color: darkgray;
-    max-width: 45vw;
     font-size: 4vw;
     margin: 0 auto;
     padding: 0 0 3%;
@@ -38,7 +37,7 @@ a {
     max-height: fit-content;
     min-width: 25vw;
     max-width: 55vw;
-    font-size: 4.5vw;
+    font-size: 4vw;
     margin: 0 auto;
     padding: 0 0 3%;
   }
@@ -81,6 +80,9 @@ a {
   background-color: #495057;
 }
 
+.mt-5 {
+  margin-right: 10vw;
+}
 /* --- */
 
 /* base.html CSS */
@@ -89,7 +91,7 @@ a {
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 10000;
   text-align: center;
   min-width: 200px;
 }
@@ -113,7 +115,7 @@ a {
     background-color: white;
     position: absolute;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 2000;
+    z-index: 20000;
   }
 
   #toggle-menu .hamburger {
@@ -195,7 +197,7 @@ a {
   max-width: fit-content;
   min-width: 1.6rem;
   min-height: 1.8rem;
-  z-index: 10000;
+  z-index: 100001;
 }
 
 /* Sidebar buttons */
@@ -387,5 +389,9 @@ a {
 
 .row.g-3 {
   padding: 0 1%;
+}
+
+.small {
+  height: 2vh;
 }
 /* --- */

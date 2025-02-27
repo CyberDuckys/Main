@@ -1,13 +1,18 @@
-{% extends 'base.html' %} {% block title %}Voorraad{% endblock %} {% block head %}
+{% extends 'base.html' %}
+
+{% block title %}Voorraad{% endblock %}
+
+{% block head %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="{{ url_for('static', filename='css/voorraadProductToevoegen.css') }}" />
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 <div class="container mt-5">
   <h1 class="text-center alignH1">Voorraad Toevoegen</h1>
 
-  <form method="POST" action="{{ url_for('views.voorraadToevoegen') }}" class="needs-validation" novalidate>
+  <form action="{{ url_for('views.voorraadToevoegen') }}" method="POST" class="finance-form needs-validation" novalidate>
     <div class="mb-3">
-      <label for="Location" class="form-label">Locatie</label>
+      <label for="location" class="form-label">Locatie</label>
       <select class="form-select" id="location" name="location" required>
         <option value="" selected disabled>Kies een locatie</option>
         {% for locatie in locaties %}
@@ -29,7 +34,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="Batchnumber" class="form-label">Batchnummer</label>
+      <label for="batchnumber" class="form-label">Batchnummer</label>
       <input type="text" class="form-control" id="batchnumber" name="batchnumber" placeholder="Bijv. BATCH001" required />
       <div class="invalid-feedback"> Vul een batchnummer in. </div>
     </div>

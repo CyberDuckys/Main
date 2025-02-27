@@ -52,7 +52,7 @@ thead th:last-child {
     position: static;
     background-color: darkgray;
     min-width: 45vw;
-    max-width: 45vw;
+    max-width: 60vw;
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -152,8 +152,14 @@ table tbody tr:hover {
 
 .fullTable {
     margin: auto;
-    width: 45vw;
+    width: 60vw;
     overflow: auto;
+}
+
+@media only screen and (max-width: 1245px) {
+    .fullTable {
+        width: 92vw;
+    }
 }
 
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
