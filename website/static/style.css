@@ -380,6 +380,7 @@ a {
 
 .mt-4 {
   margin-bottom: 1.5rem !important;
+  padding: 0 1%;
 }
 
 .row>* {
