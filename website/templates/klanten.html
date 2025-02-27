@@ -38,7 +38,7 @@
             <td>
               <a class="btn btn-dark" href="{{ url_for('views.financien', klant_id=klant[0]) }}"> Financiën </a>
               <br /><br />
-              <a class="btn btn-warning" href="{{ url_for('views.financien_toevoegen', klant_id=klant[0]) }}"> Wijzigen </a>
+              <a class="btn btn-warning" href="{{ url_for('views.koeriers_klant_info', klant_id=klant[0]) }}"> Wijzigen </a>
             </td>
           </tr>
           {% endfor %}
