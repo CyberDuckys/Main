@@ -179,7 +179,7 @@ class Views:
                     SET status = %s, totaal_bedrag = %s, korting = %s, koerier_id = %s, levermoment = %s, spoed = %s
                     WHERE bestelling_id = %s
                 """,(status, bedrag, korting, koerier, levermoment, spoed, financien_id))
-
+            return redirect(url_for('views.klantenlijst'))
         return render_template("financien_wijzigen.html", financien_id=financien_id, koeriers=koeriers, financien=klant_financien)
 
     # 📌 VOORRAAD
@@ -292,6 +292,7 @@ class Views:
                 SET naam = %s, adres = %s, telefoonnummer = %s, jaaromzet = %s, website = %s
                 WHERE klant_id = %s
             """, (naam, adres, telefoon, jaaromzet, website, klant_id))
+            return redirect(url_for('views.klantenlijst'))
         klant = self._execute_query("SELECT * FROM klant WHERE klant_id = %s", (klant_id,))
         koerier_info = self._execute_query("SELECT * FROM koeriers WHERE koerier_id = %s", (klant_id,))
         return render_template("koeriers_klant_info.html", klant_id=klant_id, klant=klant, koerier_info=koerier_info)
