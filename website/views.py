@@ -114,7 +114,7 @@ class Views:
     # 📌 VOORRAAD
     def voorraad(self):
         voorraad_data = self._execute_query("""
-            SELECT v.voorraad_id, p.naam, v.batchnummer, v.expiratiedatum, v.aantal, m.locatie 
+            SELECT v.voorraad_id, p.naam, v.batchnummer, v.toegevoegd_op, v.aantal, m.locatie 
             FROM voorraad v
             JOIN products p ON v.product_id = p.product_id
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
