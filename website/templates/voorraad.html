@@ -4,49 +4,48 @@
 <h1 class="text-center alignH1">Dashboard Voorraad</h1>
 
 <div class="alignTables">
-    <!-- Voorraad Tabel -->
-    <div class="fullTable">
-        <div class="caption">
-            <span>Voorraad</span>
-            <div class="buttongrid">
-                <a href="{{ url_for('views.voorraadProductToevoegen') }}" class="btn btn-sm btn-dark">Product
-                    toevoegen</a>
-                <a href="{{ url_for('views.voorraadToevoegen') }}" class="btn btn-sm btn-dark">Vooraad toevoegen</a>
-            </div>
-        </div>
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Voorraad ID</th>
-                        <th>Product</th>
-                        <th>Batchnummer</th>
-                        <th>Houdbaar tot</th>
-                        <th>Aantal</th>
-                        <th>Locatie</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for product in voorraad %}
-                    <tr>
-                        <td>{{ product[0] }}</td>
-                        <!-- Voorraad ID -->
-                        <td>{{ product[1] }}</td>
-                        <!-- Productnaam -->
-                        <td>{{ product[2] }}</td>
-                        <!-- Batchnummer -->
-                        <td>{{ product[3] }}</td>
-                        <!-- Expiratiedatum -->
-                        <td>{{ product[4] }}</td>
-                        <!-- Aantal -->
-                        <td>{{ product[5] }}</td>
-                        <!-- Locatie -->
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+  <!-- Voorraad Tabel -->
+  <div class="fullTable">
+    <div class="caption">
+      <span>Voorraad</span>
+      <div class="buttongrid">
+        <a href="{{ url_for('views.voorraadProductToevoegen') }}" class="btn btn-sm btn-dark">Product toevoegen</a>
+        <a href="{{ url_for('views.voorraadToevoegen') }}" class="btn btn-sm btn-dark">Vooraad toevoegen</a>
+      </div>
     </div>
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+          <tr>
+            <th>Voorraad ID</th>
+            <th>Product</th>
+            <th>Batchnummer</th>
+            <th>Toegevoegd op</th>
+            <th>Aantal</th>
+            <th>Locatie</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in voorraad %}
+          <tr>
+            <td>{{ product[0] }}</td>
+            <!-- Voorraad ID -->
+            <td>{{ product[1] }}</td>
+            <!-- Productnaam -->
+            <td>{{ product[2] }}</td>
+            <!-- Batchnummer -->
+            <td>{{ product[3] }}</td>
+            <!-- Expiratiedatum -->
+            <td>{{ product[4] }}</td>
+            <!-- Aantal -->
+            <td>{{ product[5] }}</td>
+            <!-- Locatie -->
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <script src="{{ url_for('static', filename='js/tables.js') }}" defer></script>

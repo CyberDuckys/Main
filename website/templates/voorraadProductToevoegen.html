@@ -9,7 +9,11 @@
 
 {% block content %}
 <div class="container mt-5">
+<<<<<<< HEAD
   <h1 class="text-center alignH1">Voorraad Product Toevoegen</h1>
+=======
+  <h1 class="text-center alignH1">Product Toevoegen</h1>
+>>>>>>> 5a44b785d6ec7e4fa0665dd5f8b6418cd73c3ba5
 
   <form method="POST" action="{{ url_for('views.voorraadProductToevoegen') }}" class="needs-validation" novalidate>
     <div class="mb-3">
@@ -43,8 +47,8 @@
     </div>
 
     <div class="mb-3">
-      <label for="storageadvice" class="form-label">Bewaaradvies</label>
-      <select class="form-select" id="storageadvice" name="storageadvice" required>
+      <label for="bewaaradvies" class="form-label">Bewaaradvies</label>
+      <select class="form-select" id="bewaaradvies" name="bewaaradvies" required>
         <option value="" selected disabled>Kies een bewaaradvies</option>
         <option value="Koeling">Koeling</option>
         <option value="Droog en donker">Droog en donker</option>

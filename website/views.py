@@ -124,16 +124,18 @@ class Views:
 
     def voorraadProductToevoegen(self):
         if request.method == 'POST':
-            product_id = request.form['product']
-            batchnummer = request.form['batchnumber']
-            locatie = request.form['location']
-            aantal = request.form['amount']
-            houdbaarheid = datetime.now().strftime("%Y-%m-%d")
-
+            naam = request.form['naam']
+            beschrijving = request.form['beschrijving']
+            prijs = request.form['prijs']
+            gewicht = request.form['gewicht']
+            categorie = request.form['categorie']
+            bewaaradvies = request.form['bewaaradvies']
+            bederfelijkheid = request.form['bederfelijkheid']
+            print(naam, beschrijving, prijs, gewicht, categorie, bewaaradvies, bederfelijkheid)
             self._execute_query("""
-                INSERT INTO voorraad (product_id, batchnummer, locatie, aantal, expiratiedatum) 
-                VALUES (%s, %s, %s, %s, %s)
-            """, (product_id, batchnummer, locatie, aantal, houdbaarheid))
+                INSERT INTO products (naam, beschrijving, prijs, gewicht, categorie, bewaaradvies, bederfelijkheidsfactor) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (naam, beschrijving, prijs, gewicht, categorie, bewaaradvies, bederfelijkheid))
 
             return redirect(url_for('views.voorraad'))
 
