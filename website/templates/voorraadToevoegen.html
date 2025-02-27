@@ -6,60 +6,32 @@
   <h1 class="text-center alignH1">Voorraad Toevoegen</h1>
 
   <form method="POST" action="{{ url_for('views.voorraadToevoegen') }}" class="needs-validation" novalidate>
-    <!-- <div class="mb-3">
-      <label for="id" class="form-label">ID</label>
-      <input type="number" class="form-control" id="id" name="id" placeholder="Bijv. 5" required min="1" />
-      <div class="invalid-feedback"> Vul een geldig ID in. </div>
-    </div> -->
-
-    <!-- <div class="mb-3">
-      <label for="product" class="form-label">Product</label>
-      <input type="text" class="form-control" id="product" name="product" placeholder="Bijv. Mango" required />
-      <div class="invalid-feedback"> Vul een productnaam in. </div>
-    </div> -->
+    <div class="mb-3">
+      <label for="Location" class="form-label">Locatie</label>
+      <select class="form-select" id="location" name="location" required>
+        <option value="" selected disabled>Kies een locatie</option>
+        {% for locatie in locaties %}
+        <option value="{{locatie[0]}}">{{ locatie[1]}}</option>
+        {% endfor %}
+      </select>
+      <div class="invalid-feedback"> Selecteer een locatie. </div>
+    </div>
 
     <div class="mb-3">
       <label for="product" class="form-label">Product</label>
-      <select class="form-select" id="Product" name="product" required>
+      <select class="form-select" id="product" name="product" required>
         <option value="" selected disabled>Kies een product</option>
-        <option value="1">Mango</option>
-        <option value="2">Koffie</option>
-        <option value="3">Melk</option>
+        {% for product in producten %}
+        <option value="{{product[0]}}">{{ product[1]}}</option>
+        {% endfor %}
       </select>
       <div class="invalid-feedback"> Selecteer een product. </div>
     </div>
 
     <div class="mb-3">
-      <label for="batchnumber" class="form-label">Batchnummer</label>
+      <label for="Batchnumber" class="form-label">Batchnummer</label>
       <input type="text" class="form-control" id="batchnumber" name="batchnumber" placeholder="Bijv. BATCH001" required />
       <div class="invalid-feedback"> Vul een batchnummer in. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="storageadvice" class="form-label">Bewaaradvies</label>
-      <select class="form-select" id="storageadvice" name="storageadvice" required>
-        <option value="" selected disabled>Kies een bewaaradvies</option>
-        <option value="Koeling">Koeling</option>
-        <option value="Droog en donker">Droog en donker</option>
-        <option value="Gekoeld bewaren">Gekoeld bewaren</option>
-      </select>
-      <div class="invalid-feedback"> Selecteer een bewaaradvies. </div>
-    </div>
-
-    <!-- <div class="mb-3">
-      <label for="location" class="form-label">Locatie</label>
-      <input type="text" class="form-control" id="location" name="location" placeholder="Bijv. A12" required />
-      <div class="invalid-feedback"> Vul een locatie in. </div>
-    </div> -->
-    <div class="mb-3">
-      <label for="Locatie" class="form-label">Locatie</label>
-      <select class="form-select" id="Product" name="product" required>
-        <option value="" selected disabled>Kies een locatie</option>
-        <option value="1">Tilburg DC</option>
-        <option value="2">Eindhoven DC</option>
-        <option value="3">Breda DC</option>
-      </select>
-      <div class="invalid-feedback"> Selecteer een locatie. </div>
     </div>
 
     <div class="mb-3">

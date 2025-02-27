@@ -141,22 +141,29 @@ class Views:
         return render_template('voorraadProductToevoegen.html', producten=producten)
 
     def voorraadToevoegen(self):
+        producten = self._execute_query("""
+            SELECT product_id, naam FROM products
+            ORDER BY product_id;""")
+        
+        locaties = self._execute_query("""
+            SELECT magazijn_id, locatie FROM magazijn
+            ORDER BY locatie;""")
+        
         if request.method == 'POST':
+            locatie = request.form['location']
             product_id = request.form['product']
             batchnummer = request.form['batchnumber']
-            locatie = request.form['location']
             aantal = request.form['amount']
-            houdbaarheid = datetime.now().strftime("%Y-%m-%d")
+            toegevoegd_op = datetime.now().strftime("%Y-%m-%d")
 
             self._execute_query("""
-                INSERT INTO voorraad (product_id, batchnummer, locatie, aantal, expiratiedatum) 
+                INSERT INTO voorraad (magazijn_id, product_id, batchnummer, toegevoegd_op, aantal ) 
                 VALUES (%s, %s, %s, %s, %s)
-            """, (product_id, batchnummer, locatie, aantal, houdbaarheid))
+            """, (locatie, product_id, batchnummer, toegevoegd_op, aantal))
 
             return redirect(url_for('views.voorraad'))
 
-        producten = self._execute_query("SELECT product_id, naam FROM products")
-        return render_template('voorraadToevoegen.html', producten=producten)
+        return render_template('voorraadToevoegen.html', producten=producten, locaties=locaties)
 
     # 📌 VERKOOP
     def verkoop(self):

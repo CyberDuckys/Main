@@ -6,33 +6,34 @@
   <h1 class="text-center alignH1">Voorraad Toevoegen</h1>
 
   <form method="POST" action="{{ url_for('views.voorraadProductToevoegen') }}" class="needs-validation" novalidate>
-    <!-- <div class="mb-3">
-      <label for="id" class="form-label">ID</label>
-      <input type="number" class="form-control" id="id" name="id" placeholder="Bijv. 5" required min="1" />
-      <div class="invalid-feedback"> Vul een geldig ID in. </div>
-    </div> -->
-
-    <!-- <div class="mb-3">
-      <label for="product" class="form-label">Product</label>
-      <input type="text" class="form-control" id="product" name="product" placeholder="Bijv. Mango" required />
-      <div class="invalid-feedback"> Vul een productnaam in. </div>
-    </div> -->
-
     <div class="mb-3">
-      <label for="product" class="form-label">Product</label>
-      <select class="form-select" id="Product" name="product" required>
-        <option value="" selected disabled>Kies een product</option>
-        <option value="1">Mango</option>
-        <option value="2">Koffie</option>
-        <option value="3">Melk</option>
-      </select>
-      <div class="invalid-feedback"> Selecteer een product. </div>
+      <label for="naam" class="form-label">Naam</label>
+      <input type="text" class="form-control" id="naam" name="naam" placeholder="Mango" required />
+      <div class="invalid-feedback"> Vul een naam in. </div>
     </div>
 
     <div class="mb-3">
-      <label for="batchnumber" class="form-label">Batchnummer</label>
-      <input type="text" class="form-control" id="batchnumber" name="batchnumber" placeholder="Bijv. BATCH001" required />
-      <div class="invalid-feedback"> Vul een batchnummer in. </div>
+      <label for="beschrijving" class="form-label">Beschrijving</label>
+      <input type="text" class="form-control" id="beschrijving" name="beschrijving" placeholder="Biologische Mango" required />
+      <div class="invalid-feedback"> Vul een beschrijving in. </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="prijs" class="form-label">Prijs</label>
+      <input type="number" step="0.01" class="form-control" id="prijs" name="prijs" placeholder="0.00" required />
+      <div class="invalid-feedback"> Vul een prijs in. </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="gewicht" class="form-label">Gewicht</label>
+      <input type="number" step="0.01" class="form-control" id="gewicht" name="gewicht" placeholder="0.00" required />
+      <div class="invalid-feedback"> Vul een prijs in. </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="categorie" class="form-label">Categorie</label>
+      <input type="text" class="form-control" id="categorie" name="categorie" placeholder="Fruit" required />
+      <div class="invalid-feedback"> Vul een categorie in. </div>
     </div>
 
     <div class="mb-3">
@@ -46,26 +47,10 @@
       <div class="invalid-feedback"> Selecteer een bewaaradvies. </div>
     </div>
 
-    <!-- <div class="mb-3">
-      <label for="location" class="form-label">Locatie</label>
-      <input type="text" class="form-control" id="location" name="location" placeholder="Bijv. A12" required />
-      <div class="invalid-feedback"> Vul een locatie in. </div>
-    </div> -->
     <div class="mb-3">
-      <label for="Locatie" class="form-label">Locatie</label>
-      <select class="form-select" id="Product" name="product" required>
-        <option value="" selected disabled>Kies een locatie</option>
-        <option value="1">Tilburg DC</option>
-        <option value="2">Eindhoven DC</option>
-        <option value="3">Breda DC</option>
-      </select>
-      <div class="invalid-feedback"> Selecteer een locatie. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="amount" class="form-label">Aantal</label>
-      <input type="number" class="form-control" id="amount" name="amount" placeholder="Bijv. 10" required min="1" />
-      <div class="invalid-feedback"> Vul een geldig aantal in. </div>
+      <label for="bederfelijkheid" class="form-label">Bederfelijkheid</label>
+      <input type="number" step="1" class="form-control" id="bederfelijkheid" name="bederfelijkheid" placeholder="0" required />
+      <div class="invalid-feedback"> Vul een bederfelijkheid in. </div>
     </div>
 
     <button type="submit" class="btn btn-dark w-100 mt-3">Toevoegen</button>
