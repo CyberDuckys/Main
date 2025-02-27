@@ -49,6 +49,7 @@ class Views:
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
             WHERE v.aantal <= 200
             ORDER BY v.aantal
+            LIMIT 6;
         """) or []
 
         print(bijna_op_producten)  # Debug output in de terminal
