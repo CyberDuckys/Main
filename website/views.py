@@ -38,7 +38,7 @@ class Views:
         self.views.add_url_rule('/inkoop', view_func=self.inkoop)
         self.views.add_url_rule('/bestelgeschiedenis', view_func=self.bestelgeschiedenis)
         self.views.add_url_rule('/koeriers', view_func=self.koeriers)
-        self.views.add_url_rule('/koeriers/klant-info/<int:klant_id>', view_func=self.koeriers_klant_info)
+        self.views.add_url_rule('/koeriers/klant-info/<int:klant_id>', methods=['GET', 'POST'], view_func=self.koeriers_klant_info)
 
     # 📌 DASHBOARD
     def index(self):
@@ -79,7 +79,7 @@ class Views:
 
     # 📌 KLANTEN
     def klantenlijst(self):
-        klanten = self._execute_query("SELECT klant_id, naam, adres, telefoonnummer, jaaromzet FROM klant")
+        klanten = self._execute_query("SELECT klant_id, naam, adres, telefoonnummer, jaaromzet, website FROM klant")
         return render_template("klanten.html", klanten=klanten)
 
     # 📌 FINANCIËN
@@ -120,22 +120,33 @@ class Views:
     def financien_toevoegen(self):
         if request.method == 'POST':
             klant_id = request.form.get('klant')
-            bedrag = request.form.get('bedrag')
-            datum = request.form.get('datum')
             status = request.form.get('status')
-
+            bedrag = request.form.get('bedrag')
+            korting = request.form.get('korting')
+            koerier = request.form.get('koerier')
+            levermoment = request.form.get('levermoment')
+            spoed = request.form.get('spoed')
+            producten = request.form.getlist('producten')
+            datum = datetime.now().strftime("%Y-%m-%d")
             if not klant_id.isdigit():
                 return "Ongeldig klant ID.", 400
-
+            print(klant_id, status, bedrag, korting, koerier, levermoment, spoed, producten)
             self._execute_query("""
-                INSERT INTO administratie (klant_id, factuur_id, betaalstatus, datum) 
-                VALUES (%s, %s, %s, %s)
-            """, (klant_id, bedrag, status, datum))
+                INSERT INTO bestellingen (klant_id, datum, status, totaal_bedrag, korting, koerier_id, levermoment, spoed ) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """, (klant_id, datum, status, bedrag, korting, koerier, levermoment, spoed))
+            bestelling_id = self._execute_query("SELECT max(bestelling_id) FROM bestellingen;")
+            for product in producten:
+                self._execute_query("""
+                    INSERT INTO bestellingregels (bestelling_id, product_id)
+                    VALUES (%s, %s)
+                """, (bestelling_id, product))
 
             return redirect(url_for('views.financien', klant_id=klant_id))
         koeriers = self._execute_query("SELECT koerier_id, naam FROM koeriers")
+        producten = self._execute_query("SELECT product_id, naam FROM products")
         klanten = self._execute_query("SELECT klant_id, naam FROM klant")
-        return render_template("financien_toevoegen.html", klanten=klanten)
+        return render_template("financien_toevoegen.html", klanten=klanten, koeriers=koeriers, producten=producten)
 
     def financien_wijzigen(self, financien_id):
         klant_financien = self._execute_query("""
@@ -261,7 +272,7 @@ class Views:
     def koeriers(self):
         koeriers_data = self._execute_query("SELECT koerier_id, naam, telefoonnummer, regio FROM koeriers")
         leveringen = self._execute_query("""
-            SELECT b.bestelling_id, b.datum, k.naam, k.adres, c.naam 
+            SELECT k.klant_id, b.bestelling_id, b.datum, k.naam, k.adres, c.naam 
             FROM bestellingen b
             JOIN klant k ON b.klant_id = k.klant_id
             JOIN koeriers c ON b.koerier_id = c.koerier_id
@@ -270,10 +281,17 @@ class Views:
         return render_template("koeriers.html", koeriers=koeriers_data, leveringen=leveringen)
 
     def koeriers_klant_info(self, klant_id):
+        if request.method == 'POST':
+            naam = request.form['klant_naam']
+            adres = request.form['klant_adres']
+            telefoon = request.form['klant_telefoon']
+            website = request.form['klant_website']
+            jaaromzet = request.form['klant_jaaromzet']
+            self._execute_query("""
+                UPDATE klant 
+                SET naam = %s, adres = %s, telefoonnummer = %s, jaaromzet = %s, website = %s
+                WHERE klant_id = %s
+            """, (naam, adres, telefoon, jaaromzet, website, klant_id))
         klant = self._execute_query("SELECT * FROM klant WHERE klant_id = %s", (klant_id,))
         koerier_info = self._execute_query("SELECT * FROM koeriers WHERE koerier_id = %s", (klant_id,))
-
-        if not klant:
-            return "Klant niet gevonden", 404
-
-        return render_template("koeriers_klant_info.html", klant=klant, koerier_info=koerier_info)
+        return render_template("koeriers_klant_info.html", klant_id=klant_id, klant=klant, koerier_info=koerier_info)

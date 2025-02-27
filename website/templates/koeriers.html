@@ -1,79 +1,78 @@
-{% extends 'base.html' %}
-
-{% block title %}Koeriers{% endblock %}
-
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+{% extends 'base.html' %} {% block title %}Koeriers{% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}" />
 
 <h1 class="text-center alignH1">Dashboard Koeriers</h1>
 
 <div class="alignTables">
-
-    <!-- Spoed Leveringen -->
-    <div class="fullTable">
-        <div class="caption">
-            <span>SPOED Leveringen</span>
-        </div>
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Bestelling ID</th>
-                        <th>Levermoment</th>
-                        <th>Adres</th>
-                        <th>Koerier</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for levering in leveringen %}
-                    <tr>
-                        <td>{{ levering[0] }}</td> <!-- Bestelling ID -->
-                        <td>{{ levering[1] }}</td> <!-- Levermoment -->
-                        <td>{{ levering[2] }}</td> <!-- Klantnaam -->
-                        <td>{{ levering[4] }}</td> <!-- Koeriernaam -->
-                        <td>
-                            <a href="{{ url_for('views.koeriers_klant_info', klant_id=levering[0]) }}" 
-                               class="btn btn-dark w-100 mt-2">
-                                Klant info
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+  <!-- Spoed Leveringen -->
+  <div class="fullTable">
+    <div class="caption">
+      <span>SPOED Leveringen</span>
     </div>
-
-    <!-- Koeriers Tabel -->
-    <div class="fullTable">
-        <div class="caption">
-            <span>Koeriers</span>
-        </div>
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Koerier ID</th>
-                        <th>Naam</th>
-                        <th>Telefoonnummer</th>
-                        <th>Regio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for koerier in koeriers %}
-                    <tr>
-                        <td>{{ koerier[0] }}</td> <!-- Koerier ID -->
-                        <td>{{ koerier[1] }}</td> <!-- Naam -->
-                        <td>{{ koerier[2] }}</td> <!-- Telefoonnummer -->
-                        <td>{{ koerier[3] }}</td> <!-- Regio -->
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+          <tr>
+            <th>Bestelling ID</th>
+            <th>Levermoment</th>
+            <th>Adres</th>
+            <th>Koerier</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for levering in leveringen %}
+          <tr>
+            <td>{{ levering[1] }}</td>
+            <!-- Bestelling ID -->
+            <td>{{ levering[2] }}</td>
+            <!-- Levermoment -->
+            <td>{{ levering[3] }}</td>
+            <!-- Klantnaam -->
+            <td>{{ levering[5] }}</td>
+            <!-- Koeriernaam -->
+            <td>
+              <a href="{{ url_for('views.koeriers_klant_info', klant_id=levering[0]) }}" class="btn btn-dark w-100 mt-2"> Klant info </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+  </div>
 
+  <!-- Koeriers Tabel -->
+  <div class="fullTable">
+    <div class="caption">
+      <span>Koeriers</span>
+    </div>
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered table-striped table-hover table-sm text-center fs-6">
+        <thead class="table-dark">
+          <tr>
+            <th>Koerier ID</th>
+            <th>Naam</th>
+            <th>Telefoonnummer</th>
+            <th>Regio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for koerier in koeriers %}
+          <tr>
+            <td>{{ koerier[0] }}</td>
+            <!-- Koerier ID -->
+            <td>{{ koerier[1] }}</td>
+            <!-- Naam -->
+            <td>{{ koerier[2] }}</td>
+            <!-- Telefoonnummer -->
+            <td>{{ koerier[3] }}</td>
+            <!-- Regio -->
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

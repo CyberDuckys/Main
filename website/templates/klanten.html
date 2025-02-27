@@ -19,6 +19,7 @@
             <th>Adres</th>
             <th>Telefoon</th>
             <th>Jaaromzet</th>
+            <th>Website</th>
             <th>Acties</th>
           </tr>
         </thead>
@@ -35,6 +36,7 @@
             <!-- Telefoonnummer -->
             <td>€{{ klant[4] | round(2) }}</td>
             <!-- Jaaromzet -->
+            <td>{{ klant[5] }}</td>
             <td>
               <a class="btn btn-dark" href="{{ url_for('views.financien', klant_id=klant[0]) }}"> Financiën </a>
               <br /><br />

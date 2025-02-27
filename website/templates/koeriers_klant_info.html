@@ -1,38 +1,37 @@
-{% extends 'base.html' %}
-
-{% block title %}Klant Info{% endblock %}
-
-{% block head %}
+{% extends 'base.html' %} {% block title %}Klant Info{% endblock %} {% block head %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}" />
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container mt-5">
   <h1 class="text-center alignH1">Klant Info voor Koeriers</h1>
 
-  <form method="POST" action="/opslaan_klantgegevens" class="needs-validation" novalidate>
+  <form action="{{ url_for('views.koeriers_klant_info', klant_id=klant_id) }}" method="POST" class="finance-form needs-validation" novalidate>
     <div class="mb-3">
       <label for="klant_naam" class="form-label">Naam</label>
-      <input type="text" class="form-control" id="klant_naam" name="klant_naam" value="{{ klant[1] }}" required />
+      <input type="text" class="form-control" id="klant_naam" name="klant_naam" value="{{ klant[0][1] }}" required />
       <div class="invalid-feedback"> Vul een naam in. </div>
     </div>
 
     <div class="mb-3">
       <label for="klant_adres" class="form-label">Adres</label>
-      <input type="text" class="form-control" id="klant_adres" name="klant_adres" value="{{ klant[2] }}" required />
+      <input type="text" class="form-control" id="klant_adres" name="klant_adres" value="{{ klant[0][2] }}" required />
       <div class="invalid-feedback"> Vul een adres in. </div>
     </div>
 
     <div class="mb-3">
       <label for="klant_telefoon" class="form-label">Telefoon</label>
-      <input type="tel" class="form-control" id="klant_telefoon" name="klant_telefoon" value="{{ klant[3] }}" required />
+      <input type="tel" class="form-control" id="klant_telefoon" name="klant_telefoon" value="{{ klant[0][3] }}" required />
       <div class="invalid-feedback"> Vul een telefoonnummer in. </div>
     </div>
 
     <div class="mb-3">
+      <label for="klant_jaaromzet" class="form-label">Jaaromzet</label>
+      <input type="number" class="form-control" id="klant_jaaromzet" name="klant_jaaromzet" value="{{ klant[0][4] }}" />
+    </div>
+
+    <div class="mb-3">
       <label for="klant_website" class="form-label">Website</label>
-      <input type="url" class="form-control" id="klant_website" name="klant_website" value="{{ klant[4] }}" />
+      <input type="url" class="form-control" id="klant_website" name="klant_website" value="{{ klant[0][5] }}" />
     </div>
 
     <button type="submit" class="btn btn-dark w-100 mt-3">Opslaan</button>
