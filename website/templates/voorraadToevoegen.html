@@ -5,52 +5,39 @@
 <div class="container mt-5">
   <h1 class="text-center alignH1">Voorraad Toevoegen</h1>
 
-  <form method="POST" action="{{ url_for('views.voorraadProductToevoegen') }}" class="needs-validation" novalidate>
+  <form method="POST" action="{{ url_for('views.voorraadToevoegen') }}" class="needs-validation" novalidate>
     <div class="mb-3">
-      <label for="naam" class="form-label">Naam</label>
-      <input type="text" class="form-control" id="naam" name="naam" placeholder="Mango" required />
-      <div class="invalid-feedback"> Vul een naam in. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="beschrijving" class="form-label">Beschrijving</label>
-      <input type="text" class="form-control" id="beschrijving" name="beschrijving" placeholder="Biologische Mango" required />
-      <div class="invalid-feedback"> Vul een beschrijving in. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="prijs" class="form-label">Prijs</label>
-      <input type="number" step="0.01" class="form-control" id="prijs" name="prijs" placeholder="0.00" required />
-      <div class="invalid-feedback"> Vul een prijs in. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="gewicht" class="form-label">Gewicht</label>
-      <input type="number" step="0.01" class="form-control" id="gewicht" name="gewicht" placeholder="0.00" required />
-      <div class="invalid-feedback"> Vul een gewicht in. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="categorie" class="form-label">Categorie</label>
-      <input type="text" class="form-control" id="categorie" name="categorie" placeholder="Fruit" required />
-      <div class="invalid-feedback"> Vul een categorie in. </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="bewaaradvies" class="form-label">Bewaaradvies</label>
-      <select class="form-select" id="bewaaradvies" name="bewaaradvies" required>
-        <option value="" selected disabled>Kies een bewaaradvies</option>
-        <option value="Koeling">Koeling</option>
-        <option value="Droog en donker">Droog en donker</option>
-        <option value="Gekoeld bewaren">Gekoeld bewaren</option>
+      <label for="Location" class="form-label">Locatie</label>
+      <select class="form-select" id="location" name="location" required>
+        <option value="" selected disabled>Kies een locatie</option>
+        {% for locatie in locaties %}
+        <option value="{{locatie[0]}}">{{ locatie[1]}}</option>
+        {% endfor %}
       </select>
-      <div class="invalid-feedback"> Selecteer een bewaaradvies. </div>
+      <div class="invalid-feedback"> Selecteer een locatie. </div>
     </div>
 
     <div class="mb-3">
-      <label for="bederfelijkheid" class="form-label">Bederfelijkheid</label>
-      <input type="number" step="1" class="form-control" id="bederfelijkheid" name="bederfelijkheid" placeholder="0" required />
-      <div class="invalid-feedback"> Vul een bederfelijkheid in. </div>
+      <label for="product" class="form-label">Product</label>
+      <select class="form-select" id="product" name="product" required>
+        <option value="" selected disabled>Kies een product</option>
+        {% for product in producten %}
+        <option value="{{product[0]}}">{{ product[1]}}</option>
+        {% endfor %}
+      </select>
+      <div class="invalid-feedback"> Selecteer een product. </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="Batchnumber" class="form-label">Batchnummer</label>
+      <input type="text" class="form-control" id="batchnumber" name="batchnumber" placeholder="Bijv. BATCH001" required />
+      <div class="invalid-feedback"> Vul een batchnummer in. </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="amount" class="form-label">Aantal</label>
+      <input type="number" class="form-control" id="amount" name="amount" placeholder="Bijv. 10" required min="1" />
+      <div class="invalid-feedback"> Vul een geldig aantal in. </div>
     </div>
 
     <button type="submit" class="btn btn-dark w-100 mt-3">Toevoegen</button>
