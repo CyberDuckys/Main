@@ -42,7 +42,7 @@ class Views:
     # 📌 DASHBOARD
     def index(self):
         bijna_op_producten = self._execute_query("""
-            SELECT p.naam, v.expiratiedatum, v.aantal
+            SELECT p.naam, v.toegevoegd_op, v.aantal
             FROM voorraad v
             JOIN products p ON v.product_id = p.product_id
             JOIN magazijn m ON v.magazijn_id = m.magazijn_id
