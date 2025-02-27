@@ -21,7 +21,6 @@
 }
 
 .table th {
-    background-color: #343a40;
     border-left: 1px solid #DEE2E6;
     border-right: 1px solid #DEE2E6;
 }
@@ -66,7 +65,6 @@ thead th:last-child {
 
 .btn-group-sm>.btn,
 .btn-sm {
-    /* margin-left: 42rem; */
     margin: 1rem;
 }
 
@@ -129,7 +127,7 @@ thead th:last-child {
     --bs-table-color: inherit; /* Zorgt dat de tekstkleur niet verandert */
 }
 
-table tr:hover {
+table tbody tr:hover {
     --bs-table-bg: #f8f9fa83 !important; /* Wit voor even rijen */
     --bs-table-color: inherit; /* Zorgt dat de tekstkleur niet verandert */
     cursor: pointer;
@@ -156,4 +154,8 @@ table tr:hover {
     margin: auto;
     width: 45vw;
     overflow: auto;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    float: inline-end;
 }
