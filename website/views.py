@@ -30,6 +30,7 @@ class Views:
         self.views.add_url_rule('/klanten', view_func=self.klantenlijst)
         self.views.add_url_rule('/financien/<int:klant_id>', view_func=self.financien)
         self.views.add_url_rule('/financien/toevoegen', methods=['GET', 'POST'], view_func=self.financien_toevoegen)
+        self.views.add_url_rule('/financien/wijzigen/<int:financien_id>', methods=['GET', 'POST'], view_func=self.financien_wijzigen)
         self.views.add_url_rule('/voorraad', view_func=self.voorraad)
         self.views.add_url_rule('/voorraadProductToevoegen', methods=['GET', 'POST'], view_func=self.voorraadProductToevoegen)
         self.views.add_url_rule('/voorraadToevoegen', methods=['GET', 'POST'], view_func=self.voorraadToevoegen)
@@ -83,13 +84,38 @@ class Views:
 
     # 📌 FINANCIËN
     def financien(self, klant_id):
-        klant = self._execute_query("SELECT * FROM klant WHERE klant_id = %s", (klant_id,))
-        klant_financien = self._execute_query("SELECT * FROM administratie WHERE klant_id = %s", (klant_id,))
-
-        if not klant:
+        print(klant_id)
+        klant_financien = self._execute_query("""
+            SELECT 
+                b.klant_id,
+                b.bestelling_id, 
+                b.status, 
+                b.totaal_bedrag, 
+                b.korting, 
+                k.naam AS koerier,
+                b.levermoment, 
+                CASE 
+                    WHEN b.spoed = 1 THEN 'Ja' 
+                    ELSE 'Nee' 
+                END AS spoed,
+                GROUP_CONCAT(p.naam ORDER BY p.naam SEPARATOR ', ') AS producten
+            FROM bestellingen AS b
+            JOIN bestellingregels AS br ON b.bestelling_id = br.bestelling_id
+            JOIN products AS p ON br.product_id = p.product_id
+            JOIN koeriers AS k ON b.koerier_id = k.koerier_id
+            WHERE b.klant_id = %s
+            GROUP BY b.bestelling_id;""", (klant_id,))
+        
+        klant = self._execute_query("""
+            SELECT 
+                k.naam
+            FROM klant AS k
+            WHERE k.klant_id = %s;""", (klant_id,))
+        print(klant_financien)
+        if not klant_financien:
             return "Klant niet gevonden", 404
 
-        return render_template("financien.html", klant=klant, finance=klant_financien)
+        return render_template("financien.html", financien=klant_financien, klant=klant)
 
     def financien_toevoegen(self):
         if request.method == 'POST':
@@ -107,9 +133,43 @@ class Views:
             """, (klant_id, bedrag, status, datum))
 
             return redirect(url_for('views.financien', klant_id=klant_id))
-
+        koeriers = self._execute_query("SELECT koerier_id, naam FROM koeriers")
         klanten = self._execute_query("SELECT klant_id, naam FROM klant")
         return render_template("financien_toevoegen.html", klanten=klanten)
+
+    def financien_wijzigen(self, financien_id):
+        klant_financien = self._execute_query("""
+                    SELECT 
+                        b.status, 
+                        b.totaal_bedrag, 
+                        b.korting, 
+                        k.naam AS koerier,
+                        b.levermoment, 
+                        b.spoed,
+                        GROUP_CONCAT(p.naam ORDER BY p.naam SEPARATOR ', ') AS producten
+                    FROM bestellingen AS b
+                    JOIN bestellingregels AS br ON b.bestelling_id = br.bestelling_id
+                    JOIN products AS p ON br.product_id = p.product_id
+                    JOIN koeriers AS k ON b.koerier_id = k.koerier_id
+                    WHERE b.bestelling_id = %s
+                    GROUP BY b.bestelling_id;""", (financien_id,))
+        koeriers = self._execute_query("SELECT koerier_id, naam FROM koeriers")
+        print(klant_financien)
+        if request.method == 'POST':
+            status = request.form.get('status')
+            bedrag = request.form.get('bedrag')
+            korting = request.form.get('korting')
+            koerier = request.form.get('koerier')
+            levermoment = request.form.get('levermoment')
+            spoed = request.form.get('spoed')
+            # print(status, bedrag, korting, koerier, levermoment, spoed, financien_id)
+            self._execute_query("""
+                    UPDATE bestellingen
+                    SET status = %s, totaal_bedrag = %s, korting = %s, koerier_id = %s, levermoment = %s, spoed = %s
+                    WHERE bestelling_id = %s
+                """,(status, bedrag, korting, koerier, levermoment, spoed, financien_id))
+
+        return render_template("financien_wijzigen.html", financien_id=financien_id, koeriers=koeriers, financien=klant_financien)
 
     # 📌 VOORRAAD
     def voorraad(self):

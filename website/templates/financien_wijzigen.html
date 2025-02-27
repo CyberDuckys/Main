@@ -1,67 +1,107 @@
-{% extends 'base.html' %}
-
-{% block title %} Financiën Wijzigen {% endblock %}
-
-{% block content %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% extends 'base.html' %} {% block title %} Financiën Wijzigen {% endblock %} {% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" />
 
 <div class="container mt-5">
-    <h1 class="text-center alignH1">Financiën Wijzigen</h1>
+  <h1 class="text-center alignH1">Financiën Wijzigen</h1>
 
-    <form method="post" action="{{ url_for('views.klantenlijst') }}" class="needs-validation" novalidate>
+  <form action="{{ url_for('views.financien_wijzigen', financien_id=financien_id) }}" method="POST" class="finance-form needs-validation" novalidate>
+    <!-- financien id -->
+    <div class="mb-3">
+      <label class="form-label">ID</label>
+      <div class="form-control"> {{financien_id}} </div>
+    </div>
+    
+    <!-- Status kiezen -->
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select id="status" name="status" class="form-select" required>
+        <option value="" disabled>Kies een status...</option>
+        <option {% if financien[0][0] == 'Openstaand' %}selected{% endif %} value="Openstaand">Openstaand</option>
+        <option {% if financien[0][0] == 'Betaald' %}selected{% endif %} value="Betaald">Betaald</option>
+        <option {% if financien[0][0] == 'Achterstallig' %}selected{% endif %} value="Achterstallig">Achterstallig</option>
+        <option {% if financien[0][0] == 'Verzonden' %}selected{% endif %} value="Verzonden">Verzonden</option>
+        <option {% if financien[0][0] == 'Geleverd' %}selected{% endif %} value="Geleverd">Geleverd</option>
+        <option {% if financien[0][0] == 'In verwerking' %}selected{% endif %} value="In verwerking">In verwerking</option>
+      </select>
+      <div class="invalid-feedback">Kies een status.</div>
+    </div>
 
-        <!-- Beschrijving -->
-        <div class="mb-3">
-            <label for="beschrijving" class="form-label">Beschrijving</label>
-            <input type="text" class="form-control" id="beschrijving" name="beschrijving" value="{{ financien.beschrijving }}" required>
-            <div class="invalid-feedback">Vul een beschrijving in.</div>
-        </div>
+    <!-- Totaal bedrag invoeren -->
+    <div class="mb-3">
+      <label for="bedrag" class="form-label">Bedrag (€)</label>
+      <input type="number" class="form-control" id="bedrag" name="bedrag" step="0.01" placeholder="Bijv. 100.50" value="{{financien[0][1]}}" required />
+      <div class="invalid-feedback">Vul een geldig bedrag in.</div>
+    </div>
 
-        <!-- Bedrag -->
-        <div class="mb-3">
-            <label for="bedrag" class="form-label">Bedrag (€)</label>
-            <input type="number" class="form-control" id="bedrag" name="bedrag" value="{{ financien.bedrag }}" step="0.01" required>
-            <div class="invalid-feedback">Vul een geldig bedrag in.</div>
-        </div>
+    <!-- Totaal bedrag invoeren -->
+    <div class="mb-3">
+      <label for="korting" class="form-label">Korting</label>
+      <input type="number" class="form-control" id="korting" name="korting" step="0.01" placeholder="Bijv. 10.00" value="{{financien[0][2]}}" required />
+      <div class="invalid-feedback">Vul een geldige korting in.</div>
+    </div>
 
-        <!-- Status -->
-        <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select id="status" name="status" class="form-select" required>
-                <option value="Onbetaald" {% if financien.status=='Onbetaald' %}selected{% endif %}>Onbetaald</option>
-                <option value="Betaald" {% if financien.status=='Betaald' %}selected{% endif %}>Betaald</option>
-            </select>
-            <div class="invalid-feedback">Kies een status.</div>
-        </div>
+    <!-- Koerier kiezen -->
+    <div class="mb-3">
+      <label for="koerier" class="form-label">Koerier</label>
+      <select class="form-select" id="koerier" name="koerier" required>
+        <option value="" selected>Kies een koerier</option>
+        {% for koerier in koeriers %}
+        <option {% if financien[0][3] == koerier[1] %}selected{% endif %} value="{{koerier[0]}}">{{ koerier[1]}}</option>
+        {% endfor %}
+      </select>
+      <div class="invalid-feedback"> Selecteer een koerier. </div>
+    </div>
 
-        <!-- Datum -->
-        <div class="mb-3">
-            <label for="datum" class="form-label">Datum</label>
-            <input type="date" class="form-control" id="datum" name="datum" value="{{ financien.datum }}" required>
-            <div class="invalid-feedback">Vul een geldige datum in.</div>
-        </div>
+    <!-- Levermoment kiezen -->
+    <div class="mb-3">
+      <label for="levermoment" class="form-label">Levermoment</label>
+      <select id="levermoment" name="levermoment" class="form-select" required>
+        <option value="" disabled>Kies een Levermoment...</option>
+        <option {% if financien[0][4] == "Ochtend" %}selected{% endif %} value="Ochtend">Ochtend</option>
+        <option {% if financien[0][4] == "Middag" %}selected{% endif %} value="Middag">Middag</option>
+        <option {% if financien[0][4] == "Avond" %}selected{% endif %} value="Avond">Avond</option>
+      </select>
+      <div class="invalid-feedback">Kies een Levermoment.</div>
+    </div>
 
-        <!-- Verborgen ID -->
-        <input type="hidden" name="id" value="{{ financien.id }}">
+    <!-- Spoed kiezen -->
+    <div class="mb-3">
+      <label for="spoed" class="form-label">spoed</label>
+      <select id="spoed" name="spoed" class="form-select" required>
+        <option value="" disabled>Kies spoed...</option>
+        <option {% if financien[0][5] == 0 %}selected{% endif %} value="0">Nee</option>
+        <option {% if financien[0][5] == 1 %}selected{% endif %} value="1">Ja</option>
+      </select>
+    </div>
 
-        <button type="submit" class="btn btn-dark w-100">Opslaan</button>
-    </form>
+    <!-- financien id -->
+    <div class="mb-3">
+      <label class="form-label">Producten</label>
+      <div class="form-control"> {{financien[0][6]}} </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100">Opslaan</button>
+  </form>
 </div>
 
 <script>
-    (function () {
-        'use strict';
-        var forms = document.querySelectorAll('.needs-validation');
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
+  (function () {
+    "use strict";
+    var forms = document.querySelectorAll(".needs-validation");
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
 </script>
 {% endblock %}
