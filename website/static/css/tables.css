@@ -2,6 +2,7 @@
     font-size: 0.8rem !important;
     /* Verklein de lettergrootte */
     min-width: -webkit-fill-available;
+    border-collapse: collapse;
 }
 
 /* Maak de thead sticky */
@@ -21,7 +22,16 @@
 
 .table th {
     background-color: #343a40;
-    border: 2px solid #343a40;
+    border-left: 1px solid #DEE2E6;
+    border-right: 1px solid #DEE2E6;
+}
+
+thead th:first-child {
+    border-left: none;
+}
+
+thead th:last-child {
+    border-right: none;
 }
 
 .card .card-title {
@@ -39,24 +49,25 @@
     font-weight: 700;
     text-align: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 2rem;
     position: static;
     background-color: darkgray;
     min-width: 45vw;
     max-width: 45vw;
     z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .caption span {
     font-size: 2rem;
-    position: absolute;
 }
 
 .btn-group-sm>.btn,
 .btn-sm {
-    margin-left: 42rem;
+    /* margin-left: 42rem; */
+    margin: 1rem;
 }
 
 @media only screen and (max-width: 1750px) {
@@ -70,12 +81,10 @@
     flex-direction: column;
     padding: unset;
     margin: auto;
-    position: fixed;
 }
 
 
 .caption span {
-    padding-bottom: 1rem;
     position: relative;
 }
 
@@ -87,6 +96,13 @@
     overflow: auto;
 }
 }
+
+@media only screen and (max-width: 900px) {
+  
+    .caption span {
+      font-size: 4vw;
+  }
+  }
 
 .button-small {
     padding: 5px 10px;
@@ -136,16 +152,8 @@ table tr:hover {
     position: relative;
 }
 
-.mb-4 {
-    min-width: 41.8rem;
-}
-
 .fullTable {
     margin: auto;
     width: 45vw;
     overflow: auto;
-}
-
-.table-bordered>:not(caption)>*>* {
-    border-width: unset !important;
 }
