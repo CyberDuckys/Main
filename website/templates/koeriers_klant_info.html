@@ -2,49 +2,41 @@
 
 {% block title %}Klant Info{% endblock %}
 
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}" />
+{% endblock %}
+
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+<div class="container mt-5">
+  <h1 class="text-center alignH1">Klant Info voor Koeriers</h1>
 
-<h1 class="text-center alignH1">Klant Info voor Koeriers</h1>
-
-<div class="container">
-    <!-- Klantgegevens -->
-    <div class="table-responsive mb-4">
-        <div class="caption">
-            <span>Klantgegevens</span>
-        </div>
-        <table class="table table-bordered table-striped table-hover text-center fs-6">
-            <tbody>
-                <tr><th>Naam:</th><td>{{ klant[1] }}</td></tr>
-                <tr><th>Adres:</th><td>{{ klant[2] }}</td></tr>
-                <tr><th>Telefoon:</th><td>{{ klant[3] }}</td></tr>
-                <tr>
-                    <th>Website:</th>
-                    <td><a href="{{ klant[4] }}" target="_blank">{{ klant[4] }}</a></td>
-                </tr>
-            </tbody>
-        </table>
+  <form method="POST" action="/opslaan_klantgegevens" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="klant_naam" class="form-label">Naam</label>
+      <input type="text" class="form-control" id="klant_naam" name="klant_naam" value="{{ klant[1] }}" required />
+      <div class="invalid-feedback"> Vul een naam in. </div>
     </div>
 
-    <!-- Leveringsinformatie -->
-    <div class="table-responsive mb-4">
-        <div class="caption">
-            <span>Leveringsinformatie</span>
-            <button class="btn btn-sm btn-dark">Opslaan</button>
-        </div>
-        <table class="table table-bordered table-striped table-hover text-center fs-6">
-            <tbody>
-                <tr><th>Track & Trace:</th><td>{{ koerier_info.track }}</td></tr>
-                <tr><th>Levermoment:</th><td>{{ koerier_info.levermoment }}</td></tr>
-                <tr><th>Adres:</th><td>{{ koerier_info.adres }}</td></tr>
-            </tbody>
-        </table>
+    <div class="mb-3">
+      <label for="klant_adres" class="form-label">Adres</label>
+      <input type="text" class="form-control" id="klant_adres" name="klant_adres" value="{{ klant[2] }}" required />
+      <div class="invalid-feedback"> Vul een adres in. </div>
     </div>
 
-    <!-- Navigatie -->
-    <div class="text-center">
-        <a href="{{ url_for('views.koeriers') }}" class="btn btn-dark">Terug naar Koeriers</a>
+    <div class="mb-3">
+      <label for="klant_telefoon" class="form-label">Telefoon</label>
+      <input type="tel" class="form-control" id="klant_telefoon" name="klant_telefoon" value="{{ klant[3] }}" required />
+      <div class="invalid-feedback"> Vul een telefoonnummer in. </div>
     </div>
+
+    <div class="mb-3">
+      <label for="klant_website" class="form-label">Website</label>
+      <input type="url" class="form-control" id="klant_website" name="klant_website" value="{{ klant[4] }}" />
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100 mt-3">Opslaan</button>
+  </form>
 </div>
 
 {% endblock %}
