@@ -27,7 +27,7 @@ Project Distributiecentrum Bart
      ```
 
    4. **Plaats de DB-gegevens in het .env bestand**:  
-      De databasegegevens ontvang je in een apart document van de host van deze code. Plaats deze gegevens in het `.env` bestand in de hoofdmap van het project. Dit bestand wordt door de applicatie gebruikt om verbinding te maken met de database.
+      De databasegegevens ontvang je in een apart document (appConfig.py) van de host van deze code. Plaats deze gegevens in het `.env` bestand in de hoofdmap van het project. Dit bestand wordt door de applicatie gebruikt om verbinding te maken met de database.
 
    5. **Run de applicatie**:
      Nu kun je de app starten vanaf `app.py` of in de terminal met het volgende commando:
